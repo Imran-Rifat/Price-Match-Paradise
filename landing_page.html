@@ -356,29 +356,161 @@
         .feature-list i  { color: var(--accent); margin-top: 4px; }
 
         /* ── DEMO / VIDEO ────────────────────────── */
-        .demo-section { background: #fff; overflow: hidden; }
-        .scroll-stage { min-height: 1040px; display: flex; align-items: center; justify-content: center; padding: 80px 0; }
-        .demo-frame-wrap { width: 100%; perspective: 1100px; }
+        .demo-section {
+            background: linear-gradient(180deg,#f1f5f9 0%,#0c1525 12%,#07111f 80%,#0d1b2e 100%);
+            overflow: hidden; position: relative;
+        }
+        /* subtle dot-grid overlay */
+        .demo-section::before {
+            content:''; position:absolute; inset:0; pointer-events:none;
+            background-image: radial-gradient(circle at 1px 1px, rgba(148,163,184,.07) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
+        .scroll-stage { min-height: 1060px; display: flex; align-items: center; justify-content: center; padding: 80px 0; }
+        .demo-frame-wrap { width: 100%; perspective: 1400px; perspective-origin: 50% 60%; }
         .demo-title {
-            text-align: center; margin-bottom: 28px;
+            text-align: center; margin-bottom: 40px;
             transform: translateY(var(--demo-title-y,0px));
             transition: transform .1s linear;
         }
+        .demo-title .section-kicker { color: #67e8f9; }
+        .demo-title h2 { color: #f1f5f9; }
+        .demo-title .lead { color: #94a3b8; }
+
+        /* ── outer wrapper — holds phone + glow ── */
+        .demo-device-outer {
+            position: relative; width: min(360px,80vw); margin: 0 auto;
+        }
+
+        /* ── iPhone 17 shell ──────────────────── */
         .demo-device {
-            width: min(390px,86vw); aspect-ratio: 9/16; margin: 0 auto;
-            border: 10px solid #141923; border-radius: 38px;
-            background: #171717; padding: 10px;
-            box-shadow: 0 40px 80px rgba(15,23,42,.28), 0 0 0 1px rgba(14,165,233,.1);
-            transform: rotateX(var(--demo-rotate,16deg)) scale(var(--demo-scale,.96));
-            transform-origin: center center; transition: transform .1s linear; position: relative;
+            position: relative;
+            width: 100%; aspect-ratio: 393/852;
+            /* Titanium multi-tone frame */
+            background: linear-gradient(160deg,
+                #d4d4d8 0%, #a1a1aa 18%, #52525b 42%,
+                #71717a 58%, #d4d4d8 78%, #a1a1aa 100%);
+            border-radius: 52px;
+            padding: 13px;
+            /* frame edge highlights */
+            box-shadow:
+                inset 0 2px 0 rgba(255,255,255,.45),
+                inset 0 -2px 0 rgba(0,0,0,.5),
+                inset 2px 0 0 rgba(255,255,255,.12),
+                inset -2px 0 0 rgba(0,0,0,.35),
+                /* depth shadows */
+                0 70px 140px rgba(0,0,0,.7),
+                0 30px 70px rgba(0,0,0,.5),
+                0 8px 24px rgba(0,0,0,.4),
+                /* brand glow */
+                0 0 80px rgba(14,165,233,.18),
+                0 0 160px rgba(14,165,233,.08);
+            transform:
+                rotateX(var(--demo-rotate,22deg))
+                rotateY(var(--demo-ry,-4deg))
+                translateY(var(--demo-ty,40px))
+                scale(var(--demo-scale,.88));
+            transform-origin: center bottom;
+            transition: transform .1s linear;
+            will-change: transform;
         }
+
+        /* inner black bezel */
         .demo-device::before {
-            content: ""; position: absolute; top: 13px; left: 50%;
-            width: 96px; height: 24px; border-radius: 999px;
-            background: #050816; transform: translateX(-50%); z-index: 3;
+            content:''; position:absolute; inset:3px;
+            border-radius: 48px; background:#000; z-index:0;
         }
-        .video-shell { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 28px; background: #020617; }
-        .video-shell video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* Dynamic Island */
+        .dyn-island {
+            position:absolute; top:18px; left:50%; transform:translateX(-50%);
+            width: 34%; height: 36px; border-radius:999px;
+            background:#000; z-index:10;
+            box-shadow: 0 0 0 1.5px rgba(255,255,255,.06), inset 0 1px 0 rgba(255,255,255,.04);
+        }
+
+        /* Side hardware buttons */
+        .btn-side { position:absolute; border-radius:3px; z-index:10; }
+        /* Action button — top-left */
+        .btn-action {
+            left:-3.5px; top:17%; width:3.5px; height:7%;
+            background:linear-gradient(to right,#3f3f46,#a1a1aa,#3f3f46);
+            border-radius:2px 0 0 2px;
+        }
+        /* Volume up */
+        .btn-vol-up {
+            left:-3.5px; top:28%; width:3.5px; height:12%;
+            background:linear-gradient(to right,#3f3f46,#a1a1aa,#3f3f46);
+            border-radius:2px 0 0 2px;
+        }
+        /* Volume down */
+        .btn-vol-dn {
+            left:-3.5px; top:43%; width:3.5px; height:12%;
+            background:linear-gradient(to right,#3f3f46,#a1a1aa,#3f3f46);
+            border-radius:2px 0 0 2px;
+        }
+        /* Power / sleep */
+        .btn-power {
+            right:-3.5px; top:27%; width:3.5px; height:16%;
+            background:linear-gradient(to left,#3f3f46,#a1a1aa,#3f3f46);
+            border-radius:0 2px 2px 0;
+        }
+
+        /* Home indicator bar */
+        .home-bar {
+            position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
+            width:38%; height:5px; border-radius:999px;
+            background:rgba(255,255,255,.32); z-index:10;
+        }
+
+        /* ── Screen area ─────────────────── */
+        .video-shell {
+            position:relative; width:100%; height:100%;
+            border-radius:40px; overflow:hidden;
+            background:#020617; z-index:1;
+            box-shadow: inset 0 0 28px rgba(0,0,0,.6);
+        }
+        .video-shell video { width:100%; height:100%; object-fit:cover; display:block; }
+
+        /* Screen glare */
+        .screen-glare {
+            position:absolute; inset:0; border-radius:40px;
+            background:linear-gradient(
+                138deg,
+                rgba(255,255,255,.10) 0%,
+                rgba(255,255,255,.04) 30%,
+                rgba(255,255,255,0) 55%,
+                rgba(255,255,255,.02) 100%
+            );
+            pointer-events:none; z-index:8;
+        }
+
+        /* ── Ambient glow behind phone ─── */
+        .phone-glow-halo {
+            position:absolute; bottom:-30px; left:50%;
+            transform:translateX(-50%);
+            width:280px; height:180px; border-radius:50%;
+            background:radial-gradient(ellipse at center,
+                rgba(14,165,233,.38) 0%,
+                rgba(99,102,241,.18) 45%,
+                transparent 72%
+            );
+            filter:blur(36px); z-index:-1;
+            animation: haloBreath 3.6s ease-in-out infinite alternate;
+        }
+        @keyframes haloBreath {
+            from { opacity:.7; transform:translateX(-50%) scaleX(1); }
+            to   { opacity:1;  transform:translateX(-50%) scaleX(1.18); }
+        }
+
+        /* ── Reflection under phone ─────── */
+        .phone-reflection {
+            position:absolute; bottom:-28px; left:10%; right:10%;
+            height:40px; border-radius:50%;
+            background:radial-gradient(ellipse at center,rgba(14,165,233,.22) 0%,transparent 70%);
+            filter:blur(14px); z-index:-1;
+        }
+
         .unmute-btn {
             position: absolute; left: 50%; transform: translateX(-50%) translateY(6px); bottom: 18px;
             padding: 10px 14px; border-radius: 999px;
@@ -394,6 +526,16 @@
             position: absolute; inset: auto 14px 14px 14px; padding: 14px 16px; border-radius: 8px;
             background: rgba(2,6,23,.74); color: #e2e8f0;
             display: flex; align-items: center; gap: 12px; backdrop-filter: blur(8px);
+        }
+
+        /* ── mouse-parallax tilt vars ── */
+        .demo-device { --mx:0deg; --my:0deg; }
+        .demo-device.mouse-active {
+            transform:
+                rotateX(calc(var(--demo-rotate,0deg) + var(--my)))
+                rotateY(calc(var(--demo-ry,0deg)     + var(--mx)))
+                translateY(var(--demo-ty,0px))
+                scale(var(--demo-scale,1)) !important;
         }
 
         /* ── PRICING ─────────────────────────────── */
@@ -610,8 +752,13 @@
             .feature-grid, .app-flow, .why-grid,
             .stat-row, .review-grid, .plan-grid { grid-template-columns: 1fr; }
             .section { padding: 64px 0; }
-            .scroll-stage { min-height: 800px; padding: 46px 0; }
-            .demo-device { width: min(310px,88vw); border-width: 8px; border-radius: 32px; padding: 8px; }
+            .scroll-stage { min-height: 820px; padding: 46px 0; }
+            .demo-device-outer { width: min(290px,88vw); }
+            .demo-device { border-radius: 44px; padding: 10px; }
+            .demo-device::before { border-radius: 38px; }
+            .video-shell { border-radius: 34px; }
+            .dyn-island { height: 28px; top: 14px; }
+            .home-bar { bottom: 9px; height: 4px; }
             .footer-top { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
@@ -799,21 +946,38 @@
                                 Drop your reel at <strong>asset/price-match/app-demo.mp4</strong> to activate this player.
                             </p>
                         </div>
-                        <div class="demo-device" id="demoDevice">
-                            <div class="video-shell">
-                                <video id="demoVideo" controls muted playsinline preload="metadata">
-                                    <source src="asset/price-match/app-demo.mp4"  type="video/mp4">
-                                    <source src="asset/price-match/app-demo.mov" type="video/quicktime">
-                                    Your browser does not support this video format.
-                                </video>
-                                <button id="unmuteBtn" class="unmute-btn" aria-label="Unmute video">
-                                    <i class="fas fa-volume-up"></i> Unmute
-                                </button>
-                                <div class="video-fallback">
-                                    <i class="fas fa-circle-play"></i>
-                                    <span>App reel: scan a barcode → see 50+ prices → show screen → save money.</span>
+                        <div class="demo-device-outer">
+                            <div class="demo-device" id="demoDevice">
+                                <!-- Dynamic Island -->
+                                <div class="dyn-island"></div>
+                                <!-- Hardware buttons -->
+                                <span class="btn-side btn-action"></span>
+                                <span class="btn-side btn-vol-up"></span>
+                                <span class="btn-side btn-vol-dn"></span>
+                                <span class="btn-side btn-power"></span>
+                                <!-- Screen -->
+                                <div class="video-shell">
+                                    <video id="demoVideo" controls muted playsinline preload="metadata">
+                                        <source src="asset/price-match/app-demo.mp4" type="video/mp4">
+                                        <source src="asset/price-match/app-demo.mov" type="video/quicktime">
+                                        Your browser does not support this video format.
+                                    </video>
+                                    <!-- Screen glare -->
+                                    <div class="screen-glare"></div>
+                                    <button id="unmuteBtn" class="unmute-btn" aria-label="Unmute video">
+                                        <i class="fas fa-volume-up"></i> Unmute
+                                    </button>
+                                    <div class="video-fallback">
+                                        <i class="fas fa-circle-play"></i>
+                                        <span>App reel: scan a barcode → see 50+ prices → show screen → save money.</span>
+                                    </div>
                                 </div>
+                                <!-- Home indicator -->
+                                <div class="home-bar"></div>
                             </div>
+                            <!-- Ambient glow + reflection -->
+                            <div class="phone-glow-halo"></div>
+                            <div class="phone-reflection"></div>
                         </div>
                     </div>
                 </div>
@@ -1107,18 +1271,57 @@
             heroPhoneShowcase.style.setProperty("--hero-phone-progress", progress.toFixed(4));
         }
 
-        /* ── Demo tilt animation ────────────── */
+        /* ── Demo 3-D scroll animation ──────── */
         const demoDevice = document.getElementById("demoDevice");
         const demoTitle  = document.getElementById("demoTitle");
+
         function updateDemoAnimation() {
             if (!demoDevice || !demoTitle) return;
             const rect     = demoDevice.getBoundingClientRect();
             const viewport = window.innerHeight || document.documentElement.clientHeight;
-            const progress = Math.min(Math.max((viewport - rect.top) / (viewport + rect.height), 0), 1);
-            demoDevice.style.setProperty("--demo-rotate", (18 - progress * 18).toFixed(2) + "deg");
-            demoDevice.style.setProperty("--demo-scale",  (0.93 + progress * 0.07).toFixed(3));
-            demoTitle.style.setProperty("--demo-title-y", (-70 * progress).toFixed(1) + "px");
+            // 0 = phone just entering bottom; 1 = phone fully centred
+            const raw      = (viewport - rect.top) / (viewport + rect.height);
+            const p        = Math.min(Math.max(raw, 0), 1);
+
+            // X-tilt: 24° → 0°
+            const rotX  = (24 - p * 24).toFixed(2);
+            // Y-tilt: start slightly angled, land upright
+            const rotY  = (p < 0.5
+                ? -6 + p * 12          // -6° → 0°
+                : p * 2 - 1).toFixed(2); // 0° → +1° subtle overshoot
+            // Rise up as it enters
+            const ty    = (50 - p * 50).toFixed(1);
+            // Scale: 0.86 → 1
+            const sc    = (0.86 + p * 0.14).toFixed(3);
+
+            demoDevice.style.setProperty("--demo-rotate", rotX + "deg");
+            demoDevice.style.setProperty("--demo-ry",     rotY + "deg");
+            demoDevice.style.setProperty("--demo-ty",     ty   + "px");
+            demoDevice.style.setProperty("--demo-scale",  sc);
+            demoTitle.style.setProperty("--demo-title-y", (-80 * p).toFixed(1) + "px");
         }
+
+        /* ── Mouse parallax on the demo section ── */
+        (function () {
+            const demoSection = demoDevice?.closest(".demo-section");
+            if (!demoSection || !demoDevice) return;
+            const MAX = 8; // max tilt degrees
+            demoSection.addEventListener("mousemove", (e) => {
+                const rect = demoSection.getBoundingClientRect();
+                const cx   = rect.left + rect.width  / 2;
+                const cy   = rect.top  + rect.height / 2;
+                const mx   = ((e.clientX - cx) / (rect.width  / 2) * MAX).toFixed(2);
+                const my   = (-(e.clientY - cy) / (rect.height / 2) * MAX * 0.6).toFixed(2);
+                demoDevice.style.setProperty("--mx", mx + "deg");
+                demoDevice.style.setProperty("--my", my + "deg");
+                demoDevice.classList.add("mouse-active");
+            });
+            demoSection.addEventListener("mouseleave", () => {
+                demoDevice.style.setProperty("--mx", "0deg");
+                demoDevice.style.setProperty("--my", "0deg");
+                demoDevice.classList.remove("mouse-active");
+            });
+        })();
 
         updateHeroPhones();
         updateDemoAnimation();
