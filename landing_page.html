@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Match Paradise — Stop Overpaying at the Grocery Store</title>
+    <meta name="description" content="Scan any barcode in the aisle. See if a store nearby sells it cheaper. Show your screen. Pay less. Price Match Paradise saves the average shopper $28 per trip.">
+    <link rel="icon" type="image/png" href="asset/logo.png">
+    <link rel="apple-touch-icon" href="asset/logo.png">
+    <!-- Social share preview (Open Graph / Twitter) so links unfurl with the logo -->
+    <meta property="og:title" content="Price Match Paradise — Stop Overpaying at the Grocery Store">
+    <meta property="og:description" content="Scan any barcode. See if a store nearby sells it cheaper. The average member saves $28 per trip.">
+    <meta property="og:image" content="asset/logo.png">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f172a;
+            --muted: #526071;
+            --line: #dbe4ef;
+            --panel: #ffffff;
+            --soft: #f7fafc;
+            --brand: #0ea5e9;
+            --brand-dark: #0369a1;
+            --accent: #22c55e;
+            --warn: #f59e0b;
+            --night: #07111f;
+            --night-2: #0d1b2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+
+        body { background: var(--soft); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container { width: min(1120px, 90%); margin: 0 auto; }
+
+        /* ── BACK BTN ────────────────────────────── */
+        .back-btn {
+            position: fixed; top: 20px; left: 20px;
+            width: 46px; height: 46px;
+            border: 1px solid rgba(255,255,255,.22); border-radius: 50%;
+            background: rgba(7,17,31,.72); color: #fff;
+            display: grid; place-items: center;
+            cursor: pointer; z-index: 20;
+            backdrop-filter: blur(12px);
+            transition: transform .25s, background .25s;
+        }
+        .back-btn:hover { background: rgba(7,17,31,.92); transform: translateX(-4px); }
+
+        /* ── TOP NAV (with logo) ─────────────────── */
+        .site-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px clamp(16px, 4vw, 40px);
+            background: rgba(7,17,31,.55);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            transition: background .3s, padding .3s;
+        }
+        .site-nav.scrolled { background: rgba(7,17,31,.92); padding-top: 8px; padding-bottom: 8px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-brand img {
+            width: 40px; height: 40px; border-radius: 11px;
+            box-shadow: 0 4px 14px rgba(14,165,233,.35);
+        }
+        .nav-brand .nav-name {
+            color: #fff; font-weight: 800; font-size: 1.05rem; letter-spacing: -.2px;
+        }
+        .nav-brand .nav-name b { color: #67e8f9; font-weight: 800; }
+        .nav-links { display: flex; align-items: center; gap: 26px; }
+        .nav-links a { color: #cbd5e1; font-size: .92rem; font-weight: 600; transition: color .2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            background: linear-gradient(135deg, #0ea5e9, #22c55e);
+            color: #fff !important; padding: 9px 18px; border-radius: 999px;
+            font-weight: 800 !important; box-shadow: 0 6px 18px rgba(14,165,233,.4);
+        }
+        .nav-cta:hover { transform: translateY(-1px); }
+        @media (max-width: 720px) {
+            .nav-links a:not(.nav-cta) { display: none; }
+            .nav-brand .nav-name { font-size: .98rem; }
+            .back-btn { display: none; }
+        }
+
+        /* ── HERO ────────────────────────────────── */
+        .hero {
+            min-height: 128vh;
+            background:
+                radial-gradient(circle at top center, rgba(14,165,233,.35), transparent 34%),
+                linear-gradient(180deg, var(--night) 0%, var(--night-2) 72%, #f7fafc 72%);
+            color: #fff;
+            position: relative; overflow: hidden;
+            display: flex; align-items: center;
+            padding: 112px 0 120px;
+        }
+
+        .hero-particles { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+        .hero-particles span {
+            position: absolute; border-radius: 50%;
+            background: rgba(103,232,249,.14);
+            animation: particleDrift linear infinite;
+        }
+        @keyframes particleDrift {
+            0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+            8%   { opacity: 1; }
+            92%  { opacity: .5; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+
+        .hero::before, .hero::after {
+            content: ""; position: absolute; top: 8%;
+            width: 48vw; height: 42vh;
+            background-image: conic-gradient(from 70deg at center top, rgba(14,165,233,.82), transparent 35%);
+            filter: blur(4px); opacity: .8;
+            animation: lampSpread 5s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        .hero::before { right: 50%; transform-origin: top right; }
+        .hero::after  { left: 50%; transform: scaleX(-1); transform-origin: top left; }
+
+        .lamp-line {
+            position: absolute; top: 25%; left: 50%;
+            width: min(560px, 78vw); height: 2px;
+            background: linear-gradient(90deg, transparent, #67e8f9, transparent);
+            transform: translateX(-50%);
+            box-shadow: 0 0 42px 16px rgba(34,211,238,.45);
+            animation: lampPulse 3.8s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .hero-scanlines {
+            position: absolute; inset: 0; z-index: 1; pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px);
+        }
+
+        .hero-grid {
+            position: relative; z-index: 2;
+            display: grid;
+            grid-template-columns: minmax(0,1.05fr) minmax(320px,.95fr);
+            gap: 48px; align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255,255,255,.18); border-radius: 999px;
+            background: rgba(255,255,255,.08); color: #dff8ff;
+            font-weight: 700; font-size: .86rem; margin-bottom: 22px;
+            backdrop-filter: blur(6px);
+        }
+
+        .hero h1 {
+            max-width: 760px;
+            font-size: clamp(2.6rem, 7vw, 5.8rem);
+            line-height: .98; margin-bottom: 22px;
+        }
+        .hero h1 span {
+            display: block;
+            background: linear-gradient(120deg, #e0f2fe 0%, #67e8f9 40%, #86efac 70%, #67e8f9 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            animation: textShimmer 4s linear infinite;
+        }
+        @keyframes textShimmer {
+            0%   { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-copy { max-width: 660px; color: #cbd5e1; font-size: 1.14rem; margin-bottom: 28px; }
+
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 10px; min-height: 48px; padding: 13px 20px;
+            border-radius: 8px; border: 1px solid transparent;
+            text-decoration: none; font-weight: 800;
+            transition: transform .2s, box-shadow .2s, background .2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+
+        .btn-primary  { background: var(--accent); color: #052e16; box-shadow: 0 18px 34px rgba(34,197,94,.24); }
+        .btn-primary:hover { box-shadow: 0 24px 44px rgba(34,197,94,.38); }
+        .btn-secondary { color: #fff; border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.08); }
+        .btn-secondary:hover { background: rgba(255,255,255,.16); }
+
+        .proof-row { display: flex; flex-wrap: wrap; gap: 14px; color: #e2e8f0; }
+        .proof-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 12px; border-radius: 8px;
+            background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+            font-size: .92rem; transition: background .2s, border-color .2s;
+        }
+        .proof-pill:hover { background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.26); }
+
+        /* ── PHONE SHOWCASE ──────────────────────── */
+        .phone-showcase {
+            position: sticky; top: 82px;
+            min-height: 760px;
+            display: grid; place-items: center;
+            align-self: stretch;
+            --hero-phone-progress: 0;
+        }
+
+        .phone-orbit {
+            position: relative;
+            width: min(560px, 90vw); min-height: 680px;
+            display: grid; place-items: center;
+            perspective: 1200px;
+        }
+        .phone-orbit::before {
+            content: ''; position: absolute;
+            width: 320px; height: 320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(14,165,233,.28) 0%, transparent 70%);
+            top: 50%; left: 50%; transform: translate(-50%,-50%);
+            animation: orbitGlow 4s ease-in-out infinite; pointer-events: none;
+        }
+        @keyframes orbitGlow {
+            0%,100% { transform: translate(-50%,-50%) scale(1);    opacity: .7; }
+            50%     { transform: translate(-50%,-50%) scale(1.18); opacity: 1;  }
+        }
+
+        .screenshot-phone {
+            position: absolute;
+            width: min(310px, 62vw); aspect-ratio: 9/19.4;
+            border: 11px solid #0b1220; border-radius: 42px;
+            background: #020617;
+            box-shadow: 0 38px 90px rgba(0,0,0,.46),
+                        inset 0 0 0 1px rgba(255,255,255,.12),
+                        0 0 0 1px rgba(14,165,233,.12);
+            overflow: hidden; transform-style: preserve-3d;
+            transition: transform .14s linear;
+        }
+        .screenshot-phone::before {
+            content: ""; position: absolute; top: 10px; left: 50%;
+            width: 96px; height: 24px; border-radius: 999px;
+            background: #020617; transform: translateX(-50%); z-index: 5;
+        }
+        .screenshot-phone::after {
+            content: ""; position: absolute; inset: 0; border-radius: 30px;
+            background: linear-gradient(105deg, rgba(255,255,255,.22), transparent 34%, transparent 68%, rgba(255,255,255,.12));
+            pointer-events: none; z-index: 4; mix-blend-mode: screen;
+        }
+
+        .phone-front {
+            z-index: 3;
+            transform: translate3d(-46px,10px,90px) rotateY(-15deg) rotateZ(-2deg);
+            animation: phoneFloatFront 5.5s ease-in-out infinite;
+        }
+        .phone-back {
+            z-index: 1; opacity: .78;
+            transform: translate3d(122px,-18px,-60px) rotateY(-27deg) rotateZ(5deg) scale(.9);
+            filter: saturate(.9) brightness(.84);
+            animation: phoneFloatBack 6.4s ease-in-out infinite;
+        }
+
+        .screenshot-screen {
+            position: absolute; inset: 12px; border-radius: 30px; overflow: hidden; background: #f8fafc;
+        }
+        .screenshot-screen img {
+            width: 100%; height: auto; display: block;
+            transform: translateY(calc(var(--screen-travel,-72%) * var(--hero-phone-progress)));
+            transition: transform .08s linear; will-change: transform;
+        }
+        .phone-back .screenshot-screen img {
+            transform: translateY(calc(var(--screen-travel,-78%) * (1 - var(--hero-phone-progress))));
+        }
+
+        .phone-caption {
+            position: absolute; left: -28px; right: -28px; bottom: -62px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 12px 14px;
+            border: 1px solid rgba(255,255,255,.18); border-radius: 999px;
+            background: rgba(2,6,23,.78); color: #e0f2fe;
+            font-size: .9rem; font-weight: 800;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 18px 36px rgba(0,0,0,.28);
+            z-index: 6; animation: captionPulse 3s ease-in-out infinite;
+        }
+        @keyframes captionPulse {
+            0%,100% { box-shadow: 0 18px 36px rgba(0,0,0,.28); }
+            50%     { box-shadow: 0 18px 36px rgba(0,0,0,.28), 0 0 0 4px rgba(14,165,233,.18); }
+        }
+        .phone-caption i { animation: cueDrop 1.4s ease-in-out infinite; }
+
+        .scroll-cue {
+            position: absolute; right: 4%; bottom: 12%;
+            display: grid; gap: 8px; justify-items: center;
+            color: #bae6fd; font-weight: 800; font-size: .78rem; opacity: .85;
+        }
+        .scroll-cue i { animation: cueDrop 1.4s ease-in-out infinite; }
+
+        .phone-stat {
+            position: absolute;
+            background: rgba(2,6,23,.82); border: 1px solid rgba(103,232,249,.25);
+            border-radius: 10px; padding: 9px 13px;
+            color: #e0f2fe; font-size: .78rem; font-weight: 800;
+            backdrop-filter: blur(10px); white-space: nowrap; z-index: 7;
+        }
+        .phone-stat-1 { top: 12%; right: -18px;  animation: statFloat1 4s ease-in-out infinite; }
+        .phone-stat-2 { bottom: 20%; left: -22px; animation: statFloat2 5s ease-in-out infinite; }
+        @keyframes statFloat1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        @keyframes statFloat2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)}  }
+
+        /* ── SECTIONS ────────────────────────────── */
+        .section       { padding: 92px 0; }
+        .section-tight { padding: 64px 0; }
+        .section-heading { max-width: 760px; margin-bottom: 34px; }
+        .section-heading.center { text-align: center; margin: 0 auto 42px; }
+        .section-kicker {
+            color: var(--brand-dark); font-size: .82rem; font-weight: 900;
+            text-transform: uppercase; margin-bottom: 10px;
+        }
+        h2 { font-size: clamp(2rem,4vw,3.2rem); line-height: 1.06; margin-bottom: 16px; }
+        .lead { color: var(--muted); font-size: 1.08rem; }
+
+        /* ── STAT BAND ───────────────────────────── */
+        .stat-band {
+            background: #fff;
+            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            padding: 44px 0;
+        }
+        .stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; text-align: center; }
+        .stat-item strong {
+            display: block; font-size: 2.4rem; font-weight: 900;
+            color: var(--brand-dark); line-height: 1; margin-bottom: 6px;
+        }
+        .stat-item span { color: var(--muted); font-size: .9rem; }
+
+        /* ── FEATURES ────────────────────────────── */
+        .feature-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+        .feature-card {
+            background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 24px;
+            box-shadow: 0 18px 40px rgba(15,23,42,.06);
+            transition: transform .25s, box-shadow .25s, border-color .25s;
+        }
+        .feature-card:hover { transform: translateY(-6px); box-shadow: 0 24px 54px rgba(15,23,42,.1); border-color: rgba(14,165,233,.3); }
+        .icon-box {
+            width: 44px; height: 44px; border-radius: 8px;
+            background: #e0f2fe; color: var(--brand-dark);
+            display: grid; place-items: center; margin-bottom: 16px; font-size: 1.15rem;
+            transition: background .25s, color .25s;
+        }
+        .feature-card:hover .icon-box { background: var(--brand-dark); color: #fff; }
+        .feature-card h3 { margin-bottom: 10px; font-size: 1.1rem; }
+        .feature-card p, .feature-card li { color: var(--muted); }
+        .feature-list { list-style: none; display: grid; gap: 10px; margin-top: 14px; }
+        .feature-list li { display: flex; gap: 10px; align-items: flex-start; }
+        .feature-list i  { color: var(--accent); margin-top: 4px; }
+
+        /* ── DEMO / VIDEO ────────────────────────── */
+        .demo-section { background: #fff; overflow: hidden; }
+        .scroll-stage { min-height: 1040px; display: flex; align-items: center; justify-content: center; padding: 80px 0; }
+        .demo-frame-wrap { width: 100%; perspective: 1100px; }
+        .demo-title {
+            text-align: center; margin-bottom: 28px;
+            transform: translateY(var(--demo-title-y,0px));
+            transition: transform .1s linear;
+        }
+        .demo-device {
+            width: min(390px,86vw); aspect-ratio: 9/16; margin: 0 auto;
+            border: 10px solid #141923; border-radius: 38px;
+            background: #171717; padding: 10px;
+            box-shadow: 0 40px 80px rgba(15,23,42,.28), 0 0 0 1px rgba(14,165,233,.1);
+            transform: rotateX(var(--demo-rotate,16deg)) scale(var(--demo-scale,.96));
+            transform-origin: center center; transition: transform .1s linear; position: relative;
+        }
+        .demo-device::before {
+            content: ""; position: absolute; top: 13px; left: 50%;
+            width: 96px; height: 24px; border-radius: 999px;
+            background: #050816; transform: translateX(-50%); z-index: 3;
+        }
+        .video-shell { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 28px; background: #020617; }
+        .video-shell video { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .unmute-btn {
+            position: absolute; left: 50%; transform: translateX(-50%) translateY(6px); bottom: 18px;
+            padding: 10px 14px; border-radius: 999px;
+            background: rgba(255,255,255,.92); color: #07111f;
+            font-weight: 800; border: none; cursor: pointer;
+            box-shadow: 0 8px 20px rgba(2,6,23,.28); z-index: 6;
+            opacity: 0; transition: opacity 260ms, transform 260ms; pointer-events: none;
+        }
+        .unmute-btn.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+        .video-shell .video-fallback { transition: opacity 260ms, visibility 260ms; }
+        .video-shell.playing .video-fallback { opacity: 0; visibility: hidden; }
+        .video-fallback {
+            position: absolute; inset: auto 14px 14px 14px; padding: 14px 16px; border-radius: 8px;
+            background: rgba(2,6,23,.74); color: #e2e8f0;
+            display: flex; align-items: center; gap: 12px; backdrop-filter: blur(8px);
+        }
+
+        /* ── PRICING ─────────────────────────────── */
+        .pricing-section { background: var(--soft); }
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 22px; align-items: start;
+            margin-top: 48px;
+        }
+        .plan-card {
+            background: #fff;
+            border: 2px solid var(--line); border-radius: 12px; padding: 32px;
+            box-shadow: 0 12px 40px rgba(15,23,42,.07);
+            position: relative;
+            transition: transform .25s, box-shadow .25s;
+            display: flex; flex-direction: column;
+        }
+        .plan-card:hover { transform: translateY(-5px); box-shadow: 0 24px 60px rgba(15,23,42,.12); }
+        .plan-card.popular {
+            border-color: var(--accent);
+            box-shadow: 0 16px 56px rgba(34,197,94,.18);
+        }
+        .plan-card.popular:hover { box-shadow: 0 28px 72px rgba(34,197,94,.26); }
+        .popular-tag {
+            position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+            background: var(--accent); color: #052e16;
+            font-size: .72rem; font-weight: 900; letter-spacing: .5px;
+            padding: 5px 16px; border-radius: 999px; white-space: nowrap;
+        }
+        .plan-name  { font-size: 1.35rem; font-weight: 900; margin-bottom: 6px; }
+        .plan-price {
+            font-size: 2.8rem; font-weight: 900; line-height: 1; margin: 14px 0 4px;
+            color: var(--ink);
+        }
+        .plan-price small { font-size: 1rem; font-weight: 600; color: var(--muted); }
+        .plan-desc  { color: var(--muted); font-size: .95rem; margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+        .plan-features { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; flex: 1; }
+        .plan-features li { display: flex; align-items: flex-start; gap: 10px; font-size: .95rem; }
+        .plan-features li .feat-icon        { color: var(--accent); flex-shrink: 0; margin-top: 3px; font-size: .88rem; }
+        .plan-features li.feat-no           { color: #aab4c0; }
+        .plan-features li.feat-no .feat-icon{ color: #d1d9e2; }
+        .plan-btn {
+            display: block; text-align: center; padding: 14px;
+            border-radius: 8px; font-weight: 800; font-size: 1rem;
+            transition: transform .2s, box-shadow .2s, background .2s; margin-top: auto;
+        }
+        .plan-btn:hover { transform: translateY(-2px); }
+        .plan-btn-free   { background: var(--soft); color: var(--ink); border: 2px solid var(--line); }
+        .plan-btn-free:hover { background: #e9eff6; }
+        .plan-btn-mid    { background: var(--accent); color: #052e16; box-shadow: 0 6px 20px rgba(34,197,94,.3); }
+        .plan-btn-mid:hover  { box-shadow: 0 10px 28px rgba(34,197,94,.42); }
+        .plan-btn-pro    { background: var(--ink); color: #fff; box-shadow: 0 6px 20px rgba(15,23,42,.22); }
+        .plan-btn-pro:hover  { background: #1e293b; box-shadow: 0 10px 28px rgba(15,23,42,.32); }
+        .pricing-note { text-align: center; margin-top: 24px; color: var(--muted); font-size: .88rem; }
+
+        /* ── APP FLOW ────────────────────────────── */
+        .app-flow { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; margin-top: 20px; }
+        .flow-step {
+            background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px;
+            transition: transform .25s, border-color .25s;
+        }
+        .flow-step:hover { transform: translateY(-4px); border-color: rgba(14,165,233,.35); }
+        .step-number {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--ink); color: #fff;
+            display: grid; place-items: center; font-weight: 900; margin-bottom: 12px;
+            transition: background .25s;
+        }
+        .flow-step:hover .step-number { background: var(--brand-dark); }
+
+        /* ── REVIEWS ─────────────────────────────── */
+        .reviews { background: var(--soft); padding: 80px 0; }
+        .review-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 40px; }
+        .review-card {
+            background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 24px;
+            box-shadow: 0 12px 32px rgba(15,23,42,.06);
+            transition: transform .25s, box-shadow .25s;
+        }
+        .review-card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(15,23,42,.1); }
+        .review-stars  { color: var(--warn); font-size: .88rem; letter-spacing: 1px; margin-bottom: 12px; }
+        .review-body   { color: var(--muted); font-size: .96rem; font-style: italic; margin-bottom: 16px; line-height: 1.65; }
+        .review-author { font-weight: 800; font-size: .9rem; }
+        .review-meta   { color: var(--muted); font-size: .8rem; }
+
+        /* ── WHY US BAND ─────────────────────────── */
+        .why-band { background: var(--night); color: #e2e8f0; }
+        .why-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 14px; }
+        .why-item {
+            border: 1px solid rgba(255,255,255,.14);
+            background: rgba(255,255,255,.06);
+            border-radius: 8px; padding: 22px;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+        .why-item:hover { background: rgba(255,255,255,.1); border-color: rgba(103,232,249,.3); transform: translateY(-3px); }
+        .why-item .why-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+        .why-item strong { display: block; color: #fff; font-size: 1.05rem; margin-bottom: 6px; }
+        .why-item span   { font-size: .92rem; line-height: 1.55; }
+
+        /* ── CTA ─────────────────────────────────── */
+        .cta {
+            background: linear-gradient(135deg, #0369a1, #0f172a);
+            background-size: 200% auto;
+            color: #fff; text-align: center; padding: 76px 0;
+            animation: ctaGradient 8s ease-in-out infinite alternate;
+        }
+        @keyframes ctaGradient {
+            0%   { background-position: 0% center; }
+            100% { background-position: 100% center; }
+        }
+        .cta h2 { max-width: 760px; margin: 0 auto; }
+        .cta p  { max-width: 660px; color: #dbeafe; margin: 16px auto 28px; font-size: 1.05rem; }
+
+        /* ── FOOTER ──────────────────────────────── */
+        footer {
+            background: var(--night);
+            border-top: 1px solid rgba(255,255,255,.08);
+            color: rgba(255,255,255,.5);
+        }
+        .footer-top {
+            padding: 64px 0 44px;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 48px;
+        }
+        .footer-brand .brand-name {
+            font-size: 1.3rem; font-weight: 900;
+            color: #fff; display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+        }
+        .footer-brand .brand-name .brand-icon { font-size: 1.5rem; }
+        .footer-brand p { font-size: .9rem; line-height: 1.65; max-width: 280px; }
+        .footer-store-row { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+        .footer-store-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+            border-radius: 8px; padding: 9px 14px;
+            color: #e2e8f0; font-size: .82rem; font-weight: 700;
+            transition: background .2s, border-color .2s, transform .2s;
+        }
+        .footer-store-btn:hover { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.3); transform: translateY(-2px); }
+        .footer-store-btn i { font-size: 1.05rem; }
+        .footer-col h4 { color: #fff; font-size: .88rem; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 18px; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+        .footer-col ul li a {
+            color: rgba(255,255,255,.5); font-size: .9rem;
+            transition: color .2s;
+        }
+        .footer-col ul li a:hover { color: #fff; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.08);
+            padding: 22px 0;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 14px;
+        }
+        .footer-bottom p { font-size: .83rem; }
+        .footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
+        .footer-legal a { color: rgba(255,255,255,.4); font-size: .83rem; transition: color .2s; }
+        .footer-legal a:hover { color: rgba(255,255,255,.8); }
+        .footer-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(34,197,94,.15); border: 1px solid rgba(34,197,94,.3);
+            border-radius: 999px; padding: 5px 12px;
+            color: #86efac; font-size: .78rem; font-weight: 700;
+        }
+
+        /* ── KEYFRAMES ───────────────────────────── */
+        @keyframes lampSpread {
+            from { opacity: .5; width: 34vw; }
+            to   { opacity: .92; width: 52vw; }
+        }
+        @keyframes lampPulse {
+            0%,100% { opacity: .65; width: min(360px,62vw); }
+            50%     { opacity: 1;   width: min(580px,82vw); }
+        }
+        @keyframes phoneFloatFront {
+            0%,100% { transform: translate3d(-46px,10px,90px) rotateY(-15deg) rotateZ(-2deg); }
+            50%     { transform: translate3d(-46px,-8px,90px) rotateY(-12deg) rotateZ(-1deg); }
+        }
+        @keyframes phoneFloatBack {
+            0%,100% { transform: translate3d(122px,-18px,-60px) rotateY(-27deg) rotateZ(5deg) scale(.9); }
+            50%     { transform: translate3d(122px,-34px,-60px) rotateY(-23deg) rotateZ(4deg) scale(.9); }
+        }
+        @keyframes cueDrop {
+            0%,100% { transform: translateY(0); opacity: .5; }
+            50%     { transform: translateY(8px); opacity: 1; }
+        }
+
+        /* ── RESPONSIVE ──────────────────────────── */
+        @media (max-width: 920px) {
+            .hero { padding-top: 96px; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .phone-showcase { min-height: 480px; position: relative; top: auto; }
+            .feature-grid, .app-flow, .why-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+            .stat-row, .review-grid, .plan-grid   { grid-template-columns: repeat(2,1fr); }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 640px) {
+            .container { width: min(100% - 32px, 1120px); }
+            .back-btn { top: 14px; left: 14px; }
+            .hero { min-height: 112vh; padding: 88px 0 76px; }
+            .hero-grid { gap: 26px; }
+            .hero h1 { font-size: 2.55rem; }
+            .hero-copy { font-size: 1rem; }
+            .btn { width: 100%; }
+            .phone-showcase { min-height: 430px; }
+            .phone-orbit { width: min(360px,92vw); min-height: 520px; }
+            .screenshot-phone { width: min(238px,66vw); border-width: 8px; border-radius: 34px; }
+            .screenshot-screen { inset: 9px; border-radius: 24px; }
+            .phone-front  { transform: translate3d(-36px,12px,80px) rotateY(-12deg) rotateZ(-2deg); animation: none; }
+            .phone-back   { transform: translate3d(82px,-8px,-60px) rotateY(-24deg) rotateZ(5deg) scale(.88); animation: none; }
+            .phone-caption { left: -18px; right: -18px; bottom: -54px; font-size: .78rem; padding: 10px 12px; }
+            .scroll-cue  { display: none; }
+            .phone-stat  { display: none; }
+            .feature-grid, .app-flow, .why-grid,
+            .stat-row, .review-grid, .plan-grid { grid-template-columns: 1fr; }
+            .section { padding: 64px 0; }
+            .scroll-stage { min-height: 800px; padding: 46px 0; }
+            .demo-device { width: min(310px,88vw); border-width: 8px; border-radius: 32px; padding: 8px; }
+            .footer-top { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ TOP NAV (logo + brand) ═══════════ -->
+    <nav class="site-nav" id="siteNav">
+        <a class="nav-brand" href="#top" aria-label="Price Match Paradise home">
+            <img src="asset/logo.png" alt="Price Match Paradise logo">
+            <span class="nav-name">Price Match <b>Paradise</b></span>
+        </a>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#demo">Demo</a>
+            <a href="#download" class="nav-cta"><i class="fas fa-download"></i> Get the App</a>
+        </div>
+    </nav>
+
+    <button class="back-btn" onclick="goBack()" aria-label="Back">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <main id="top">
+
+        <!-- ═══════ HERO ════════════════════════════ -->
+        <section class="hero">
+            <div class="lamp-line"></div>
+            <div class="hero-scanlines"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-copy-block" data-aos="fade-up">
+                        <div class="eyebrow">
+                            <i class="fas fa-bolt"></i>
+                            Price Match Paradise — iOS &amp; Android
+                        </div>
+                        <h1>Stop overpaying<br/><span>every single week.</span></h1>
+                        <p class="hero-copy">
+                            Scan any barcode in the aisle. In 2 seconds see if a store nearby
+                            sells it cheaper. Show your screen at checkout — pay less.
+                            <strong style="color:#e0f2fe;">The average member saves $28 per trip.</strong>
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="#download">
+                                <i class="fas fa-download"></i> Download Free
+                            </a>
+                            <a class="btn btn-secondary" href="#demo">
+                                <i class="fas fa-play"></i> Watch It Work
+                            </a>
+                        </div>
+                        <div class="proof-row">
+                            <span class="proof-pill"><i class="fas fa-bolt"></i> 2-second barcode scan</span>
+                            <span class="proof-pill"><i class="fas fa-store"></i> 50+ stores compared</span>
+                            <span class="proof-pill"><i class="fas fa-lock"></i> Free to start — no card</span>
+                        </div>
+                    </div>
+
+                    <!-- ── Two animated phones with scrollable long screenshots ── -->
+                    <div class="phone-showcase" id="heroPhoneShowcase" data-aos="zoom-in" data-aos-delay="160">
+                        <div class="phone-orbit" aria-label="Scrollable Price Match Paradise app screenshots">
+
+                            <div class="phone-stat phone-stat-1">
+                                <i class="fas fa-tag" style="color:#67e8f9;"></i>&nbsp;Save $28 this trip
+                            </div>
+                            <div class="phone-stat phone-stat-2">
+                                <i class="fas fa-check-circle" style="color:#86efac;"></i>&nbsp;50+ stores checked
+                            </div>
+
+                            <div class="screenshot-phone phone-back">
+                                <div class="screenshot-screen">
+                                    <img src="asset/long-screen-shot/screen1.png"
+                                         alt="Price Match Paradise app — full product comparison screen"
+                                         onerror="this.onerror=null;this.src='asset/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
+                                </div>
+                            </div>
+
+                            <div class="screenshot-phone phone-front">
+                                <div class="screenshot-screen">
+                                    <img src="asset/long-screen-shot/screen2.png"
+                                         alt="Price Match Paradise app — barcode scanner and price match screen"
+                                         onerror="this.onerror=null;this.src='asset/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
+                                </div>
+                                <div class="phone-caption">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>Scroll to explore the full app</span>
+                                </div>
+                            </div>
+
+                            <div class="scroll-cue" aria-hidden="true">
+                                <span>SCROLL</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ STAT BAND ════════════════════════ -->
+        <section class="stat-band">
+            <div class="container">
+                <div class="stat-row">
+                    <div class="stat-item" data-aos="fade-up">
+                        <strong data-count="28" data-prefix="$">$0</strong>
+                        <span>Average saved per shopping trip</span>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="80">
+                        <strong data-count="50" data-suffix="+">0</strong>
+                        <span>Stores compared in real time</span>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="160">
+                        <strong>2 sec</strong>
+                        <span>Average barcode scan time</span>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="240">
+                        <strong>4.8★</strong>
+                        <span>App Store rating</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ FEATURES ══════════════════════════ -->
+        <section class="section" id="features">
+            <div class="container">
+                <div class="section-heading center" data-aos="fade-up">
+                    <div class="section-kicker">Why shoppers keep coming back</div>
+                    <h2>Three tools. One mission: keep more money in your pocket.</h2>
+                    <p class="lead">
+                        The free tier proves value on your very first scan.
+                        The Pro subscription gives weekly shoppers a complete savings system —
+                        more scans, receipt analysis, and price-drop alerts that easily pay for themselves.
+                    </p>
+                </div>
+                <div class="feature-grid">
+                    <article class="feature-card" data-aos="fade-up">
+                        <div class="icon-box"><i class="fas fa-barcode"></i></div>
+                        <h3>In-aisle barcode scanner</h3>
+                        <p>Point your camera at any barcode. See the same item ranked cheapest to most expensive across 50+ nearby stores — in under 2 seconds.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i><span>Live prices refreshed on every scan</span></li>
+                            <li><i class="fas fa-check"></i><span>Show-screen proof for price-match requests</span></li>
+                            <li><i class="fas fa-check"></i><span>Works on groceries, pharmacy, baby care &amp; more</span></li>
+                        </ul>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="90">
+                        <div class="icon-box"><i class="fas fa-receipt"></i></div>
+                        <h3>Smart receipt scanner</h3>
+                        <p>Photograph any receipt after shopping. The app identifies every line item, finds what you overpaid, and shows the cheaper alternative nearby.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i><span>Total overpayment calculated per trip</span></li>
+                            <li><i class="fas fa-check"></i><span>Suggests the best store to switch to next time</span></li>
+                            <li><i class="fas fa-check"></i><span>Builds a monthly savings history you can track</span></li>
+                        </ul>
+                    </article>
+                    <article class="feature-card" data-aos="fade-up" data-aos-delay="180">
+                        <div class="icon-box"><i class="fas fa-crown"></i></div>
+                        <h3>Pro: the complete savings system</h3>
+                        <p>Free users get a strong taste. Pro unlocks 100–300 scans per month, the full receipt scanner, price-drop alerts, and a dashboard showing your total savings over time.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i><span>Scan limit resets every billing period</span></li>
+                            <li><i class="fas fa-check"></i><span>Price-drop alerts for items you buy regularly</span></li>
+                            <li><i class="fas fa-check"></i><span>Cancel anytime — no hidden fees</span></li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ VIDEO DEMO ════════════════════════ -->
+        <section class="demo-section" id="demo">
+            <div class="container">
+                <div class="scroll-stage">
+                    <div class="demo-frame-wrap">
+                        <div class="demo-title" id="demoTitle" data-aos="fade-up">
+                            <div class="section-kicker">30-second app reel</div>
+                            <h2>Scan. Compare. Save. Watch it happen in real time.</h2>
+                            <p class="lead">
+                                From pocket to price comparison in under 3 seconds —
+                                no typing, no searching, no friction.
+                                Drop your reel at <strong>asset/price-match/app-demo.mp4</strong> to activate this player.
+                            </p>
+                        </div>
+                        <div class="demo-device" id="demoDevice">
+                            <div class="video-shell">
+                                <video id="demoVideo" controls muted playsinline preload="metadata">
+                                    <source src="asset/price-match/app-demo.mp4"  type="video/mp4">
+                                    <source src="asset/price-match/app-demo.mov" type="video/quicktime">
+                                    Your browser does not support this video format.
+                                </video>
+                                <button id="unmuteBtn" class="unmute-btn" aria-label="Unmute video">
+                                    <i class="fas fa-volume-up"></i> Unmute
+                                </button>
+                                <div class="video-fallback">
+                                    <i class="fas fa-circle-play"></i>
+                                    <span>App reel: scan a barcode → see 50+ prices → show screen → save money.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ PRICING ═══════════════════════════ -->
+        <section class="section pricing-section" id="pricing">
+            <div class="container">
+                <div class="section-heading center" data-aos="fade-up">
+                    <div class="section-kicker">Simple, Honest Pricing</div>
+                    <h2>Start Free. Upgrade When You're Ready.</h2>
+                    <p class="lead">
+                        No subscription required to start saving. Upgrade only when you want
+                        more scans and the receipt scanner.
+                    </p>
+                </div>
+
+                <div class="plan-grid">
+
+                    <!-- Free -->
+                    <article class="plan-card" data-aos="fade-up" data-aos-delay="0">
+                        <div class="plan-name">Free</div>
+                        <div class="plan-price">$0<small>/forever</small></div>
+                        <p class="plan-desc">Perfect for trying it out and saving on your first few trips.</p>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check feat-icon"></i><span>20 lifetime barcode scans</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Compare prices at 50+ stores</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Price match proof screen</span></li>
+                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Monthly scan reset</span></li>
+                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Receipt Scanner</span></li>
+                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Scan history tracking</span></li>
+                        </ul>
+                        <a href="#download" class="plan-btn plan-btn-free">Download Free</a>
+                    </article>
+
+                    <!-- Barcode Scanner (popular) -->
+                    <article class="plan-card popular" data-aos="fade-up" data-aos-delay="100">
+                        <div class="popular-tag">⚡ MOST POPULAR</div>
+                        <div class="plan-name">Barcode Scanner</div>
+                        <div class="plan-price">$2.99<small>/month</small></div>
+                        <p class="plan-desc">For regular shoppers who want unlimited in-aisle price checks every month.</p>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check feat-icon"></i><span>100 barcode scans per month</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Compare prices at 50+ stores</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Price match proof screen</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Monthly scan reset</span></li>
+                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Receipt Scanner</span></li>
+                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Full savings history</span></li>
+                        </ul>
+                        <a href="#download" class="plan-btn plan-btn-mid">Get Barcode Scanner</a>
+                    </article>
+
+                    <!-- Pro -->
+                    <article class="plan-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="plan-name">Pro</div>
+                        <div class="plan-price">$4.99<small>/month</small></div>
+                        <p class="plan-desc">Everything you need to squeeze every dollar out of every shopping trip.</p>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check feat-icon"></i><span>300 barcode scans per month</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Compare prices at 50+ stores</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Price match proof screen</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Monthly scan reset</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Receipt Scanner (unlimited)</span></li>
+                            <li><i class="fas fa-check feat-icon"></i><span>Full savings history &amp; tracking</span></li>
+                        </ul>
+                        <a href="#download" class="plan-btn plan-btn-pro">Go Pro</a>
+                    </article>
+
+                </div>
+                <p class="pricing-note" data-aos="fade-up">
+                    Cancel anytime &nbsp;·&nbsp; Billed monthly through App Store / Google Play &nbsp;·&nbsp; Your data is never sold
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══════ HOW IT WORKS ══════════════════════ -->
+        <section class="section-tight">
+            <div class="container">
+                <div class="section-heading" data-aos="fade-up">
+                    <div class="section-kicker">How it works</div>
+                    <h2>Scan. Compare. Save. Repeat every week.</h2>
+                </div>
+                <div class="app-flow">
+                    <div class="flow-step" data-aos="fade-up">
+                        <div class="step-number">1</div>
+                        <h3>Scan</h3>
+                        <p class="lead">Point your camera at any barcode in the store. Takes 2 seconds — no typing required.</p>
+                    </div>
+                    <div class="flow-step" data-aos="fade-up" data-aos-delay="80">
+                        <div class="step-number">2</div>
+                        <h3>Compare</h3>
+                        <p class="lead">See the same item ranked cheapest to most expensive across 50+ nearby stores, live.</p>
+                    </div>
+                    <div class="flow-step" data-aos="fade-up" data-aos-delay="160">
+                        <div class="step-number">3</div>
+                        <h3>Save</h3>
+                        <p class="lead">Show your screen at the register. Most major retailers honour price matches on the spot.</p>
+                    </div>
+                    <div class="flow-step" data-aos="fade-up" data-aos-delay="240">
+                        <div class="step-number">4</div>
+                        <h3>Track</h3>
+                        <p class="lead">Scan receipts to see what you overpaid. Watch your monthly savings grow with every trip.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ REVIEWS ════════════════════════════ -->
+        <section class="reviews">
+            <div class="container">
+                <div class="section-heading center" data-aos="fade-up">
+                    <div class="section-kicker">Real shoppers. Real savings.</div>
+                    <h2>★★★★★ rated on the App Store</h2>
+                </div>
+                <div class="review-grid">
+                    <div class="review-card" data-aos="fade-up">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-body">"Saved $34 on my very first trip. Scanned the Tide Pods — it showed Target had them for $6 less. Walked to the register, showed the screen, done. This app paid for itself in two minutes."</p>
+                        <div class="review-author">Sandra M.</div>
+                        <div class="review-meta">Verified · Phoenix, AZ</div>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="90">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-body">"I'm 63 and not great with technology. This app is dead simple — point, scan, see the price. I've saved over $200 in two months just price-matching at my regular Kroger."</p>
+                        <div class="review-author">Robert K.</div>
+                        <div class="review-meta">Verified · Atlanta, GA</div>
+                    </div>
+                    <div class="review-card" data-aos="fade-up" data-aos-delay="180">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-body">"The receipt scanner showed we overpaid $22 at Whole Foods last month. Now I scan three things every time I shop and walk out saving $15–40. My wife thinks I'm a genius."</p>
+                        <div class="review-author">James T.</div>
+                        <div class="review-meta">Verified · Denver, CO</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ WHY PRICE MATCH PARADISE ═════════ -->
+        <section class="section why-band">
+            <div class="container">
+                <div class="section-heading center" data-aos="fade-up">
+                    <div class="section-kicker" style="color:#67e8f9;">Why Price Match Paradise</div>
+                    <h2>Built for real shoppers. Not tech enthusiasts.</h2>
+                    <p class="lead" style="color:#cbd5e1;">
+                        Every feature is designed around one question: how do we help you
+                        spend less on the exact same groceries you're already buying?
+                    </p>
+                </div>
+                <div class="why-grid">
+                    <div class="why-item" data-aos="fade-up">
+                        <span class="why-icon">⚡</span>
+                        <strong>Instant results</strong>
+                        <span>No waiting. Price comparisons come back in 2 seconds so you can decide before putting the item in your cart.</span>
+                    </div>
+                    <div class="why-item" data-aos="fade-up" data-aos-delay="80">
+                        <span class="why-icon">🏪</span>
+                        <strong>50+ stores covered</strong>
+                        <span>Walmart, Target, Kroger, Costco, Amazon Fresh, Whole Foods, and dozens more — all in one scan.</span>
+                    </div>
+                    <div class="why-item" data-aos="fade-up" data-aos-delay="160">
+                        <span class="why-icon">🔒</span>
+                        <strong>Private by design</strong>
+                        <span>Your shopping data is yours. We never sell it, share it, or use it to target you with ads. Ever.</span>
+                    </div>
+                    <div class="why-item" data-aos="fade-up" data-aos-delay="240">
+                        <span class="why-icon">📱</span>
+                        <strong>Works on any phone</strong>
+                        <span>Available on iPhone and Android. No special hardware. No loyalty cards. Just open and scan.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ FINAL CTA ════════════════════════ -->
+        <section class="cta" id="download">
+            <div class="container" data-aos="fade-up">
+                <h2>Your next grocery trip pays for itself.</h2>
+                <p>Download free. No account needed to start. Scan your first barcode in under 60 seconds.</p>
+                <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
+                    <!-- REPLACE href values with your real App Store / Google Play URLs -->
+                    <a class="btn btn-primary" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914">
+                        <i class="fab fa-apple"></i> Download on App Store
+                    </a>
+                    <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp">
+                        <i class="fab fa-google-play"></i> Get it on Google Play
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════ FOOTER ═══════════════════════════════ -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+
+                <div class="footer-brand">
+                    <div class="brand-name">
+                        <img src="asset/logo.png" alt="Price Match Paradise logo"
+                             style="width:40px;height:40px;border-radius:11px;vertical-align:middle;margin-right:8px;">
+                        Price Match Paradise
+                    </div>
+                    <p>The smarter way to shop. Scan any barcode in the aisle, compare prices at 50+ stores instantly, and keep more money in your pocket — every single week.</p>
+                    <div class="footer-store-row">
+                        <!-- REPLACE href values with your real store URLs -->
+                        <a href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" class="footer-store-btn">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp" class="footer-store-btn">
+                            <i class="fab fa-google-play"></i> Google Play
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#demo">How it works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#pricing">Free vs Pro</a></li>
+                        <li><a href="#download">Download</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="mailto:athormod2@gmail.com">Contact us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Report an issue</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Data Deletion</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2026 Price Match Paradise. All rights reserved.</p>
+                <div class="footer-badge">
+                    <i class="fas fa-shield-alt"></i> Your data is never sold
+                </div>
+                <div class="footer-legal">
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 80 });
+
+        /* ── Sticky nav: solidify background on scroll ── */
+        (function () {
+            const nav = document.getElementById("siteNav");
+            if (!nav) return;
+            const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 24);
+            onScroll();
+            window.addEventListener("scroll", onScroll, { passive: true });
+        })();
+
+        function goBack() {
+            if (window.history.length > 1) window.history.back();
+            else window.location.href = "index.html#projects";
+        }
+
+        /* ── Hero phone scroll ──────────────── */
+        const heroPhoneShowcase = document.getElementById("heroPhoneShowcase");
+        function updateHeroPhones() {
+            if (!heroPhoneShowcase) return;
+            const hero = document.querySelector(".hero");
+            if (!hero) return;
+            const rect     = hero.getBoundingClientRect();
+            const viewport = window.innerHeight || document.documentElement.clientHeight;
+            const travel   = Math.max(rect.height - viewport, 1);
+            const progress = Math.min(Math.max((0 - rect.top) / travel, 0), 1);
+            heroPhoneShowcase.style.setProperty("--hero-phone-progress", progress.toFixed(4));
+        }
+
+        /* ── Demo tilt animation ────────────── */
+        const demoDevice = document.getElementById("demoDevice");
+        const demoTitle  = document.getElementById("demoTitle");
+        function updateDemoAnimation() {
+            if (!demoDevice || !demoTitle) return;
+            const rect     = demoDevice.getBoundingClientRect();
+            const viewport = window.innerHeight || document.documentElement.clientHeight;
+            const progress = Math.min(Math.max((viewport - rect.top) / (viewport + rect.height), 0), 1);
+            demoDevice.style.setProperty("--demo-rotate", (18 - progress * 18).toFixed(2) + "deg");
+            demoDevice.style.setProperty("--demo-scale",  (0.93 + progress * 0.07).toFixed(3));
+            demoTitle.style.setProperty("--demo-title-y", (-70 * progress).toFixed(1) + "px");
+        }
+
+        updateHeroPhones();
+        updateDemoAnimation();
+        window.addEventListener("scroll", updateHeroPhones,    { passive: true });
+        window.addEventListener("scroll", updateDemoAnimation, { passive: true });
+        window.addEventListener("resize", updateHeroPhones);
+        window.addEventListener("resize", updateDemoAnimation);
+
+        /* ── Video autoplay when in view ────── */
+        (function () {
+            const demoVideo    = document.getElementById("demoVideo");
+            const demoDeviceEl = document.getElementById("demoDevice");
+            const unmuteBtn    = document.getElementById("unmuteBtn");
+            if (!demoVideo || !demoDeviceEl) return;
+            const videoShell = demoVideo.closest(".video-shell");
+
+            const io = new IntersectionObserver(async (entries) => {
+                for (const entry of entries) {
+                    if (entry.isIntersecting) {
+                        try {
+                            demoVideo.muted = true;
+                            await demoVideo.play();
+                            if (videoShell) videoShell.classList.add("playing");
+                            demoVideo.muted = false;
+                            await demoVideo.play();
+                            if (unmuteBtn) unmuteBtn.classList.remove("show");
+                        } catch (err) {
+                            demoVideo.muted = true;
+                            if (unmuteBtn) unmuteBtn.classList.add("show");
+                        }
+                    } else {
+                        try { demoVideo.pause(); } catch (e) {}
+                        if (videoShell) videoShell.classList.remove("playing");
+                        if (unmuteBtn)  unmuteBtn.classList.remove("show");
+                    }
+                }
+            }, { threshold: 0.55 });
+            io.observe(demoDeviceEl);
+
+            if (unmuteBtn) {
+                unmuteBtn.addEventListener("click", async () => {
+                    try {
+                        demoVideo.muted = false;
+                        await demoVideo.play();
+                        if (videoShell) videoShell.classList.add("playing");
+                        unmuteBtn.classList.remove("show");
+                    } catch (e) { unmuteBtn.classList.add("show"); }
+                });
+            }
+        })();
+
+        /* ── Hero particles ─────────────────── */
+        (function () {
+            const container = document.getElementById("heroParticles");
+            if (!container) return;
+            for (let i = 0; i < 22; i++) {
+                const p     = document.createElement("span");
+                const size  = 4 + Math.random() * 14;
+                const left  = Math.random() * 100;
+                const dur   = 10 + Math.random() * 14;
+                const delay = Math.random() * 12;
+                p.style.cssText = `width:${size}px;height:${size}px;left:${left}%;animation-duration:${dur}s;animation-delay:-${delay}s;`;
+                container.appendChild(p);
+            }
+        })();
+
+        /* ── Count-up for stat band ─────────── */
+        document.querySelectorAll(".stat-item strong[data-count]").forEach(el => {
+            const target = parseInt(el.dataset.count, 10);
+            const prefix = el.dataset.prefix || "";
+            const suffix = el.dataset.suffix || "";
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (!e.isIntersecting) return;
+                    io.unobserve(e.target);
+                    const start = performance.now();
+                    const dur   = 1600;
+                    (function step(now) {
+                        const p     = Math.min((now - start) / dur, 1);
+                        const eased = 1 - Math.pow(1 - p, 3);
+                        el.textContent = prefix + Math.round(eased * target) + suffix;
+                        if (p < 1) requestAnimationFrame(step);
+                    })(start);
+                });
+            }, { threshold: 0.4 });
+            io.observe(el);
+        });
+    </script>
+</body>
+</html>
