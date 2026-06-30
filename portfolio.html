@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imran Rifat — iOS & Android Developer</title>
+    <meta name="description" content="Mobile app developer specializing in iOS & Android. Creator of Price Match Paradise — scan barcodes, compare grocery prices, save money.">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f172a;
+            --muted: #526071;
+            --line: #dbe4ef;
+            --panel: #ffffff;
+            --soft: #f7fafc;
+            --brand: #0ea5e9;
+            --brand-dark: #0369a1;
+            --accent: #22c55e;
+            --warn: #f59e0b;
+            --night: #07111f;
+            --night-2: #0d1b2e;
+            --night-3: #0a1628;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+        body { background: var(--night); color: #e2e8f0; line-height: 1.6; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, 90%); margin: 0 auto; }
+
+        /* ── NAV ── */
+        .site-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px clamp(16px, 4vw, 40px);
+            background: rgba(7,17,31,.55);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+            transition: background .3s, padding .3s;
+        }
+        .site-nav.scrolled { background: rgba(7,17,31,.92); padding-top: 8px; padding-bottom: 8px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-brand img { width: 40px; height: 40px; border-radius: 11px; box-shadow: 0 4px 14px rgba(14,165,233,.35); }
+        .nav-brand .nav-name { color: #fff; font-weight: 800; font-size: 1.05rem; }
+        .nav-links { display: flex; align-items: center; gap: 26px; }
+        .nav-links a { color: #cbd5e1; font-size: .92rem; font-weight: 600; transition: color .2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-cta {
+            background: linear-gradient(135deg, #0ea5e9, #22c55e);
+            color: #fff !important; padding: 9px 18px; border-radius: 999px;
+            font-weight: 800 !important; box-shadow: 0 6px 18px rgba(14,165,233,.4);
+        }
+        @media (max-width: 720px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 30% 50%, rgba(14,165,233,.2), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(34,197,94,.12), transparent 40%),
+                var(--night);
+            display: flex; align-items: center;
+            padding: 120px 0 80px;
+            position: relative; overflow: hidden;
+        }
+        .hero-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+        .hero-particles span {
+            position: absolute; border-radius: 50%;
+            background: rgba(103,232,249,.1);
+            animation: particleDrift linear infinite;
+        }
+        @keyframes particleDrift {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            8% { opacity: 1; }
+            92% { opacity: .4; }
+            100% { transform: translateY(-80px) scale(1); opacity: 0; }
+        }
+
+        .hero-grid {
+            position: relative; z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 7px 14px; border-radius: 999px;
+            background: rgba(14,165,233,.15); border: 1px solid rgba(14,165,233,.3);
+            color: #67e8f9; font-size: .82rem; font-weight: 700; margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
+            line-height: 1.05; margin-bottom: 20px; color: #fff;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(120deg, #e0f2fe 0%, #67e8f9 40%, #86efac 70%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .hero-desc { color: #94a3b8; font-size: 1.1rem; margin-bottom: 32px; max-width: 480px; }
+
+        .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 13px 22px; border-radius: 8px; border: 1px solid transparent;
+            font-weight: 800; font-size: .95rem;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-primary { background: var(--accent); color: #052e16; box-shadow: 0 12px 28px rgba(34,197,94,.25); }
+        .btn-secondary { color: #fff; border-color: rgba(255,255,255,.2); background: rgba(255,255,255,.07); }
+        .btn-secondary:hover { background: rgba(255,255,255,.14); }
+
+        .hero-stats { display: flex; gap: 28px; flex-wrap: wrap; }
+        .hero-stat { }
+        .hero-stat strong { display: block; font-size: 1.6rem; font-weight: 900; color: #fff; }
+        .hero-stat span { font-size: .82rem; color: #64748b; }
+
+        /* ── PROFILE CARD ── */
+        .profile-card {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(12px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .profile-card::before {
+            content: ''; position: absolute; top: -40%; left: -40%;
+            width: 180%; height: 180%;
+            background: conic-gradient(from 0deg, rgba(14,165,233,.06), rgba(34,197,94,.04), transparent 60%);
+            animation: cardRotate 12s linear infinite;
+        }
+        @keyframes cardRotate { to { transform: rotate(360deg); } }
+        .profile-img-wrap {
+            position: relative; z-index: 1;
+            width: 140px; height: 140px; margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9, #22c55e);
+            padding: 3px;
+        }
+        .profile-img-wrap img {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            display: block;
+        }
+        .profile-img-wrap .status-dot {
+            position: absolute; bottom: 8px; right: 8px;
+            width: 18px; height: 18px; border-radius: 50%;
+            background: var(--accent); border: 3px solid var(--night);
+        }
+        .profile-name { position: relative; z-index: 1; font-size: 1.5rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+        .profile-title { position: relative; z-index: 1; color: #67e8f9; font-weight: 700; font-size: .9rem; margin-bottom: 18px; }
+        .profile-skills {
+            position: relative; z-index: 1;
+            display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 20px;
+        }
+        .skill-pill {
+            padding: 5px 12px; border-radius: 999px;
+            background: rgba(14,165,233,.15); border: 1px solid rgba(14,165,233,.25);
+            color: #bae6fd; font-size: .78rem; font-weight: 700;
+        }
+        .profile-socials { position: relative; z-index: 1; display: flex; justify-content: center; gap: 12px; }
+        .social-btn {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+            display: grid; place-items: center; color: #94a3b8; font-size: 1rem;
+            transition: background .2s, color .2s, transform .2s;
+        }
+        .social-btn:hover { background: rgba(14,165,233,.2); color: #67e8f9; transform: translateY(-3px); }
+
+        /* ── SECTION BASE ── */
+        .section { padding: 92px 0; }
+        .section-kicker {
+            color: #67e8f9; font-size: .8rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+        }
+        .section h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: #fff; margin-bottom: 14px; line-height: 1.1; }
+        .section-lead { color: #64748b; font-size: 1.05rem; max-width: 600px; margin-bottom: 48px; }
+
+        /* ── ABOUT ── */
+        .about-section { background: var(--night-2); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-cards { display: grid; gap: 16px; }
+        .about-card {
+            background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+            border-radius: 14px; padding: 22px 24px;
+            display: flex; gap: 16px; align-items: flex-start;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+        .about-card:hover { background: rgba(14,165,233,.08); border-color: rgba(14,165,233,.25); transform: translateX(6px); }
+        .about-icon {
+            width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+            background: rgba(14,165,233,.15); color: #67e8f9;
+            display: grid; place-items: center; font-size: 1.1rem;
+        }
+        .about-card h3 { color: #fff; font-size: 1rem; margin-bottom: 4px; }
+        .about-card p { color: #64748b; font-size: .9rem; }
+
+        /* ── PROJECTS ── */
+        .projects-section { background: var(--night); }
+        .project-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 20px; overflow: hidden;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(14,165,233,.3);
+            box-shadow: 0 32px 80px rgba(0,0,0,.4), 0 0 40px rgba(14,165,233,.08);
+        }
+        .project-header {
+            background: linear-gradient(135deg, #0a1628 0%, #0d1f3a 100%);
+            padding: 40px; display: flex; align-items: center; gap: 20px;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+            position: relative; overflow: hidden;
+        }
+        .project-header::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at top right, rgba(14,165,233,.12), transparent 60%);
+            pointer-events: none;
+        }
+        .project-logo {
+            width: 72px; height: 72px; border-radius: 18px; flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,.4);
+            overflow: hidden; background: #fff;
+        }
+        .project-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .project-meta { position: relative; z-index: 1; }
+        .project-name { font-size: 1.6rem; font-weight: 900; color: #fff; margin-bottom: 4px; }
+        .project-tagline { color: #94a3b8; font-size: .95rem; }
+        .project-badges { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .badge {
+            padding: 4px 10px; border-radius: 999px; font-size: .72rem; font-weight: 800;
+            border: 1px solid;
+        }
+        .badge-ios { background: rgba(14,165,233,.1); border-color: rgba(14,165,233,.3); color: #67e8f9; }
+        .badge-android { background: rgba(34,197,94,.1); border-color: rgba(34,197,94,.3); color: #86efac; }
+        .badge-live { background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.3); color: #fcd34d; }
+
+        .project-body { padding: 36px 40px; }
+        .project-desc { color: #94a3b8; font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
+        .project-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+        .project-feature {
+            display: flex; gap: 10px; align-items: flex-start;
+            background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 10px; padding: 12px 14px;
+        }
+        .project-feature i { color: var(--accent); margin-top: 2px; font-size: .85rem; }
+        .project-feature span { color: #cbd5e1; font-size: .88rem; }
+        .project-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .proj-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 11px 20px; border-radius: 8px; font-weight: 800; font-size: .88rem;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .proj-btn:hover { transform: translateY(-2px); }
+        .proj-btn-primary { background: var(--accent); color: #052e16; box-shadow: 0 8px 20px rgba(34,197,94,.25); }
+        .proj-btn-ghost { border: 1px solid rgba(255,255,255,.15); color: #cbd5e1; background: rgba(255,255,255,.05); }
+        .proj-btn-ghost:hover { background: rgba(255,255,255,.1); }
+        .proj-btn-github { border: 1px solid rgba(103,232,249,.2); color: #67e8f9; background: rgba(14,165,233,.08); }
+        .proj-btn-github:hover { background: rgba(14,165,233,.15); }
+
+        /* ── STATS ROW ── */
+        .stats-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+            background: rgba(255,255,255,.04); border-radius: 12px; overflow: hidden;
+            margin: 32px 0; border: 1px solid rgba(255,255,255,.06);
+        }
+        .stat-cell {
+            padding: 22px; text-align: center;
+            background: rgba(255,255,255,.02);
+        }
+        .stat-cell strong { display: block; font-size: 2rem; font-weight: 900; color: #fff; }
+        .stat-cell span { color: #64748b; font-size: .82rem; }
+
+        /* ── SKILLS ── */
+        .skills-section { background: var(--night-2); }
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .skill-card {
+            background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+            border-radius: 16px; padding: 28px;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+        .skill-card:hover { background: rgba(14,165,233,.06); border-color: rgba(14,165,233,.2); transform: translateY(-4px); }
+        .skill-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+        .skill-card h3 { color: #fff; font-size: 1rem; margin-bottom: 8px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .skill-tag {
+            padding: 3px 9px; border-radius: 6px;
+            background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.08);
+            color: #94a3b8; font-size: .74rem; font-weight: 600;
+        }
+
+        /* ── CONTACT ── */
+        .contact-section { background: var(--night); }
+        .contact-inner {
+            background: linear-gradient(135deg, rgba(14,165,233,.08) 0%, rgba(34,197,94,.06) 100%);
+            border: 1px solid rgba(14,165,233,.2);
+            border-radius: 24px; padding: 64px;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .contact-inner::before {
+            content: ''; position: absolute; inset: 0; border-radius: 24px;
+            background: radial-gradient(circle at center, rgba(14,165,233,.05), transparent 70%);
+            pointer-events: none;
+        }
+        .contact-inner h2 { color: #fff; margin-bottom: 14px; }
+        .contact-inner p { color: #64748b; font-size: 1.05rem; margin-bottom: 32px; }
+        .contact-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+        /* ── FOOTER ── */
+        .site-footer {
+            background: #040d19;
+            border-top: 1px solid rgba(255,255,255,.06);
+            padding: 40px 0;
+        }
+        .footer-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 20px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 10px; }
+        .footer-brand img { width: 36px; height: 36px; border-radius: 9px; }
+        .footer-brand span { color: #fff; font-weight: 800; }
+        .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,.4); font-size: .85rem; transition: color .2s; }
+        .footer-links a:hover { color: #fff; }
+        .footer-copy { color: rgba(255,255,255,.3); font-size: .82rem; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-grid, .about-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .project-features { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 640px) {
+            .container { width: min(100% - 32px, 1120px); }
+            .hero { padding: 100px 0 60px; }
+            .hero h1 { font-size: 2.2rem; }
+            .stats-row { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-inner { padding: 40px 24px; }
+            .project-body { padding: 28px 24px; }
+            .project-header { padding: 28px 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="site-nav" id="siteNav">
+        <a class="nav-brand" href="landing_page.html">
+            <img src="assets/logo.png" alt="Price Match Paradise">
+            <span class="nav-name">Imran <b style="color:#67e8f9;">Rifat</b></span>
+        </a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#contact">Contact</a>
+            <a href="landing_page.html" class="nav-cta"><i class="fas fa-rocket"></i> App</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+        <div class="hero-particles" id="particles"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div data-aos="fade-up">
+                    <div class="hero-eyebrow">
+                        <i class="fas fa-mobile-alt"></i> iOS &amp; Android Developer
+                    </div>
+                    <h1>
+                        Building apps<br>
+                        people <span class="gradient">actually use.</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Hi, I'm Imran Rifat — a mobile developer who turns ideas into polished,
+                        real-world apps. My latest: Price Match Paradise, helping shoppers save
+                        $28 per trip at the grocery store.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-layer-group"></i> See My Work
+                        </a>
+                        <a href="https://github.com/Imran-Rifat" target="_blank" rel="noopener" class="btn btn-secondary">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <strong>4.8★</strong>
+                            <span>App Store rating</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>50+</strong>
+                            <span>Stores covered</span>
+                        </div>
+                        <div class="hero-stat">
+                            <strong>$28</strong>
+                            <span>Avg. saved / trip</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="150">
+                    <div class="profile-card">
+                        <div class="profile-img-wrap">
+                            <img src="asset/profile/profile_pic2.png" alt="Imran Rifat"
+                                 onerror="this.onerror=null;this.style.display='none';this.parentNode.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#0ea5e9,#22c55e);display:grid;place-items:center;font-size:3rem;\'>IR</div>';">
+                            <div class="status-dot"></div>
+                        </div>
+                        <div class="profile-name">Imran Rifat</div>
+                        <div class="profile-title">Mobile App Developer · Swift &amp; Kotlin</div>
+                        <div class="profile-skills">
+                            <span class="skill-pill">Swift / SwiftUI</span>
+                            <span class="skill-pill">Kotlin</span>
+                            <span class="skill-pill">React Native</span>
+                            <span class="skill-pill">Firebase</span>
+                            <span class="skill-pill">App Store</span>
+                            <span class="skill-pill">Google Play</span>
+                        </div>
+                        <div class="profile-socials">
+                            <a href="https://github.com/Imran-Rifat" target="_blank" class="social-btn" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:athormod2@gmail.com" class="social-btn" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" class="social-btn" aria-label="App Store">
+                                <i class="fab fa-apple"></i>
+                            </a>
+                            <a href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp" target="_blank" class="social-btn" aria-label="Google Play">
+                                <i class="fab fa-google-play"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div data-aos="fade-right">
+                    <div class="section-kicker">About Me</div>
+                    <h2>Developer who ships real products.</h2>
+                    <p style="color:#64748b;font-size:1.05rem;line-height:1.8;margin-bottom:24px;">
+                        I build mobile apps from zero to launch — handling everything from UI design
+                        and backend integration to App Store submission and user growth. My focus
+                        is on apps that solve real, everyday problems with clean, intuitive experiences.
+                    </p>
+                    <p style="color:#64748b;font-size:1.05rem;line-height:1.8;">
+                        Price Match Paradise is my flagship project: a barcode-scanning app that
+                        compares grocery prices across 50+ stores in real time and helps shoppers
+                        save money every single week.
+                    </p>
+                </div>
+                <div class="about-cards" data-aos="fade-left">
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div>
+                            <h3>Native iOS & Android</h3>
+                            <p>Swift / SwiftUI for iOS, Kotlin for Android — native performance, native feel.</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-barcode"></i></div>
+                        <div>
+                            <h3>Barcode & Camera APIs</h3>
+                            <p>Expert in Vision, AVFoundation, and ML Kit for real-time scanning experiences.</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-cloud"></i></div>
+                        <div>
+                            <h3>Backend & Cloud</h3>
+                            <p>Firebase, REST APIs, and cloud functions to power real-time price data.</p>
+                        </div>
+                    </div>
+                    <div class="about-card">
+                        <div class="about-icon"><i class="fas fa-store"></i></div>
+                        <div>
+                            <h3>App Store Optimization</h3>
+                            <p>Full submission pipeline — screenshots, metadata, review responses, and ASO.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section projects-section" id="projects">
+        <div class="container">
+            <div class="section-kicker" data-aos="fade-up">Featured Projects</div>
+            <h2 data-aos="fade-up">Apps I've built &amp; shipped.</h2>
+            <p class="section-lead" data-aos="fade-up">
+                Real products on the App Store and Google Play, used by real shoppers every day.
+            </p>
+
+            <!-- Price Match Paradise -->
+            <div class="project-card" data-aos="fade-up">
+                <div class="project-header">
+                    <div class="project-logo">
+                        <img src="assets/logo.png" alt="Price Match Paradise">
+                    </div>
+                    <div class="project-meta">
+                        <div class="project-name">Price Match Paradise</div>
+                        <div class="project-tagline">Scan barcodes. Compare 50+ stores. Save $28 per trip.</div>
+                        <div class="project-badges">
+                            <span class="badge badge-ios"><i class="fab fa-apple"></i> iOS</span>
+                            <span class="badge badge-android"><i class="fab fa-google-play"></i> Android</span>
+                            <span class="badge badge-live">⚡ Live on stores</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-body">
+                    <div class="stats-row">
+                        <div class="stat-cell">
+                            <strong>$28</strong>
+                            <span>Average saved per trip</span>
+                        </div>
+                        <div class="stat-cell">
+                            <strong>50+</strong>
+                            <span>Stores compared</span>
+                        </div>
+                        <div class="stat-cell">
+                            <strong>4.8★</strong>
+                            <span>App Store rating</span>
+                        </div>
+                    </div>
+
+                    <p class="project-desc">
+                        Price Match Paradise is a barcode-scanning grocery app that compares live prices
+                        across 50+ stores including Walmart, Target, Kroger, Costco, and Amazon Fresh.
+                        Users scan a barcode in the aisle, see the cheapest option nearby, and show
+                        their screen at checkout to get a price match — all in under 2 seconds.
+                        Built with Swift/SwiftUI for iOS and Kotlin for Android, with a Firebase backend
+                        powering real-time price data.
+                    </p>
+
+                    <div class="project-features">
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Real-time barcode scanner — 2-second results</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Live price comparison across 50+ stores</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Smart receipt scanner — finds what you overpaid</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Price-drop alerts for items you buy regularly</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Monthly savings dashboard &amp; history</span>
+                        </div>
+                        <div class="project-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Privacy-first — data never sold or shared</span>
+                        </div>
+                    </div>
+
+                    <div class="project-actions">
+                        <a href="landing_page.html" class="proj-btn proj-btn-primary">
+                            <i class="fas fa-rocket"></i> View App Page
+                        </a>
+                        <a href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener" class="proj-btn proj-btn-ghost">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp" target="_blank" rel="noopener" class="proj-btn proj-btn-ghost">
+                            <i class="fab fa-google-play"></i> Google Play
+                        </a>
+                        <a href="https://github.com/Imran-Rifat/Price-Match-Paradise" target="_blank" rel="noopener" class="proj-btn proj-btn-github">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills-section" id="skills">
+        <div class="container">
+            <div class="section-kicker" data-aos="fade-up">Tech Stack</div>
+            <h2 data-aos="fade-up">Tools I use to build.</h2>
+            <p class="section-lead" data-aos="fade-up">From native mobile to cloud backends — the full stack for shipping production apps.</p>
+            <div class="skills-grid">
+                <div class="skill-card" data-aos="fade-up">
+                    <span class="skill-icon">🍎</span>
+                    <h3>iOS Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Swift</span>
+                        <span class="skill-tag">SwiftUI</span>
+                        <span class="skill-tag">UIKit</span>
+                        <span class="skill-tag">AVFoundation</span>
+                        <span class="skill-tag">Vision</span>
+                        <span class="skill-tag">Core Data</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="80">
+                    <span class="skill-icon">🤖</span>
+                    <h3>Android Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Kotlin</span>
+                        <span class="skill-tag">Jetpack Compose</span>
+                        <span class="skill-tag">ML Kit</span>
+                        <span class="skill-tag">CameraX</span>
+                        <span class="skill-tag">Room</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="160">
+                    <span class="skill-icon">☁️</span>
+                    <h3>Backend & Cloud</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">Firestore</span>
+                        <span class="skill-tag">Cloud Functions</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Auth</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up">
+                    <span class="skill-icon">🛍️</span>
+                    <h3>App Monetization</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">In-App Purchases</span>
+                        <span class="skill-tag">Subscriptions</span>
+                        <span class="skill-tag">RevenueCat</span>
+                        <span class="skill-tag">StoreKit</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="80">
+                    <span class="skill-icon">📐</span>
+                    <h3>Design & UX</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Human Interface Guidelines</span>
+                        <span class="skill-tag">Material Design</span>
+                        <span class="skill-tag">Animations</span>
+                    </div>
+                </div>
+                <div class="skill-card" data-aos="fade-up" data-aos-delay="160">
+                    <span class="skill-icon">🚀</span>
+                    <h3>Launch & Growth</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">App Store Optimization</span>
+                        <span class="skill-tag">TestFlight</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Analytics</span>
+                        <span class="skill-tag">A/B Testing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-inner" data-aos="fade-up">
+                <div class="section-kicker">Get In Touch</div>
+                <h2>Let's build something great.</h2>
+                <p>Have an app idea? Looking for a mobile developer? I'd love to hear from you.</p>
+                <div class="contact-btns">
+                    <a href="mailto:athormod2@gmail.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Email Me
+                    </a>
+                    <a href="https://github.com/Imran-Rifat" target="_blank" rel="noopener" class="btn btn-secondary">
+                        <i class="fab fa-github"></i> GitHub Profile
+                    </a>
+                    <a href="landing_page.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Back to App
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Logo">
+                    <span>Imran Rifat · Mobile Developer</span>
+                </div>
+                <div class="footer-links">
+                    <a href="landing_page.html">App Landing</a>
+                    <a href="download.html">Download</a>
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="index.html">Delete Account</a>
+                </div>
+                <div class="footer-copy">© 2026 Imran Rifat. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 80 });
+
+        const nav = document.getElementById("siteNav");
+        window.addEventListener("scroll", () => nav.classList.toggle("scrolled", scrollY > 24), { passive: true });
+
+        (function () {
+            const c = document.getElementById("particles");
+            if (!c) return;
+            for (let i = 0; i < 18; i++) {
+                const p = document.createElement("span");
+                const s = 4 + Math.random() * 12;
+                p.style.cssText = `width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${10+Math.random()*14}s;animation-delay:-${Math.random()*12}s;`;
+                c.appendChild(p);
+            }
+        })();
+    </script>
+</body>
+</html>

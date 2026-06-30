@@ -1,210 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175529367"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175529367"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18175529367');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download — Price Match Paradise</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --night: #07111f; --night-2: #0d1b2e;
+            --brand: #0ea5e9; --accent: #22c55e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--night); color: #e2e8f0; min-height: 100vh; }
+        a { color: inherit; text-decoration: none; }
+        .container { width: min(1120px, 90%); margin: 0 auto; }
 
-    gtag('config', 'AW-18175529367');
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Download Price Match Paradise</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+        /* NAV */
+        .site-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px clamp(16px, 4vw, 40px);
+            background: rgba(7,17,31,.72); backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 4px 14px rgba(14,165,233,.35); }
+        .nav-brand span { color: #fff; font-weight: 800; font-size: .98rem; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links a { color: #94a3b8; font-size: .88rem; font-weight: 600; transition: color .2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+            padding: 7px 14px; border-radius: 8px; color: #cbd5e1 !important;
+            transition: background .2s !important;
+        }
+        .nav-back:hover { background: rgba(255,255,255,.14) !important; }
+        @media (max-width: 640px) { .nav-links a:not(.nav-back) { display: none; } }
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: #f4f7fb;
-      color: #172033;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
+        /* PAGE */
+        .page-wrap {
+            min-height: 100vh; padding: 110px 0 60px;
+            display: flex; align-items: center; justify-content: center;
+            background:
+                radial-gradient(circle at 20% 40%, rgba(14,165,233,.1), transparent 45%),
+                radial-gradient(circle at 80% 60%, rgba(34,197,94,.07), transparent 45%),
+                var(--night);
+        }
 
-    .page {
-      width: 100%;
-      max-width: 760px;
-      background: #ffffff;
-      border: 1px solid #e3e8f2;
-      border-radius: 18px;
-      box-shadow: 0 18px 50px rgba(23, 32, 51, 0.12);
-      padding: 36px;
-      text-align: center;
-    }
+        .download-card {
+            background: rgba(255,255,255,.03);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 24px; padding: 56px 48px;
+            max-width: 680px; width: 100%;
+            text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .download-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #0ea5e9, #22c55e, #0ea5e9);
+            border-radius: 24px 24px 0 0;
+        }
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
-      background: #ffffff;
-      border: 1px solid #e3e8f2;
-      overflow: hidden;
-      margin-bottom: 18px;
-    }
+        .app-logo {
+            width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 24px;
+            overflow: hidden; border: 2px solid rgba(255,255,255,.1);
+            box-shadow: 0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(14,165,233,.15);
+        }
+        .app-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    .brand img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: #fff; margin-bottom: 12px; line-height: 1.1; }
+        .subtitle { color: #64748b; font-size: 1.05rem; line-height: 1.65; max-width: 480px; margin: 0 auto 40px; }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(28px, 5vw, 42px);
-      line-height: 1.1;
-      letter-spacing: 0;
-    }
+        /* STORE GRID */
+        .store-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
 
-    .subtitle {
-      max-width: 560px;
-      margin: 14px auto 30px;
-      color: #5f6f89;
-      font-size: 17px;
-      line-height: 1.55;
-    }
+        .store-link {
+            display: flex; align-items: center; justify-content: center; gap: 16px;
+            min-height: 88px; padding: 20px; border-radius: 16px; border: 1px solid;
+            font-weight: 800; font-size: 1.05rem;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+        }
+        .store-link:hover { transform: translateY(-3px); }
+        .store-ios {
+            background: rgba(255,255,255,.05);
+            border-color: rgba(255,255,255,.12); color: #fff;
+        }
+        .store-ios:hover { border-color: rgba(255,255,255,.3); box-shadow: 0 14px 36px rgba(0,0,0,.3); }
+        .store-android {
+            background: rgba(34,197,94,.08);
+            border-color: rgba(34,197,94,.2); color: #86efac;
+        }
+        .store-android:hover { border-color: rgba(34,197,94,.4); box-shadow: 0 14px 36px rgba(34,197,94,.12); }
 
-    .store-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 8px;
-    }
+        .store-icon-wrap { flex-shrink: 0; }
+        .store-icon-wrap img { width: 48px; height: 48px; object-fit: contain; display: block; }
+        .store-text .small { display: block; font-size: .78rem; font-weight: 500; opacity: .65; margin-bottom: 2px; }
 
-    .store-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      min-height: 86px;
-      padding: 18px;
-      border-radius: 14px;
-      text-decoration: none;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 18px;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
-    }
+        /* STATS */
+        .stats-row {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px; background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.06); border-radius: 14px;
+            overflow: hidden; margin-bottom: 32px;
+        }
+        .stat-cell { padding: 20px; background: rgba(255,255,255,.02); }
+        .stat-cell strong { display: block; font-size: 1.6rem; font-weight: 900; color: #fff; }
+        .stat-cell span { font-size: .78rem; color: #475569; }
 
-    .store-link:hover,
-    .store-link:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 26px rgba(23, 32, 51, 0.18);
-      outline: none;
-    }
+        /* FOOTER LINKS */
+        .card-footer {
+            padding-top: 24px; border-top: 1px solid rgba(255,255,255,.06);
+            display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+        }
+        .card-footer a {
+            color: #475569; font-size: .82rem; transition: color .2s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .card-footer a:hover { color: #94a3b8; }
 
-    .ios {
-      background: #111827;
-    }
+        /* SITE FOOTER */
+        .site-footer {
+            background: #040d19; border-top: 1px solid rgba(255,255,255,.06); padding: 28px 0;
+        }
+        .footer-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 14px;
+        }
+        .footer-brand { display: flex; align-items: center; gap: 8px; }
+        .footer-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .footer-brand span { color: #fff; font-weight: 700; font-size: .9rem; }
+        .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,.35); font-size: .82rem; transition: color .2s; }
+        .footer-links a:hover { color: #fff; }
+        .footer-copy { color: rgba(255,255,255,.25); font-size: .78rem; }
 
-    .android {
-      background: #188038;
-    }
-
-    .store-icon {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 auto;
-      fill: currentColor;
-      object-fit: contain;
-    }
-
-    .store-icon-1 {
-      width: 64px;
-      height: 64px;
-      flex: 0 0 auto;
-      fill: currentColor;
-      object-fit: contain;
-    }
-
-    .small {
-      display: block;
-      font-size: 13px;
-      font-weight: 500;
-      opacity: 0.82;
-      margin-bottom: 2px;
-    }
-
-    .footer {
-      margin-top: 28px;
-      color: #6c757d;
-      font-size: 13px;
-    }
-
-    .footer a {
-      color: inherit;
-    }
-
-    @media (max-width: 620px) {
-      .page {
-        padding: 28px 18px;
-      }
-
-      .store-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+        @media (max-width: 560px) {
+            .download-card { padding: 36px 24px; }
+            .store-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <main class="page">
-    <div class="brand" aria-hidden="true">
-      <img src="./assets/logo.png" alt="" />
+
+    <nav class="site-nav">
+        <a class="nav-brand" href="landing_page.html">
+            <img src="assets/logo.png" alt="Price Match Paradise">
+            <span>Price Match <b style="color:#67e8f9;">Paradise</b></span>
+        </a>
+        <div class="nav-links">
+            <a href="landing_page.html#features">Features</a>
+            <a href="landing_page.html#pricing">Pricing</a>
+            <a href="landing_page.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </nav>
+
+    <div class="page-wrap">
+        <div class="container" style="display:flex;justify-content:center;">
+            <div class="download-card">
+                <div class="app-logo">
+                    <img src="assets/logo.png" alt="Price Match Paradise">
+                </div>
+                <h1>Download Price Match Paradise</h1>
+                <p class="subtitle">
+                    Scan any barcode. Compare prices at 50+ stores. Save money every single week.
+                    Free to start — no account required.
+                </p>
+
+                <div class="store-grid">
+                    <a class="store-link store-ios"
+                       href="https://apps.apple.com/us/app/price-match-paradise/id6758967914"
+                       target="_blank" rel="noopener noreferrer">
+                        <div class="store-icon-wrap">
+                            <img src="assets/aple.png" alt="App Store">
+                        </div>
+                        <div class="store-text">
+                            <span class="small">Download on the</span>
+                            App Store
+                        </div>
+                    </a>
+                    <a class="store-link store-android"
+                       href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp"
+                       target="_blank" rel="noopener noreferrer">
+                        <div class="store-icon-wrap">
+                            <img src="assets/play.png" alt="Google Play">
+                        </div>
+                        <div class="store-text">
+                            <span class="small">Get it on</span>
+                            Google Play
+                        </div>
+                    </a>
+                </div>
+
+                <div class="stats-row">
+                    <div class="stat-cell">
+                        <strong>$28</strong>
+                        <span>avg. saved per trip</span>
+                    </div>
+                    <div class="stat-cell">
+                        <strong>50+</strong>
+                        <span>stores compared</span>
+                    </div>
+                    <div class="stat-cell">
+                        <strong>4.8★</strong>
+                        <span>App Store rating</span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="landing_page.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="index.html"><i class="fas fa-trash-alt"></i> Delete Account</a>
+                    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy</a>
+                    <a href="terms.html"><i class="fas fa-file-alt"></i> Terms</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <h1>Download Price Match Paradise</h1>
-    <p class="subtitle">
-      Compare prices, scan barcodes, and find better deals from your phone.
-    </p>
 
-    <div class="store-grid" aria-label="Download links">
-      <a
-        class="store-link ios"
-        href="https://apps.apple.com/us/app/price-match-paradise/id6758967914"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Download Price Match Paradise on the App Store"
-      >
-        <img class="store-icon-1" src="./assets/aple.png" alt="App Store" />
-        <span>
-          <span class="small">Download on</span>
-          App Store
-        </span>
-      </a>
-
-      <a
-        class="store-link android"
-        href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Get Price Match Paradise on Google Play"
-      >
-        <img class="store-icon" src="./assets/play.png" alt="Google Play" />
-        <span>
-          <span class="small">Get it on</span>
-          Google Play
-        </span>
-      </a>
-    </div>
-
-    <p class="footer">
-      <a href="./index.html">Account deletion</a>
-      &nbsp;•&nbsp;
-      <a href="./privacy-policy.html">Privacy Policy</a>
-      &nbsp;•&nbsp;
-      <a href="./terms.html">Terms</a>
-    </p>
-  </main>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="">
+                    <span>Price Match Paradise</span>
+                </div>
+                <div class="footer-links">
+                    <a href="landing_page.html">Home</a>
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+                <div class="footer-copy">© 2026 Price Match Paradise</div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

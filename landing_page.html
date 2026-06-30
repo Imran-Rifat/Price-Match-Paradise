@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Price Match Paradise — Stop Overpaying at the Grocery Store</title>
     <meta name="description" content="Scan any barcode in the aisle. See if a store nearby sells it cheaper. Show your screen. Pay less. Price Match Paradise saves the average shopper $28 per trip.">
-    <link rel="icon" type="image/png" href="asset/logo.png">
-    <link rel="apple-touch-icon" href="asset/logo.png">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
     <!-- Social share preview (Open Graph / Twitter) so links unfurl with the logo -->
     <meta property="og:title" content="Price Match Paradise — Stop Overpaying at the Grocery Store">
     <meta property="og:description" content="Scan any barcode. See if a store nearby sells it cheaper. The average member saves $28 per trip.">
-    <meta property="og:image" content="asset/logo.png">
+    <meta property="og:image" content="assets/logo.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -465,12 +465,17 @@
 
         /* ── Screen area ─────────────────── */
         .video-shell {
-            position:relative; width:100%; height:100%;
+            position:absolute;
+            inset:13px;          /* matches device padding */
             border-radius:40px; overflow:hidden;
             background:#020617; z-index:1;
             box-shadow: inset 0 0 28px rgba(0,0,0,.6);
         }
-        .video-shell video { width:100%; height:100%; object-fit:cover; display:block; }
+        .video-shell video {
+            position:absolute; inset:0;
+            width:100%; height:100%;
+            object-fit:cover; display:block;
+        }
 
         /* Screen glare */
         .screen-glare {
@@ -511,15 +516,49 @@
             filter:blur(14px); z-index:-1;
         }
 
-        .unmute-btn {
-            position: absolute; left: 50%; transform: translateX(-50%) translateY(6px); bottom: 18px;
-            padding: 10px 14px; border-radius: 999px;
-            background: rgba(255,255,255,.92); color: #07111f;
-            font-weight: 800; border: none; cursor: pointer;
-            box-shadow: 0 8px 20px rgba(2,6,23,.28); z-index: 6;
-            opacity: 0; transition: opacity 260ms, transform 260ms; pointer-events: none;
+        /* ── Sound toggle pill ── */
+        .sound-btn {
+            position: absolute; top: 58px; left: 50%;
+            transform: translateX(-50%) scale(.88);
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 16px 8px 10px; border-radius: 999px; border: none; cursor: pointer;
+            background: rgba(2,6,23,.82); backdrop-filter: blur(10px);
+            border: 1px solid rgba(103,232,249,.3);
+            color: #e0f2fe; font-size: .78rem; font-weight: 800;
+            box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(14,165,233,.4);
+            z-index: 9; transition: opacity .3s, transform .3s, box-shadow .3s;
+            opacity: 0; pointer-events: none;
+            animation: soundPulse 2.4s ease-in-out infinite;
         }
-        .unmute-btn.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+        .sound-btn.visible { opacity: 1; transform: translateX(-50%) scale(1); pointer-events: auto; }
+        .sound-btn:hover { background: rgba(14,165,233,.25); box-shadow: 0 8px 28px rgba(0,0,0,.5), 0 0 0 4px rgba(14,165,233,.15); }
+        .sound-btn .sound-icon {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9, #22c55e);
+            display: grid; place-items: center; font-size: .78rem; flex-shrink: 0;
+        }
+        .sound-btn .sound-bars {
+            display: flex; align-items: center; gap: 2px; height: 14px;
+        }
+        .sound-bars span {
+            display: block; width: 3px; border-radius: 2px;
+            background: #67e8f9;
+            animation: barBounce .9s ease-in-out infinite;
+        }
+        .sound-bars span:nth-child(1) { height: 6px;  animation-delay: 0s; }
+        .sound-bars span:nth-child(2) { height: 12px; animation-delay: .15s; }
+        .sound-bars span:nth-child(3) { height: 8px;  animation-delay: .3s; }
+        .sound-bars span:nth-child(4) { height: 14px; animation-delay: .1s; }
+        .sound-btn.muted .sound-bars span { animation: none; opacity: .35; height: 6px !important; }
+        @keyframes barBounce {
+            0%,100% { transform: scaleY(1); }
+            50%      { transform: scaleY(.4); }
+        }
+        @keyframes soundPulse {
+            0%,100% { box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(14,165,233,.35); }
+            50%     { box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 6px rgba(14,165,233,.0); }
+        }
+        .unmute-btn.show { opacity: 1; pointer-events: auto; }
         .video-shell .video-fallback { transition: opacity 260ms, visibility 260ms; }
         .video-shell.playing .video-fallback { opacity: 0; visibility: hidden; }
         .video-fallback {
@@ -769,7 +808,7 @@
     <!-- ═══════ TOP NAV (logo + brand) ═══════════ -->
     <nav class="site-nav" id="siteNav">
         <a class="nav-brand" href="#top" aria-label="Price Match Paradise home">
-            <img src="asset/logo.png" alt="Price Match Paradise logo">
+            <img src="assets/logo.png" alt="Price Match Paradise logo">
             <span class="nav-name">Price Match <b>Paradise</b></span>
         </a>
         <div class="nav-links">
@@ -833,17 +872,17 @@
 
                             <div class="screenshot-phone phone-back">
                                 <div class="screenshot-screen">
-                                    <img src="asset/long-screen-shot/screen1.png"
+                                    <img src="asset/long-screen-shot/screen1.jpg"
                                          alt="Price Match Paradise app — full product comparison screen"
-                                         onerror="this.onerror=null;this.src='asset/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
+                                         onerror="this.onerror=null;this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
                                 </div>
                             </div>
 
                             <div class="screenshot-phone phone-front">
                                 <div class="screenshot-screen">
-                                    <img src="asset/long-screen-shot/screen2.png"
+                                    <img src="asset/long-screen-shot/screen2.jpg"
                                          alt="Price Match Paradise app — barcode scanner and price match screen"
-                                         onerror="this.onerror=null;this.src='asset/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
+                                         onerror="this.onerror=null;this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
                                 </div>
                                 <div class="phone-caption">
                                     <i class="fas fa-arrow-down"></i>
@@ -943,7 +982,6 @@
                             <p class="lead">
                                 From pocket to price comparison in under 3 seconds —
                                 no typing, no searching, no friction.
-                                Drop your reel at <strong>asset/price-match/app-demo.mp4</strong> to activate this player.
                             </p>
                         </div>
                         <div class="demo-device-outer">
@@ -957,15 +995,20 @@
                                 <span class="btn-side btn-power"></span>
                                 <!-- Screen -->
                                 <div class="video-shell">
-                                    <video id="demoVideo" controls muted playsinline preload="metadata">
+                                    <video id="demoVideo" autoplay muted loop playsinline preload="auto">
                                         <source src="asset/price-match/app-demo.mp4" type="video/mp4">
                                         <source src="asset/price-match/app-demo.mov" type="video/quicktime">
                                         Your browser does not support this video format.
                                     </video>
                                     <!-- Screen glare -->
                                     <div class="screen-glare"></div>
-                                    <button id="unmuteBtn" class="unmute-btn" aria-label="Unmute video">
-                                        <i class="fas fa-volume-up"></i> Unmute
+                                    <!-- Sound toggle -->
+                                    <button id="soundBtn" class="sound-btn muted" aria-label="Toggle sound">
+                                        <span class="sound-icon"><i class="fas fa-volume-xmark"></i></span>
+                                        <div class="sound-bars">
+                                            <span></span><span></span><span></span><span></span>
+                                        </div>
+                                        <span id="soundLabel">Tap for sound</span>
                                     </button>
                                     <div class="video-fallback">
                                         <i class="fas fa-circle-play"></i>
@@ -1178,7 +1221,7 @@
 
                 <div class="footer-brand">
                     <div class="brand-name">
-                        <img src="asset/logo.png" alt="Price Match Paradise logo"
+                        <img src="assets/logo.png" alt="Price Match Paradise logo"
                              style="width:40px;height:40px;border-radius:11px;vertical-align:middle;margin-right:8px;">
                         Price Match Paradise
                     </div>
@@ -1208,19 +1251,17 @@
                     <h4>Support</h4>
                     <ul>
                         <li><a href="mailto:athormod2@gmail.com">Contact us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Report an issue</a></li>
-                        <li><a href="#">Accessibility</a></li>
+                        <li><a href="index.html">Delete Account</a></li>
+                        <li><a href="download.html">Download App</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">Data Deletion</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="index.html">Delete Account</a></li>
                     </ul>
                 </div>
 
@@ -1232,9 +1273,8 @@
                     <i class="fas fa-shield-alt"></i> Your data is never sold
                 </div>
                 <div class="footer-legal">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Cookies</a>
+                    <a href="privacy-policy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
                 </div>
             </div>
         </div>
@@ -1330,45 +1370,44 @@
         window.addEventListener("resize", updateHeroPhones);
         window.addEventListener("resize", updateDemoAnimation);
 
-        /* ── Video autoplay when in view ────── */
+        /* ── Video: autoplay muted, show sound toggle, unmute on tap ── */
         (function () {
-            const demoVideo    = document.getElementById("demoVideo");
+            const demoVideo = document.getElementById("demoVideo");
             const demoDeviceEl = document.getElementById("demoDevice");
-            const unmuteBtn    = document.getElementById("unmuteBtn");
+            const soundBtn  = document.getElementById("soundBtn");
+            const soundLabel = document.getElementById("soundLabel");
             if (!demoVideo || !demoDeviceEl) return;
             const videoShell = demoVideo.closest(".video-shell");
 
-            const io = new IntersectionObserver(async (entries) => {
+            const io = new IntersectionObserver((entries) => {
                 for (const entry of entries) {
                     if (entry.isIntersecting) {
-                        try {
-                            demoVideo.muted = true;
-                            await demoVideo.play();
-                            if (videoShell) videoShell.classList.add("playing");
-                            demoVideo.muted = false;
-                            await demoVideo.play();
-                            if (unmuteBtn) unmuteBtn.classList.remove("show");
-                        } catch (err) {
-                            demoVideo.muted = true;
-                            if (unmuteBtn) unmuteBtn.classList.add("show");
-                        }
+                        demoVideo.play().catch(() => {});
+                        if (videoShell) videoShell.classList.add("playing");
+                        if (soundBtn) soundBtn.classList.add("visible");
                     } else {
-                        try { demoVideo.pause(); } catch (e) {}
+                        demoVideo.pause();
                         if (videoShell) videoShell.classList.remove("playing");
-                        if (unmuteBtn)  unmuteBtn.classList.remove("show");
+                        if (soundBtn) soundBtn.classList.remove("visible");
                     }
                 }
-            }, { threshold: 0.55 });
+            }, { threshold: 0.4 });
             io.observe(demoDeviceEl);
 
-            if (unmuteBtn) {
-                unmuteBtn.addEventListener("click", async () => {
-                    try {
-                        demoVideo.muted = false;
-                        await demoVideo.play();
-                        if (videoShell) videoShell.classList.add("playing");
-                        unmuteBtn.classList.remove("show");
-                    } catch (e) { unmuteBtn.classList.add("show"); }
+            if (soundBtn) {
+                soundBtn.addEventListener("click", () => {
+                    demoVideo.muted = !demoVideo.muted;
+                    const icon = soundBtn.querySelector(".sound-icon i");
+                    if (demoVideo.muted) {
+                        soundBtn.classList.add("muted");
+                        if (icon) { icon.className = "fas fa-volume-xmark"; }
+                        if (soundLabel) soundLabel.textContent = "Tap for sound";
+                    } else {
+                        soundBtn.classList.remove("muted");
+                        if (icon) { icon.className = "fas fa-volume-high"; }
+                        if (soundLabel) soundLabel.textContent = "Sound on";
+                        demoVideo.play().catch(() => {});
+                    }
                 });
             }
         })();

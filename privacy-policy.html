@@ -1,156 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175529367"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175529367"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18175529367');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Price Match Paradise</title>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { --night: #07111f; --night-2: #0d1b2e; --brand: #0ea5e9; --accent: #22c55e; }
+        * { margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+        html { scroll-behavior: smooth; scroll-padding-top: 78px; }
+        body { background: var(--night); color: #e2e8f0; min-height: 100vh; }
+        a { color: #67e8f9; text-decoration: none; transition: color .2s; }
+        a:hover { color: #bae6fd; }
+        .container { width: min(860px, 90%); margin: 0 auto; }
 
-    gtag('config', 'AW-18175529367');
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Price Depot - Privacy Policy</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      margin: 0;
-      padding: 20px;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .container {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      padding: 40px;
-      max-width: 900px;
-      width: 100%;
-    }
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-    .back {
-      text-decoration: none;
-      color: #667eea;
-      font-weight: 600;
-    }
-    h1 {
-      color: #333;
-      font-size: 28px;
-      margin: 0 0 6px 0;
-    }
-    .meta {
-      color: #6c757d;
-      font-size: 12px;
-      margin: 0 0 18px 0;
-    }
-    h2 {
-      color: #333;
-      font-size: 18px;
-      margin: 22px 0 10px 0;
-    }
-    p, li {
-      color: #333;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-    ul {
-      padding-left: 18px;
-    }
-    .notice {
-      background: #f8f9fa;
-      padding: 16px 18px;
-      border-radius: 12px;
-      margin: 18px 0;
-    }
-    .footer {
-      margin-top: 26px;
-      border-top: 1px solid #eee;
-      padding-top: 14px;
-      color: #6c757d;
-      font-size: 12px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-    .footer a {
-      color: inherit;
-    }
-  </style>
+        /* NAV */
+        .site-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 30;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px clamp(16px, 4vw, 40px);
+            background: rgba(7,17,31,.72); backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 4px 14px rgba(14,165,233,.35); }
+        .nav-brand span { color: #fff; font-weight: 800; font-size: .98rem; }
+        .nav-links { display: flex; align-items: center; gap: 20px; }
+        .nav-links a { color: #94a3b8; font-size: .88rem; font-weight: 600; transition: color .2s; }
+        .nav-links a:hover { color: #fff; }
+        .nav-back {
+            display: inline-flex; align-items: center; gap: 7px;
+            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+            padding: 7px 14px; border-radius: 8px; color: #cbd5e1 !important;
+        }
+        .nav-back:hover { background: rgba(255,255,255,.14) !important; }
+        @media (max-width: 640px) { .nav-links a:not(.nav-back) { display: none; } }
+
+        /* CONTENT */
+        .content { padding: 110px 0 80px; }
+
+        .page-header {
+            background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.07);
+            border-radius: 20px; padding: 48px; margin-bottom: 32px;
+            position: relative; overflow: hidden;
+        }
+        .page-header::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #0ea5e9, #22c55e);
+            border-radius: 20px 20px 0 0;
+        }
+        .page-kicker {
+            color: #67e8f9; font-size: .76rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+        }
+        .page-header h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: #fff; margin-bottom: 8px; }
+        .page-header .meta { color: #475569; font-size: .85rem; }
+        .notice-box {
+            background: rgba(14,165,233,.07); border: 1px solid rgba(14,165,233,.18);
+            border-left: 4px solid var(--brand);
+            border-radius: 10px; padding: 16px 18px; margin-top: 20px;
+            color: #bae6fd; font-size: .92rem; line-height: 1.6;
+        }
+
+        /* BODY CARD */
+        .body-card {
+            background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 20px; padding: 48px;
+        }
+
+        h2 {
+            font-size: 1.15rem; color: #fff; margin: 36px 0 12px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        h2:first-child { margin-top: 0; }
+        h2 i { color: #67e8f9; font-size: .95rem; }
+        p { color: #64748b; font-size: .95rem; line-height: 1.75; margin-bottom: 14px; }
+        ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+        ul li {
+            color: #64748b; font-size: .95rem; line-height: 1.65;
+            display: flex; gap: 10px; align-items: flex-start;
+        }
+        ul li::before { content: '→'; color: #0ea5e9; flex-shrink: 0; margin-top: 1px; }
+        strong { color: #94a3b8; }
+        .divider { height: 1px; background: rgba(255,255,255,.06); margin: 28px 0; }
+
+        /* PAGE FOOTER */
+        .page-footer {
+            margin-top: 32px; padding: 20px;
+            background: rgba(255,255,255,.02); border: 1px solid rgba(255,255,255,.06);
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 14px;
+        }
+        .page-footer span { color: #334155; font-size: .82rem; }
+        .page-footer-links { display: flex; gap: 16px; flex-wrap: wrap; }
+        .page-footer-links a { color: #475569; font-size: .82rem; transition: color .2s; }
+        .page-footer-links a:hover { color: #94a3b8; }
+
+        /* SITE FOOTER */
+        .site-footer { background: #040d19; border-top: 1px solid rgba(255,255,255,.06); padding: 28px 0; }
+        .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+        .footer-brand { display: flex; align-items: center; gap: 8px; }
+        .footer-brand img { width: 32px; height: 32px; border-radius: 8px; }
+        .footer-brand span { color: #fff; font-weight: 700; font-size: .9rem; }
+        .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+        .footer-links a { color: rgba(255,255,255,.35); font-size: .82rem; transition: color .2s; text-decoration: none; }
+        .footer-links a:hover { color: #fff; }
+        .footer-copy { color: rgba(255,255,255,.25); font-size: .78rem; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="topbar">
-      <a class="back" href="./index.html">← Back to Delete Account</a>
-      <a class="back" href="./terms.html">Terms</a>
+
+    <nav class="site-nav">
+        <a class="nav-brand" href="landing_page.html">
+            <img src="assets/logo.png" alt="Price Match Paradise">
+            <span>Price Match <b style="color:#67e8f9;">Paradise</b></span>
+        </a>
+        <div class="nav-links">
+            <a href="landing_page.html">Home</a>
+            <a href="terms.html">Terms</a>
+            <a href="index.html">Delete Account</a>
+            <a href="landing_page.html" class="nav-back">
+                <i class="fas fa-arrow-left"></i> Back
+            </a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <div class="page-header">
+                <div class="page-kicker"><i class="fas fa-shield-alt"></i> Legal</div>
+                <h1>Privacy Policy</h1>
+                <div class="meta">Last updated: April 24, 2026</div>
+                <div class="notice-box">
+                    This page explains how Price Match Paradise ("we", "us") collects, uses, and
+                    protects your information when you use our app and services.
+                </div>
+            </div>
+
+            <div class="body-card">
+                <h2><i class="fas fa-database"></i> Information We Collect</h2>
+                <ul>
+                    <li><strong>Account information:</strong> details you provide to create or manage your account.</li>
+                    <li><strong>Usage data:</strong> app interactions and diagnostics to improve performance and reliability.</li>
+                    <li><strong>Device data:</strong> device identifiers and basic device details for security, analytics, and troubleshooting.</li>
+                    <li><strong>Support communications:</strong> messages you send us when requesting help.</li>
+                </ul>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-cogs"></i> How We Use Information</h2>
+                <ul>
+                    <li>Provide, maintain, and improve the app and its features.</li>
+                    <li>Authenticate users and secure your account against unauthorized access.</li>
+                    <li>Respond to support requests and communicate about your account.</li>
+                    <li>Monitor and prevent fraud, abuse, or illegal activity.</li>
+                </ul>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-share-alt"></i> How We Share Information</h2>
+                <p>We do not sell your personal information. We may share information only:</p>
+                <ul>
+                    <li>With service providers that process data on our behalf (e.g., hosting, analytics, support).</li>
+                    <li>If required by law or to respond to valid legal requests.</li>
+                    <li>To protect the rights, property, or safety of our users and the public.</li>
+                </ul>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-clock"></i> Data Retention</h2>
+                <p>We keep your information only as long as necessary for the purposes described in this policy, unless a longer retention period is required by law.</p>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-trash-alt"></i> Account Deletion</h2>
+                <p>If you delete your account, we will remove or anonymize your personal information within 30 days, subject to any legal or operational requirements. Visit <a href="index.html">our account deletion page</a> to request deletion.</p>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-child"></i> Children's Privacy</h2>
+                <p>Our services are not intended for children under 13, and we do not knowingly collect personal information from children under 13.</p>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-sync-alt"></i> Changes to This Policy</h2>
+                <p>We may update this policy from time to time. We will post the updated version on this page with a new "Last updated" date.</p>
+
+                <div class="divider"></div>
+
+                <h2><i class="fas fa-envelope"></i> Contact Us</h2>
+                <p>If you have questions about this policy or your data, contact us at <a href="mailto:pricecheckorcompare@gmail.com">pricecheckorcompare@gmail.com</a>.</p>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Price Match Paradise</span>
+                <div class="page-footer-links">
+                    <a href="landing_page.html">Home</a>
+                    <a href="index.html">Delete Account</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="download.html">Download App</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: April 24, 2026</p>
-
-    <div class="notice">
-      <p style="margin: 0;">
-        This page explains how Price Depot (“we”, “us”) collects, uses, and shares information when you use our app and services.
-      </p>
-    </div>
-
-    <h2>Information We Collect</h2>
-    <ul>
-      <li><strong>Account information:</strong> information you provide to create or manage your account.</li>
-      <li><strong>Usage data:</strong> app interactions and diagnostics to improve performance and reliability.</li>
-      <li><strong>Device data:</strong> device identifiers and basic device details for security, analytics, and troubleshooting.</li>
-      <li><strong>Support communications:</strong> messages you send us (including email content) when requesting help.</li>
-    </ul>
-
-    <h2>How We Use Information</h2>
-    <ul>
-      <li>Provide, maintain, and improve the app.</li>
-      <li>Authenticate users and secure accounts.</li>
-      <li>Respond to support requests and communicate about your account.</li>
-      <li>Monitor and prevent fraud, abuse, or illegal activity.</li>
-    </ul>
-
-    <h2>How We Share Information</h2>
-    <p>We do not sell your personal information. We may share information:</p>
-    <ul>
-      <li>With service providers that process data on our behalf (e.g., hosting, analytics, support).</li>
-      <li>If required by law or to respond to valid legal requests.</li>
-      <li>To protect the rights, property, or safety of our users and the public.</li>
-    </ul>
-
-    <h2>Data Retention</h2>
-    <p>We keep information only as long as necessary for the purposes described in this policy, unless a longer retention period is required by law.</p>
-
-    <h2>Account Deletion</h2>
-    <p>If you delete your account, we will remove or anonymize your personal information, subject to any legal or operational requirements.</p>
-
-    <h2>Children’s Privacy</h2>
-    <p>Our services are not intended for children under 13, and we do not knowingly collect personal information from children under 13.</p>
-
-    <h2>Changes to This Policy</h2>
-    <p>We may update this policy from time to time. We will post the updated version on this page with a new “Last updated” date.</p>
-
-    <h2>Contact Us</h2>
-    <p>If you have questions about this policy or your data, contact us at <a href="mailto:pricecheckorcompare@gmail.com">pricecheckorcompare@gmail.com</a>.</p>
-
-    <div class="footer">
-      <span>© Price Depot</span>
-      <span>
-        <a href="./index.html">Account Deletion</a> •
-        <a href="./terms.html">Terms</a>
-      </span>
-    </div>
-  </div>
+    <footer class="site-footer">
+        <div class="container" style="width:min(1120px,90%);margin:0 auto;">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="">
+                    <span>Price Match Paradise</span>
+                </div>
+                <div class="footer-links">
+                    <a href="landing_page.html">Home</a>
+                    <a href="index.html">Delete Account</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+                <div class="footer-copy">© 2026 Price Match Paradise</div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
