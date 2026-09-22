@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /delete-account.html
+
+Sitemap: https://pricematchparadise.com/sitemap.xml
