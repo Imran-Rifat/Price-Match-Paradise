@@ -106,6 +106,8 @@ img { max-width: 100%; height: auto; display: block; }
 /* Tables scroll inside their own box on phones */
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
 table { width: 100%; border-collapse: collapse; font-size: .96rem; min-width: 560px; }
+/* Two-column and compact tables fit a phone screen without scrolling */
+table:not(:has(th:nth-child(3))), .table-wrap.compact table { min-width: 0; }
 th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { background: #f1f5f9; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
 tr:last-child td { border-bottom: 0; }
@@ -192,7 +194,7 @@ figcaption { font-size: .9rem; color: var(--muted); text-align: center; margin-t
 .sticky-bar.show { transform: none; }
 .sticky-bar img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
 .sticky-bar .txt { flex: 1; min-width: 0; font-size: .86rem; line-height: 1.3; }
-.sticky-bar .txt b { display: block; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sticky-bar .txt b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: .92rem; line-height: 1.25; }
 @media (max-width: 420px) { .sticky-bar .txt .sub { display: none; } }
 .sticky-bar .btn { padding: 10px 16px; font-size: .9rem; }
 .sticky-bar .x { background: none; border: 0; color: #94a3b8; font-size: 1.1rem; padding: 6px; cursor: pointer; }
