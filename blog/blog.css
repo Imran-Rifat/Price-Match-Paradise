@@ -232,3 +232,16 @@ footer { background: var(--night); color: #94a3b8; padding: 40px 0; font-size: .
 footer .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; }
 footer a { color: #cbd5e1; text-decoration: none; margin-right: 18px; }
 footer a:hover { color: #fff; }
+
+/* Related posts */
+.related { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.related a {
+    display: flex; flex-direction: column; gap: 6px; background: #fff; border: 1px solid var(--line);
+    border-radius: 14px; padding: 16px 18px; text-decoration: none !important; color: var(--ink);
+    transition: transform .2s, box-shadow .2s;
+}
+.related a:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+.related .tag { font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-dark); }
+.related strong { font-size: 1rem; line-height: 1.35; }
+.sources { font-size: .88rem; color: var(--muted); }
+.sources a { color: var(--muted); }
