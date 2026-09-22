@@ -245,3 +245,5 @@ footer a:hover { color: #fff; }
 .related strong { font-size: 1rem; line-height: 1.35; }
 .sources { font-size: .88rem; color: var(--muted); }
 .sources a { color: var(--muted); }
+.section-title + .post-grid { padding-top: 8px; }
+main > .section-title:first-child { margin-top: 44px; }
