@@ -1,0 +1,67 @@
+name: IndexNow submission
+
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out deployed content
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
+          fetch-depth: 2
+
+      - name: Notify IndexNow about changed public URLs
+        env:
+          INDEXNOW_KEY: f69476057d5a8fb6af00f901276fe347
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import subprocess
+          import urllib.request
+
+          origin = "https://pricematchparadise.com"
+          changed = subprocess.check_output(
+              ["git", "diff", "--name-only", "HEAD^", "HEAD"], text=True
+          ).splitlines()
+
+          urls = []
+          for path in changed:
+              if path == "index.html":
+                  urls.append(origin + "/")
+              elif path.endswith("/index.html"):
+                  urls.append(origin + "/" + path.removesuffix("index.html"))
+              elif path.endswith((".html", ".json", ".xml", ".txt")) and path != os.environ["INDEXNOW_KEY"] + ".txt":
+                  urls.append(origin + "/" + path)
+
+          urls = sorted(set(urls))
+          if not urls:
+              print("No public URL changes to submit.")
+              raise SystemExit(0)
+
+          payload = json.dumps({
+              "host": "pricematchparadise.com",
+              "key": os.environ["INDEXNOW_KEY"],
+              "keyLocation": origin + "/" + os.environ["INDEXNOW_KEY"] + ".txt",
+              "urlList": urls,
+          }).encode()
+          request = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=payload,
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST",
+          )
+          with urllib.request.urlopen(request) as response:
+              if response.status not in (200, 202):
+                  raise RuntimeError(f"IndexNow returned HTTP {response.status}")
+              print(f"IndexNow accepted {len(urls)} changed URLs with HTTP {response.status}.")
+          PY
