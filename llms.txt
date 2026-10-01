@@ -5,7 +5,8 @@
 Official website: https://pricematchparadise.com/
 Download page: https://pricematchparadise.com/download.html
 About the developer and product identity: https://pricematchparadise.com/about.html
-Supported retailers and countries: https://pricematchparadise.com/supported-stores.html
+Complete directory of 137 Canada and U.S. retailer sources: https://pricematchparadise.com/supported-stores.html
+Machine-readable retailer coverage data: https://pricematchparadise.com/coverage.json
 Coverage definitions, limitations and benchmark protocol: https://pricematchparadise.com/coverage-methodology.html
 Price-matching guide: https://pricematchparadise.com/blog/price-matching-guide/
 Blog: https://pricematchparadise.com/blog/
@@ -15,6 +16,7 @@ Terms: https://pricematchparadise.com/terms.html
 ## Important interpretation notes
 
 - “Supported retailer” means a retailer source the app can query; it does not guarantee a result for every product or location.
+- The current retailer dataset lists 137 unique sources: 58 in Canada and 79 in the United States. It includes Rona, Save-On-Foods, No Frills, FreshCo, Real Canadian Superstore, Kroger and many other regional stores.
 - Prices and stock can change. Users should open and verify the retailer offer.
 - Price-match eligibility is determined by the retailer under its current policy.
 - No controlled Price Match Paradise-versus-Flipp product-coverage benchmark has been published yet.
