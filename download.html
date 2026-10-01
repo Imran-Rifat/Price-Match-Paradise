@@ -1,255 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175529367"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'AW-18175529367');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://pricematchparadise.com/download.html">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="alternate" type="application/rss+xml" title="Price Match Paradise Blog" href="/blog/feed.xml">
-    <title>Download — Price Match Paradise</title>
-    <link rel="icon" type="image/png" href="assets/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
-    <style>
-        :root {
-            --night: #07111f; --night-2: #0d1b2e;
-            --brand: #0ea5e9; --accent: #22c55e;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--night); color: #e2e8f0; min-height: 100vh; }
-        a { color: inherit; text-decoration: none; }
-        .container { width: min(1120px, 90%); margin: 0 auto; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price Match Paradise — Compare Prices Before You Buy</title>
+  <meta name="description" content="Scan a product barcode and compare available prices before you buy with Price Match Paradise.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#10271d">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Price Match Paradise — Compare Prices Before You Buy">
+  <meta property="og:description" content="Scan a product barcode and review available prices before you buy.">
+  <meta property="og:url" content="https://pricematchparadise.com/download.html">
+  <meta property="og:image" content="https://pricematchparadise.com/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Price Match Paradise — scan a barcode and compare prices">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Price Match Paradise — Compare Prices Before You Buy">
+  <meta name="twitter:description" content="Scan a barcode. Compare available prices. Choose where to buy.">
+  <meta name="twitter:image" content="https://pricematchparadise.com/assets/social-preview.png">
+  <meta name="meta-pixel-id" content="">
+  <meta name="google-ads-conversion-label" content="">
+  <link rel="canonical" href="https://pricematchparadise.com/download.html">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
-        /* NAV */
-        .site-nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 30;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 12px clamp(16px, 4vw, 40px);
-            background: rgba(7,17,31,.72); backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(255,255,255,.08);
-        }
-        .nav-brand { display: flex; align-items: center; gap: 10px; }
-        .nav-brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 4px 14px rgba(14,165,233,.35); }
-        .nav-brand span { color: #fff; font-weight: 800; font-size: .98rem; }
-        .nav-links { display: flex; align-items: center; gap: 20px; }
-        .nav-links a { color: #94a3b8; font-size: .88rem; font-weight: 600; transition: color .2s; }
-        .nav-links a:hover { color: #fff; }
-        .nav-back {
-            display: inline-flex; align-items: center; gap: 7px;
-            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
-            padding: 7px 14px; border-radius: 8px; color: #cbd5e1 !important;
-            transition: background .2s !important;
-        }
-        .nav-back:hover { background: rgba(255,255,255,.14) !important; }
-        @media (max-width: 640px) { .nav-links a:not(.nav-back) { display: none; } }
+  <!-- Google Ads -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18175529367"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied', analytics_storage: 'denied',
+      ad_user_data: 'denied', ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'AW-18175529367');
+  </script>
 
-        /* PAGE */
-        .page-wrap {
-            min-height: 100vh; padding: 110px 0 60px;
-            display: flex; align-items: center; justify-content: center;
-            background:
-                radial-gradient(circle at 20% 40%, rgba(14,165,233,.1), transparent 45%),
-                radial-gradient(circle at 80% 60%, rgba(34,197,94,.07), transparent 45%),
-                var(--night);
-        }
+  <style>
+    :root {
+      --ink: #10271d;
+      --muted: #607067;
+      --paper: #fbfcfa;
+      --surface: #ffffff;
+      --mist: #eef3ef;
+      --line: #dce5de;
+      --green: #117443;
+      --green-dark: #0b5631;
+      --green-bright: #22c66f;
+      --shadow: 0 24px 70px rgba(16, 39, 29, .13);
+      --display: "Manrope", system-ui, sans-serif;
+      --body: "DM Sans", system-ui, sans-serif;
+    }
 
-        .download-card {
-            background: rgba(255,255,255,.03);
-            border: 1px solid rgba(255,255,255,.08);
-            border-radius: 24px; padding: 56px 48px;
-            max-width: 680px; width: 100%;
-            text-align: center;
-            position: relative; overflow: hidden;
-        }
-        .download-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, #0ea5e9, #22c55e, #0ea5e9);
-            border-radius: 24px 24px 0 0;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--green-bright); outline-offset: 4px; }
+    [id] { scroll-margin-top: 92px; }
+    .skip-link { position: fixed; z-index: 1000; top: 10px; left: 10px; padding: 10px 14px; border-radius: 9px; background: var(--ink); color: #fff; transform: translateY(-150%); transition: transform .2s; }
+    .skip-link:focus { transform: translateY(0); }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
 
-        .app-logo {
-            width: 96px; height: 96px; border-radius: 24px; margin: 0 auto 24px;
-            overflow: hidden; border: 2px solid rgba(255,255,255,.1);
-            box-shadow: 0 16px 48px rgba(0,0,0,.4), 0 0 40px rgba(14,165,233,.15);
-        }
-        .app-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .topbar { position: sticky; top: 0; z-index: 100; border-bottom: 1px solid rgba(16,39,29,.08); background: rgba(251,252,250,.92); backdrop-filter: blur(16px); }
+    .topbar-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-family: var(--display); font-weight: 800; }
+    .brand img { width: 40px; height: 40px; border-radius: 11px; }
+    .nav { display: flex; align-items: center; gap: 24px; color: var(--muted); font-size: .92rem; font-weight: 700; }
+    .nav a:hover { color: var(--green); }
+    .nav-cta { padding: 10px 16px; border-radius: 11px; background: var(--ink); color: #fff !important; }
 
-        h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); color: #fff; margin-bottom: 12px; line-height: 1.1; }
-        .subtitle { color: #64748b; font-size: 1.05rem; line-height: 1.65; max-width: 480px; margin: 0 auto 40px; }
+    .hero { padding: clamp(72px, 9vw, 118px) 0 88px; background: radial-gradient(circle at 50% 8%, rgba(34,198,111,.15), transparent 34%), linear-gradient(180deg,#fff,var(--paper)); }
+    .hero-grid { display: block; }
+    .hero-grid > div { max-width: 1040px; margin-inline: auto; text-align: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 22px; padding: 7px 12px; border: 1px solid #bce8cd; border-radius: 999px; background: #eaf8ef; color: var(--green-dark); font-size: .75rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green-bright); }
+    h1,h2,h3 { margin-top: 0; font-family: var(--display); letter-spacing: -.035em; line-height: 1.05; }
+    h1 { max-width: 1040px; margin: 0 auto 22px; font-size: clamp(2.7rem, 6vw, 5.3rem); }
+    h1 span { color: var(--green); }
+    .hero-copy { max-width: 720px; margin: 0 auto 30px; color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.15rem); }
+    .store-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .store-button { display: inline-flex; min-width: 190px; align-items: center; gap: 12px; padding: 12px 18px; border: 1px solid #263a30; border-radius: 14px; background: var(--ink); color: #fff; transition: transform .2s, box-shadow .2s; }
+    .store-button:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(16,39,29,.18); }
+    .store-button img { width: 32px; height: 32px; object-fit: contain; }
+    .store-button small { display: block; font-size: .66rem; opacity: .7; }
+    .store-button strong { display: block; font-family: var(--display); font-size: .95rem; }
+    .assurances { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 20px; color: var(--muted); font-size: .86rem; }
+    .hero .store-row,.hero .assurances { justify-content: center; }
+    .assurances span::before { content: "✓"; margin-right: 6px; color: var(--green); font-weight: 900; }
 
-        /* STORE GRID */
-        .store-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+    .trust { border-block: 1px solid var(--line); background: #fff; }
+    .trust-inner { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px 44px; padding: 21px 0; color: var(--muted); font-size: .86rem; font-weight: 700; }
+    .trust-inner span::before { content: "✓"; margin-right: 8px; color: var(--green); }
 
-        .store-link {
-            display: flex; align-items: center; justify-content: center; gap: 16px;
-            min-height: 88px; padding: 20px; border-radius: 16px; border: 1px solid;
-            font-weight: 800; font-size: 1.05rem;
-            transition: transform .2s, box-shadow .2s, border-color .2s;
-        }
-        .store-link:hover { transform: translateY(-3px); }
-        .store-ios {
-            background: rgba(255,255,255,.05);
-            border-color: rgba(255,255,255,.12); color: #fff;
-        }
-        .store-ios:hover { border-color: rgba(255,255,255,.3); box-shadow: 0 14px 36px rgba(0,0,0,.3); }
-        .store-android {
-            background: rgba(34,197,94,.08);
-            border-color: rgba(34,197,94,.2); color: #86efac;
-        }
-        .store-android:hover { border-color: rgba(34,197,94,.4); box-shadow: 0 14px 36px rgba(34,197,94,.12); }
+    .section { padding: clamp(76px, 9vw, 116px) 0; }
+    .section-heading { max-width: 760px; margin: 0 auto 54px; text-align: center; }
+    .section-label { margin-bottom: 12px; color: var(--green); font-size: .76rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .section-heading h2 { margin-bottom: 14px; font-size: clamp(2.1rem, 4.5vw, 4rem); }
+    .section-heading p { margin: 0; color: var(--muted); font-size: 1.02rem; }
 
-        .store-icon-wrap { flex-shrink: 0; }
-        .store-icon-wrap img { width: 48px; height: 48px; object-fit: contain; display: block; }
-        .store-text .small { display: block; font-size: .78rem; font-weight: 500; opacity: .65; margin-bottom: 2px; }
+    /* Product comparison showcase */
+    .showcase { padding-bottom: clamp(76px,9vw,116px); background: linear-gradient(180deg,var(--paper),#f2f6f3); }
+    .showcase-grid { display: grid; grid-template-columns: minmax(390px,.84fr) minmax(520px,1.16fr); align-items: start; gap: clamp(28px,4vw,50px); }
+    .selector-label { display: flex; justify-content: space-between; margin: 0 2px 14px; color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .product-list { display: flex; flex-direction: column; gap: 10px; }
+    .product-card { position: relative; width: 100%; min-height: 128px; overflow: hidden; display: grid; grid-template-columns: 132px 1fr 34px; align-items: center; gap: 15px; padding: 11px; border: 1px solid var(--line); border-radius: 19px; appearance: none; background: rgba(255,255,255,.82); color: var(--ink); text-align: left; cursor: pointer; box-shadow: 0 7px 24px rgba(16,39,29,.04); transition: min-height .35s cubic-bezier(.2,.8,.2,1), opacity .25s, transform .25s, box-shadow .25s, border-color .25s; }
+    .product-card:hover,.product-card.active { min-height: 180px; border-color: #9dd8b4; transform: translateX(6px); box-shadow: 0 18px 38px rgba(16,39,29,.1); }
+    .product-card:not(.active) { opacity: .74; }
+    .product-card:hover { opacity: 1; }
+    .product-thumb { position: relative; width: 100%; height: 106px; overflow: hidden; border-radius: 13px; background: var(--mist); }
+    .product-card.active .product-thumb,.product-card:hover .product-thumb { height: 156px; }
+    .product-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transition: transform .5s; }
+    .product-card.active .product-thumb img,.product-card:hover .product-thumb img { transform: scale(1.04); }
+    .product-index { position: absolute; top: 8px; left: 8px; display: grid; width: 28px; height: 28px; place-items: center; border-radius: 8px; background: rgba(16,39,29,.86); color: #fff; font-size: .67rem; font-weight: 800; }
+    .product-meta { min-width: 0; }
+    .product-category { display: block; margin-bottom: 4px; color: var(--green); font-size: .67rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    .product-card h3 { margin-bottom: 7px; font-size: clamp(.98rem,1.5vw,1.2rem); }
+    .product-price { color: var(--muted); font-size: .82rem; font-weight: 700; }
+    .product-arrow { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: var(--mist); color: var(--green); font-size: 1.05rem; transition: transform .25s, background .25s; }
+    .product-card.active .product-arrow,.product-card:hover .product-arrow { transform: translateX(3px); background: #dff5e8; }
 
-        /* STATS */
-        .stats-row {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 2px; background: rgba(255,255,255,.04);
-            border: 1px solid rgba(255,255,255,.06); border-radius: 14px;
-            overflow: hidden; margin-bottom: 32px;
-        }
-        .stat-cell { padding: 20px; background: rgba(255,255,255,.02); }
-        .stat-cell strong { display: block; font-size: 1.6rem; font-weight: 900; color: #fff; }
-        .stat-cell span { font-size: .78rem; color: #475569; }
+    .preview-column { position: relative; min-width: 0; }
+    .preview { position: sticky; top: 92px; overflow: hidden; border: 1px solid #cfdbd2; border-radius: 26px; background: #fff; box-shadow: var(--shadow); }
+    .preview-header { padding: 20px 23px 18px; border-bottom: 1px solid var(--line); }
+    .preview-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+    .live-label { display: flex; align-items: center; gap: 7px; margin-bottom: 7px; color: var(--green); font-size: .66rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .live-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--green-bright); box-shadow: 0 0 0 5px rgba(34,198,111,.12); }
+    .preview-header h3 { margin: 0 0 4px; font-size: clamp(1.05rem,2vw,1.35rem); }
+    .preview-subtitle { color: var(--muted); font-size: .78rem; }
+    .preview-actions { flex: 0 0 auto; }
+    .price-summary { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; margin-top: 16px; }
+    .price-metric { min-width: 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--mist); }
+    .price-metric small { display: block; margin-bottom: 2px; color: var(--muted); font-size: .62rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+    .price-metric strong { display: block; color: var(--ink); font-family: var(--display); font-size: clamp(.9rem,1.8vw,1.18rem); white-space: nowrap; }
+    .price-metric.lowest strong,.price-metric.savings strong { color: var(--green); }
+    .price-metric.savings strong { white-space: normal; line-height: 1.2; }
+    .open-preview { padding: 7px 11px; border: 1px solid var(--line); border-radius: 9px; background: var(--mist); color: var(--green-dark); font-weight: 800; font-size: .7rem; cursor: pointer; }
+    .open-preview:hover { border-color: #9dd8b4; background: #e4f6eb; }
+    .open-preview:disabled { opacity: .45; cursor: not-allowed; }
+    .comparison-viewport { position: relative; height: clamp(650px,70vh,740px); overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: auto; touch-action: pan-y; -webkit-overflow-scrolling: touch; scrollbar-gutter: stable; scrollbar-width: thin; scrollbar-color: var(--green) rgba(16,39,29,.1); background: #f4f6f4; }
+    .comparison-viewport::-webkit-scrollbar { width: 8px; }
+    .comparison-viewport::-webkit-scrollbar-track { background: rgba(16,39,29,.08); }
+    .comparison-viewport::-webkit-scrollbar-thumb { border: 2px solid #eef3ef; border-radius: 999px; background: var(--green); }
+    .comparison-viewport[aria-busy="true"] { cursor: progress; }
+    .comparison-image { position: relative; width: 100%; height: auto; opacity: 1; transition: opacity .18s ease; }
+    .comparison-image.switching { opacity: .18; }
+    .comparison-empty { position: absolute; inset: 0; display: none; place-content: center; gap: 9px; padding: 40px; text-align: center; background: #f2f5f2; color: var(--muted); }
+    .comparison-empty.show { display: grid; }
+    .comparison-empty strong { color: var(--ink); font-family: var(--display); font-size: 1.1rem; }
+    .progress-track { position: absolute; z-index: 4; top: 18px; right: 12px; bottom: 18px; width: 4px; overflow: hidden; border-radius: 999px; background: rgba(16,39,29,.14); }
+    .progress-bar { width: 100%; height: 0; border-radius: inherit; background: var(--green-bright); transform-origin: top; }
+    .scroll-hint { position: sticky; z-index: 4; bottom: 18px; width: max-content; margin: -52px 24px 18px auto; padding: 8px 12px; border-radius: 999px; background: rgba(16,39,29,.9); color: #fff; font-size: .7rem; font-weight: 700; pointer-events: none; animation: scrollCue 1.45s ease-in-out infinite; transition: opacity .25s; }
+    .scroll-hint::after { content: " ↓"; display: inline-block; margin-left: 4px; font-size: .9rem; }
+    .scroll-hint.hidden { opacity: 0; }
+    @keyframes scrollCue { 0%,100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
 
-        /* FOOTER LINKS */
-        .card-footer {
-            padding-top: 24px; border-top: 1px solid rgba(255,255,255,.06);
-            display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-        }
-        .card-footer a {
-            color: #475569; font-size: .82rem; transition: color .2s;
-            display: flex; align-items: center; gap: 5px;
-        }
-        .card-footer a:hover { color: #94a3b8; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .step { padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: #fff; }
+    .step b { display: grid; width: 42px; height: 42px; place-items: center; margin-bottom: 22px; border-radius: 12px; background: #e4f6eb; color: var(--green); }
+    .step h3 { margin-bottom: 8px; font-size: 1.25rem; }
+    .step p { margin: 0; color: var(--muted); }
+    .faq { border-top: 1px solid var(--line); }
+    .faq-list { max-width: 800px; margin: auto; }
+    details { padding: 20px 0; border-bottom: 1px solid var(--line); }
+    summary { display: flex; justify-content: space-between; gap: 20px; cursor: pointer; list-style: none; font-weight: 800; }
+    summary::after { content: "+"; color: var(--green); font-size: 1.3rem; }
+    details[open] summary::after { content: "−"; }
+    details p { margin: 10px 0 0; color: var(--muted); }
+    .final { padding: 86px 20px; background: var(--ink); color: #fff; text-align: center; }
+    .final h2 { max-width: 760px; margin: 0 auto 14px; font-size: clamp(2rem,4.8vw,4rem); }
+    .final p { margin: 0 auto 28px; color: #b9c9c0; }
+    .final .store-row { justify-content: center; }
+    .final .store-button { border-color: #fff; background: #fff; color: var(--ink); }
+    footer { padding: 30px 0 96px; border-top: 1px solid var(--line); background: #fff; color: var(--muted); font-size: .82rem; }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 18px 26px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .mobile-cta { display: none; }
+    .comparison-dialog { width: min(920px,calc(100% - 28px)); height: min(92vh,1000px); padding: 0; overflow: hidden; border: 0; border-radius: 24px; background: #fff; box-shadow: 0 30px 100px rgba(0,0,0,.3); }
+    .comparison-dialog::backdrop { background: rgba(7,20,14,.72); backdrop-filter: blur(6px); }
+    .dialog-shell { height: 100%; display: grid; grid-template-rows: auto 1fr; }
+    .dialog-header { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+    .dialog-header strong { font-family: var(--display); }
+    .dialog-close { width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 50%; background: var(--mist); color: var(--ink); font-size: 1.25rem; cursor: pointer; }
+    .dialog-scroll { overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; background: #f4f6f4; }
+    .dialog-scroll img { width: 100%; height: auto; }
+    .consent-banner { position: fixed; z-index: 500; right: 18px; bottom: 18px; width: min(440px,calc(100% - 36px)); padding: 18px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: 0 22px 65px rgba(16,39,29,.2); }
+    .consent-banner[hidden] { display: none; }
+    .consent-banner strong { display: block; margin-bottom: 5px; font-family: var(--display); }
+    .consent-banner p { margin: 0 0 14px; color: var(--muted); font-size: .82rem; line-height: 1.5; }
+    .consent-actions { display: flex; gap: 9px; }
+    .consent-actions button { flex: 1; padding: 10px 12px; border: 1px solid var(--ink); border-radius: 10px; background: #fff; color: var(--ink); font-weight: 800; cursor: pointer; }
+    .consent-actions .accept { background: var(--ink); color: #fff; }
 
-        /* SITE FOOTER */
-        .site-footer {
-            background: #040d19; border-top: 1px solid rgba(255,255,255,.06); padding: 28px 0;
-        }
-        .footer-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            flex-wrap: wrap; gap: 14px;
-        }
-        .footer-brand { display: flex; align-items: center; gap: 8px; }
-        .footer-brand img { width: 32px; height: 32px; border-radius: 8px; }
-        .footer-brand span { color: #fff; font-weight: 700; font-size: .9rem; }
-        .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
-        .footer-links a { color: rgba(255,255,255,.35); font-size: .82rem; transition: color .2s; }
-        .footer-links a:hover { color: #fff; }
-        .footer-copy { color: rgba(255,255,255,.25); font-size: .78rem; }
-
-        @media (max-width: 560px) {
-            .download-card { padding: 36px 24px; }
-            .store-grid { grid-template-columns: 1fr; }
-            .stats-row { grid-template-columns: 1fr; }
-        }
-    </style>
+    @media (max-width: 980px) {
+      .showcase-grid { grid-template-columns: minmax(310px,.76fr) minmax(420px,1.24fr); gap: 24px; }
+      .product-card { grid-template-columns: 88px 1fr 30px; }
+    }
+    @media (max-width: 768px) {
+      .wrap { width: min(100% - 28px,1160px); }
+      .nav a:not(.nav-cta) { display: none; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-copy { margin-inline: auto; }
+      .store-row,.assurances { justify-content: center; }
+      .showcase { padding-bottom: 76px; }
+      .showcase-grid { display: block; }
+      .selector-label { margin-bottom: 4px; }
+      .selector-label span:last-child { font-size: 0; }
+      .selector-label span:last-child::after { content: "Swipe or tap"; font-size: .72rem; }
+      .product-list { position: relative; display: block; width: 100%; height: clamp(198px,54vw,262px); padding: 12px 0 18px; overflow: hidden; perspective: 900px; transform-style: preserve-3d; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+      .product-list.is-dragging { cursor: grabbing; }
+      .product-card,.product-card:hover,.product-card.active { position: absolute; top: 12px; left: 50%; width: clamp(142px,40vw,202px); min-width: 0; min-height: 0; aspect-ratio: 1; display: block; padding: 0; border-radius: clamp(16px,3.8vw,22px); transform: translateX(-50%); transform-style: preserve-3d; backface-visibility: hidden; box-shadow: 0 12px 30px rgba(16,39,29,.17); transition: transform .58s cubic-bezier(.22,.8,.24,1), opacity .46s ease, filter .46s ease, box-shadow .38s ease, border-color .25s; will-change: transform,opacity; }
+      .product-thumb { position: absolute; inset: 0; height: 100% !important; border-radius: inherit; }
+      .product-thumb img { object-position: center 25%; }
+      .product-thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg,rgba(9,34,22,.48),transparent 58%); }
+      .product-meta,.product-arrow { display: none; }
+      .product-index { z-index: 3; top: auto; bottom: 5px; left: 5px; width: 23px; height: 23px; border-radius: 7px; font-size: .6rem; }
+      .product-card.active { border-color: var(--green-bright); opacity: 1; box-shadow: 0 0 0 3px rgba(34,198,111,.22),0 16px 32px rgba(16,39,29,.22); }
+      .product-card:not(.active) { opacity: .7; }
+      .preview-column { margin-top: 14px; }
+      .preview { position: relative; top: auto; }
+      .comparison-viewport { height: 520px; }
+      .steps { grid-template-columns: 1fr; }
+      .mobile-cta { position: fixed; z-index: 200; right: 12px; bottom: 12px; left: 12px; display: block; padding: 14px 18px; border-radius: 14px; background: var(--ink); color: #fff; text-align: center; font-weight: 800; box-shadow: 0 16px 35px rgba(0,0,0,.25); }
+    }
+    @media (max-width: 520px) {
+      .brand { font-size: .88rem; }
+      .nav-cta { padding: 9px 12px; font-size: .8rem; }
+      .store-button { width: 100%; justify-content: center; }
+      .preview-header { padding: 16px; }
+      .price-summary { gap: 6px; }
+      .price-metric { padding: 9px 8px; }
+      .comparison-viewport { height: 470px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *,*::before,*::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .scroll-hint { animation: none; }
+    }
+  </style>
 </head>
 <body>
-
-    <nav class="site-nav">
-        <a class="nav-brand" href="index.html">
-            <img src="assets/logo.png" alt="Price Match Paradise">
-            <span>Price Match <b style="color:#67e8f9;">Paradise</b></span>
-        </a>
-        <div class="nav-links">
-            <a href="index.html#features">Features</a>
-            <a href="index.html#pricing">Pricing</a>
-            <a href="index.html" class="nav-back">
-                <i class="fas fa-arrow-left"></i> Back
-            </a>
-        </div>
-    </nav>
-
-    <div class="page-wrap">
-        <div class="container" style="display:flex;justify-content:center;">
-            <div class="download-card">
-                <div class="app-logo">
-                    <img src="assets/logo.png" alt="Price Match Paradise">
-                </div>
-                <h1>Download Price Match Paradise</h1>
-                <p class="subtitle">
-                    Scan any barcode. Compare prices at 50+ stores. Save money every single week.
-                    Free to start — no account required.
-                </p>
-
-                <div class="store-grid">
-                    <a class="store-link store-ios"
-                       href="https://apps.apple.com/us/app/price-match-paradise/id6758967914"
-                       target="_blank" rel="noopener noreferrer">
-                        <div class="store-icon-wrap">
-                            <img src="assets/aple.png" alt="App Store">
-                        </div>
-                        <div class="store-text">
-                            <span class="small">Download on the</span>
-                            App Store
-                        </div>
-                    </a>
-                    <a class="store-link store-android"
-                       href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp"
-                       target="_blank" rel="noopener noreferrer">
-                        <div class="store-icon-wrap">
-                            <img src="assets/play.png" alt="Google Play">
-                        </div>
-                        <div class="store-text">
-                            <span class="small">Get it on</span>
-                            Google Play
-                        </div>
-                    </a>
-                </div>
-
-                <div class="stats-row">
-                    <div class="stat-cell">
-                        <strong>$28</strong>
-                        <span>avg. saved per trip</span>
-                    </div>
-                    <div class="stat-cell">
-                        <strong>50+</strong>
-                        <span>stores compared</span>
-                    </div>
-                    <div class="stat-cell">
-                        <strong>4.8★</strong>
-                        <span>App Store rating</span>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                    <a href="index.html"><i class="fas fa-trash-alt"></i> Delete Account</a>
-                    <a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy</a>
-                    <a href="terms.html"><i class="fas fa-file-alt"></i> Terms</a>
-                </div>
-            </div>
-        </div>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="index.html"><img src="assets/logo.png" width="40" height="40" alt="Price Match Paradise logo">Price Match Paradise</a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#how-it-works">How it works</a><a href="#products">Compare</a><a href="#faq">FAQ</a>
+        <a class="nav-cta" data-store="ios" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener noreferrer">Get the app</a>
+      </nav>
     </div>
+  </header>
 
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-brand">
-                    <img src="assets/logo.png" alt="">
-                    <span>Price Match Paradise</span>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="privacy-policy.html">Privacy</a>
-                    <a href="terms.html">Terms</a>
-                </div>
-                <div class="footer-copy">© 2026 Price Match Paradise</div>
-            </div>
+  <main id="main-content">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Compare before checkout</div>
+          <h1>Scan a barcode. <span>Compare prices. Choose where to buy.</span></h1>
+          <p class="hero-copy">Price Match Paradise turns a product barcode into a clear comparison of available offers before you reach the checkout.</p>
+          <div class="store-row">
+            <a class="store-button" data-store="ios" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener noreferrer"><img src="assets/aple.png" width="32" height="32" alt=""><span><small>Download on the</small><strong>App Store</strong></span></a>
+            <a class="store-button" data-store="android" href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp" target="_blank" rel="noopener noreferrer"><img src="assets/play.png" width="32" height="32" alt=""><span><small>Get it on</small><strong>Google Play</strong></span></a>
+          </div>
+          <div class="assurances"><span>Free to start</span><span>No account required</span><span>Available on iPhone and Android</span></div>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <div class="trust"><div class="wrap trust-inner"><span>Barcode scanning</span><span>Price comparison</span><span>Real product examples</span><span>Mobile-first experience</span></div></div>
+
+    <section class="section showcase" id="products">
+      <div class="wrap">
+        <div class="section-heading"><div class="section-label">See it in action</div><h2>One product. Multiple prices.</h2><p>Select a product, then scroll to explore its full price-comparison result.</p></div>
+        <div class="showcase-grid">
+          <div>
+            <div class="selector-label"><span>Products</span><span>Select to compare →</span></div>
+            <div class="product-list" id="productList" aria-label="Product examples"></div>
+            <noscript><p>Please enable JavaScript to use the interactive product comparison.</p></noscript>
+          </div>
+          <div class="preview-column">
+            <article class="preview" aria-live="polite">
+              <header class="preview-header">
+                <div class="preview-heading"><div><div class="live-label">Live price comparison</div><h3 id="previewTitle"></h3><div class="preview-subtitle" id="previewCategory"></div></div><div class="preview-actions"><button class="open-preview" id="openPreview" type="button">View full result</button></div></div>
+                <div class="price-summary" aria-label="Price summary"><div class="price-metric lowest"><small>Cheapest at <span id="previewLowestStore"></span></small><strong id="previewLowest"></strong></div><div class="price-metric"><small>Home Depot</small><strong id="previewHomeDepot"></strong></div><div class="price-metric savings"><small>Compared with Home Depot</small><strong id="previewSavings"></strong></div></div>
+              </header>
+              <div class="comparison-viewport" id="comparisonViewport" tabindex="0" aria-label="Selected product comparison results" aria-busy="true">
+                <img class="comparison-image" id="comparisonImage" src="assets/comparisons/product1-results.jpg" width="1179" height="7491" alt="Gorilla Heavy Duty Mounting Tape price comparison results">
+                <div class="comparison-empty" id="comparisonEmpty"><strong>Comparison image coming soon</strong><span>This product remains selectable while its long result image is added.</span></div>
+                <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+                <div class="scroll-hint" id="scrollHint">Scroll to explore</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <div class="wrap"><div class="section-heading"><div class="section-label">Simple by design</div><h2>From barcode to better context.</h2></div>
+        <div class="steps"><article class="step"><b>01</b><h3>Scan</h3><p>Point your camera at the product barcode.</p></article><article class="step"><b>02</b><h3>Compare</h3><p>Review available prices for the same product.</p></article><article class="step"><b>03</b><h3>Choose</h3><p>Use the comparison to make a more informed purchase.</p></article></div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq"><div class="wrap"><div class="section-heading"><div class="section-label">Quick answers</div><h2>What shoppers ask.</h2></div><div class="faq-list">
+      <details><summary>Is Price Match Paradise free to start?</summary><p>Yes. You can download the app and begin using it without creating an account.</p></details>
+      <details><summary>Which phones does it support?</summary><p>Price Match Paradise is available from the App Store and Google Play.</p></details>
+      <details><summary>What does the comparison showcase display?</summary><p>It displays product examples separately from their long price-comparison result screenshots.</p></details>
+      <details><summary>How do I delete my account?</summary><p>Follow the account-deletion guidance on the <a href="index.html"><u>home page</u></a> or review the <a href="privacy-policy.html"><u>privacy policy</u></a>.</p></details>
+    </div></div></section>
+
+    <section class="final" id="download"><h2>Check the price before you check out.</h2><p>Download Price Match Paradise and scan your next product.</p><div class="store-row">
+      <a class="store-button" data-store="ios" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener noreferrer"><img src="assets/aple.png" width="32" height="32" alt=""><span><small>Download on the</small><strong>App Store</strong></span></a>
+      <a class="store-button" data-store="android" href="https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp" target="_blank" rel="noopener noreferrer"><img src="assets/play.png" width="32" height="32" alt=""><span><small>Get it on</small><strong>Google Play</strong></span></a>
+    </div></section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>© 2026 Price Match Paradise</span><div class="footer-links"><a href="index.html">Home</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
+  <a class="mobile-cta" id="mobileCta" data-store="ios" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener noreferrer">Download Price Match Paradise</a>
+
+  <dialog class="comparison-dialog" id="comparisonDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-shell"><header class="dialog-header"><strong id="dialogTitle">Full comparison result</strong><button class="dialog-close" id="closePreview" type="button" aria-label="Close full comparison">×</button></header><div class="dialog-scroll"><img id="dialogImage" alt=""></div></div>
+  </dialog>
+
+  <aside class="consent-banner" id="consentBanner" aria-label="Privacy choices" hidden>
+    <strong>Your privacy choices</strong>
+    <p>Allow advertising and analytics cookies to help us measure app-download campaigns. The page works without them.</p>
+    <div class="consent-actions"><button type="button" id="rejectConsent">Continue without</button><button type="button" class="accept" id="acceptConsent">Allow</button></div>
+  </aside>
+
+  <script>
+    (function () {
+      const products = [
+        { id: "gorilla-tape", number: "01", title: "Gorilla Heavy Duty Mounting Tape", shortTitle: "Gorilla Mounting Tape", category: "Home improvement", price: "$8.13", lowestPrice: "$8.13", lowestStore: "MississaugaHardware.com", homeDepotPrice: "$13.18", savings: "Save $5.05", productImage: "assets/products/product1.jpg", comparisonImage: "assets/comparisons/product1-results.jpg" },
+        { id: "dewalt-trimmer", number: "02", title: "DeWalt DCPH820B 20V MAX Pole Hedge Trimmer", shortTitle: "DeWalt DCPH820B Pole Trimmer", category: "Outdoor power tools", price: "$149.99", lowestPrice: "$149.99", lowestStore: "BC Fasteners", homeDepotPrice: "$218.00", savings: "Save $68.01", productImage: "assets/products/product2.jpg", comparisonImage: "assets/comparisons/product2-results.jpg" },
+        { id: "milwaukee-chainsaw", number: "03", title: "Milwaukee M18 FUEL Chainsaw Kit", shortTitle: "Milwaukee Chainsaw Kit", category: "Outdoor power tools", price: "$489.95", lowestPrice: "$489.95", lowestStore: "BMR", homeDepotPrice: "$528.00", savings: "Save $38.05", productImage: "assets/products/product3.jpg", comparisonImage: "assets/comparisons/product3-results.jpg" },
+        { id: "dewalt-table-saw", number: "04", title: "DeWalt Compact Jobsite Table Saw", shortTitle: "DeWalt Jobsite Table Saw", category: "Power tools", price: "$339.99", lowestPrice: "$339.99", lowestStore: "Home Essentials Outlet", homeDepotPrice: "$539.00", savings: "Save $199.01", productImage: "assets/products/product4.jpg", comparisonImage: "assets/comparisons/product4-results.jpg" },
+        { id: "milwaukee-grinder", number: "05", title: "Milwaukee M18 FUEL Braking Grinder", shortTitle: "Milwaukee Braking Grinder", category: "Power tools", price: "$251.13", lowestPrice: "$251.13", lowestStore: "eBay · significantservices", homeDepotPrice: "$348.00", savings: "Save $96.87", productImage: "assets/products/product5.jpg", comparisonImage: "assets/comparisons/product5-results.jpg" }
+      ];
+
+      const list = document.getElementById('productList');
+      const viewport = document.getElementById('comparisonViewport');
+      const image = document.getElementById('comparisonImage');
+      const empty = document.getElementById('comparisonEmpty');
+      const title = document.getElementById('previewTitle');
+      const category = document.getElementById('previewCategory');
+      const lowestPrice = document.getElementById('previewLowest');
+      const lowestStore = document.getElementById('previewLowestStore');
+      const homeDepotPrice = document.getElementById('previewHomeDepot');
+      const savings = document.getElementById('previewSavings');
+      const progressBar = document.getElementById('progressBar');
+      const scrollHint = document.getElementById('scrollHint');
+      const openPreview = document.getElementById('openPreview');
+      const comparisonDialog = document.getElementById('comparisonDialog');
+      const closePreview = document.getElementById('closePreview');
+      const dialogImage = document.getElementById('dialogImage');
+      const dialogTitle = document.getElementById('dialogTitle');
+      let activeIndex = 0;
+      let imageReady = false;
+      let switchToken = 0;
+      const phoneLayout = window.matchMedia('(max-width: 768px)');
+      let dragStartX = null;
+      let dragStartTime = 0;
+      let dragPointerId = null;
+      let didDrag = false;
+      let suppressClick = false;
+
+      products.forEach(function (product, index) {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'product-card' + (index === 0 ? ' active' : '');
+        card.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
+        card.setAttribute('aria-controls', 'comparisonViewport');
+        card.setAttribute('aria-label', 'Show comparison for ' + product.title);
+        card.innerHTML = '<span class="product-thumb"><img loading="' + (index === 0 ? 'eager' : 'lazy') + '" decoding="async" width="1179" height="1500" src="' + product.productImage + '" alt="' + product.title + '"><span class="product-index">' + product.number + '</span></span><span class="product-meta"><span class="product-category">' + product.category + '</span><h3>' + product.shortTitle + '</h3><span class="product-price">' + product.price + '</span></span><span class="product-arrow" aria-hidden="true">→</span>';
+        card.addEventListener('mouseenter', function () { if (matchMedia('(hover:hover)').matches) activate(index); });
+        card.addEventListener('focus', function () { if (!phoneLayout.matches) activate(index); });
+        card.addEventListener('click', function (event) {
+          if (suppressClick) { event.preventDefault(); return; }
+          activate(index);
+        });
+        card.addEventListener('keydown', function (event) {
+          if (!['ArrowDown','ArrowRight','ArrowUp','ArrowLeft','Home','End'].includes(event.key)) return;
+          event.preventDefault();
+          let next = index;
+          if (event.key === 'ArrowDown' || event.key === 'ArrowRight') next = (index + 1) % products.length;
+          if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') next = (index - 1 + products.length) % products.length;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = products.length - 1;
+          list.children[next].focus();
+        });
+        list.appendChild(card);
+      });
+
+      /* Phone-only 3D Coverflow. Desktop keeps the vertical selector. */
+      function renderCoverflow() {
+        const cards = Array.from(list.children);
+        if (!phoneLayout.matches) {
+          list.classList.remove('is-dragging');
+          cards.forEach(function (card) {
+            card.style.removeProperty('transform');
+            card.style.removeProperty('opacity');
+            card.style.removeProperty('filter');
+            card.style.removeProperty('z-index');
+            card.style.removeProperty('pointer-events');
+            card.tabIndex = 0;
+          });
+          return;
+        }
+
+        const cardWidth = cards[0] ? cards[0].getBoundingClientRect().width : 120;
+        const spacing = cardWidth * .63;
+        cards.forEach(function (card, index) {
+          let offset = index - activeIndex;
+          if (offset > cards.length / 2) offset -= cards.length;
+          if (offset < -cards.length / 2) offset += cards.length;
+          const distance = Math.abs(offset);
+          const x = offset * spacing;
+          const depth = -Math.min(distance, 2) * 78;
+          const angle = offset === 0 ? 0 : (offset < 0 ? 48 : -48);
+          const scale = Math.max(.76, 1 - distance * .08);
+          card.style.transform = 'translateX(calc(-50% + ' + x + 'px)) translateZ(' + depth + 'px) rotateY(' + angle + 'deg) scale(' + scale + ')';
+          card.style.opacity = String(Math.max(.32, 1 - distance * .2));
+          card.style.filter = distance ? 'saturate(.72) brightness(.88)' : 'none';
+          card.style.zIndex = String(20 - Math.round(distance * 3));
+          card.style.pointerEvents = distance > 2 ? 'none' : 'auto';
+          card.tabIndex = index === activeIndex ? 0 : -1;
+        });
+      }
+
+      function finishCoverflowDrag(event) {
+        if (dragStartX === null || (dragPointerId !== null && event.pointerId !== dragPointerId)) return;
+        const distance = event.clientX - dragStartX;
+        const elapsed = performance.now() - dragStartTime;
+        const threshold = Math.max(68, list.clientWidth * .18);
+        if (Math.abs(distance) >= threshold && elapsed >= 120) activate(activeIndex + (distance < 0 ? 1 : -1));
+        if (didDrag) {
+          suppressClick = true;
+          window.setTimeout(function () { suppressClick = false; }, 350);
+        }
+        dragStartX = null;
+        dragPointerId = null;
+        didDrag = false;
+        list.classList.remove('is-dragging');
+      }
+
+      list.addEventListener('pointerdown', function (event) {
+        if (!phoneLayout.matches || event.pointerType === 'mouse' && event.button !== 0) return;
+        dragStartX = event.clientX;
+        dragStartTime = performance.now();
+        dragPointerId = event.pointerId;
+        didDrag = false;
+        list.classList.add('is-dragging');
+        list.setPointerCapture(event.pointerId);
+      });
+      list.addEventListener('pointermove', function (event) {
+        if (dragStartX === null || event.pointerId !== dragPointerId) return;
+        if (Math.abs(event.clientX - dragStartX) > 8) didDrag = true;
+      });
+      list.addEventListener('pointerup', finishCoverflowDrag);
+      list.addEventListener('pointercancel', function () {
+        dragStartX = null;
+        dragPointerId = null;
+        didDrag = false;
+        list.classList.remove('is-dragging');
+      });
+      window.addEventListener('resize', renderCoverflow, { passive: true });
+      if (phoneLayout.addEventListener) phoneLayout.addEventListener('change', renderCoverflow);
+
+      function activate(index) {
+        index = (index + products.length) % products.length;
+        if (index === activeIndex && imageReady) { renderCoverflow(); return; }
+        activeIndex = index;
+        Array.from(list.children).forEach(function (card, i) { const on = i === index; card.classList.toggle('active', on); card.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+        renderCoverflow();
+        showProduct(products[index]);
+      }
+
+      function showProduct(product) {
+        const token = ++switchToken;
+        imageReady = false;
+        viewport.setAttribute('aria-busy', 'true');
+        image.classList.add('switching');
+        viewport.scrollTop = 0;
+        progressBar.style.height = '0%';
+        scrollHint.classList.remove('hidden');
+        title.textContent = product.title;
+        category.textContent = product.category + ' · Live prices near you';
+        lowestStore.textContent = product.lowestStore;
+        lowestPrice.textContent = product.lowestPrice;
+        homeDepotPrice.textContent = product.homeDepotPrice;
+        savings.textContent = product.savings;
+        empty.classList.remove('show');
+        openPreview.disabled = !product.comparisonImage;
+
+        if (!product.comparisonImage) {
+          image.removeAttribute('src');
+          image.alt = '';
+          image.classList.remove('switching');
+          viewport.setAttribute('aria-busy', 'false');
+          empty.classList.add('show');
+          lowestPrice.textContent = '—';
+          homeDepotPrice.textContent = '—';
+          savings.textContent = '—';
+          scrollHint.classList.add('hidden');
+          return;
+        }
+
+        const probe = new Image();
+        probe.onload = function () {
+          if (token !== switchToken) return;
+          image.src = product.comparisonImage;
+          image.alt = product.title + ' price comparison results';
+          dialogImage.src = product.comparisonImage;
+          dialogImage.alt = image.alt;
+          dialogTitle.textContent = product.title;
+          requestAnimationFrame(function () { imageReady = true; viewport.setAttribute('aria-busy', 'false'); image.classList.remove('switching'); updateInternalProgress(); });
+          preloadNext(activeIndex);
+        };
+        probe.onerror = function () {
+          if (token !== switchToken) return;
+          image.removeAttribute('src');
+          image.alt = '';
+          image.classList.remove('switching');
+          viewport.setAttribute('aria-busy', 'false');
+          empty.classList.add('show');
+        };
+        probe.src = product.comparisonImage;
+      }
+
+      function updateInternalProgress() {
+        const travel = Math.max(1, viewport.scrollHeight - viewport.clientHeight);
+        const progress = Math.max(0, Math.min(1, viewport.scrollTop / travel));
+        progressBar.style.height = (progress * 100) + '%';
+        scrollHint.classList.toggle('hidden', viewport.scrollTop > 18);
+      }
+      viewport.addEventListener('scroll', updateInternalProgress, { passive: true });
+
+      function preloadNext(index) {
+        const next = products[(index + 1) % products.length];
+        if (!next || !next.comparisonImage) return;
+        const load = function () { const pre = new Image(); pre.src = next.comparisonImage; };
+        if ('requestIdleCallback' in window) requestIdleCallback(load, { timeout: 1800 }); else setTimeout(load, 700);
+      }
+
+      openPreview.addEventListener('click', function () {
+        if (!dialogImage.getAttribute('src')) return;
+        if (typeof comparisonDialog.showModal === 'function') comparisonDialog.showModal();
+      });
+      closePreview.addEventListener('click', function () { comparisonDialog.close(); });
+      comparisonDialog.addEventListener('click', function (event) { if (event.target === comparisonDialog) comparisonDialog.close(); });
+
+      const consentBanner = document.getElementById('consentBanner');
+      const consentKey = 'pmp-ad-consent-v1';
+      function readConsent() { try { return localStorage.getItem(consentKey); } catch (e) { return null; } }
+      function saveConsent(value) { try { localStorage.setItem(consentKey, value); } catch (e) {} }
+      function loadMetaPixel() {
+        const pixelId = document.querySelector('meta[name="meta-pixel-id"]').content.trim();
+        if (!pixelId || typeof window.fbq === 'function') return;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', pixelId); fbq('track', 'PageView');
+      }
+      function applyConsent(value) {
+        const granted = value === 'granted';
+        gtag('consent', 'update', { ad_storage: granted ? 'granted' : 'denied', analytics_storage: granted ? 'granted' : 'denied', ad_user_data: granted ? 'granted' : 'denied', ad_personalization: granted ? 'granted' : 'denied' });
+        if (granted) loadMetaPixel();
+        consentBanner.hidden = true;
+      }
+      const savedConsent = readConsent();
+      if (savedConsent) applyConsent(savedConsent); else consentBanner.hidden = false;
+      document.getElementById('acceptConsent').addEventListener('click', function () { saveConsent('granted'); applyConsent('granted'); });
+      document.getElementById('rejectConsent').addEventListener('click', function () { saveConsent('denied'); applyConsent('denied'); });
+
+      document.querySelectorAll('[data-store]').forEach(function (link) {
+        link.addEventListener('click', function () {
+          const store = link.getAttribute('data-store');
+          try {
+            gtag('event','store_click',{store:store,event_category:'app_download',transport_type:'beacon'});
+            const label = document.querySelector('meta[name="google-ads-conversion-label"]').content.trim();
+            if (label) gtag('event','conversion',{send_to:'AW-18175529367/' + label,event_callback:function(){}});
+          } catch (e) {}
+          try { if (typeof fbq === 'function') fbq('track','Lead',{content_name:store,content_category:'app_download'}); } catch (e) {}
+        });
+      });
+      if (/Android/i.test(navigator.userAgent || '')) {
+        const mobile = document.getElementById('mobileCta');
+        mobile.href = 'https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp';
+        mobile.setAttribute('data-store','android');
+      }
+
+      renderCoverflow();
+      showProduct(products[0]);
+    }());
+  </script>
 </body>
 </html>

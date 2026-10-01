@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price Match Paradise — Stop Overpaying at the Grocery Store</title>
-    <meta name="description" content="Scan any barcode in the aisle. See if a store nearby sells it cheaper. Show your screen. Pay less. Price Match Paradise saves the average shopper $28 per trip.">
+    <title>Price Match Paradise — Barcode Price Comparison & Route Planner</title>
+    <meta name="description" content="Scan a barcode, compare available prices across 50+ supported retailers, review price-match options, and plan a shopping route with Price Match Paradise.">
     <link rel="canonical" href="https://pricematchparadise.com/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="alternate" type="application/rss+xml" title="Price Match Paradise Blog" href="/blog/feed.xml">
+    <link rel="alternate" type="application/json" title="Price Match Paradise coverage data" href="/coverage.json">
     <meta name="apple-itunes-app" content="app-id=6758967914">
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
     <!-- Social share preview (Open Graph / Twitter) so links unfurl with the logo -->
-    <meta property="og:title" content="Price Match Paradise — Stop Overpaying at the Grocery Store">
-    <meta property="og:description" content="Scan any barcode. See if a store nearby sells it cheaper. The average member saves $28 per trip.">
-    <meta property="og:image" content="assets/logo.png">
+    <meta property="og:title" content="Price Match Paradise — Barcode Price Comparison & Route Planner">
+    <meta property="og:description" content="Scan a barcode, compare available prices across supported retailers, and plan a shopping route that accounts for fuel cost.">
+    <meta property="og:url" content="https://pricematchparadise.com/">
+    <meta property="og:image" content="https://pricematchparadise.com/assets/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Price Match Paradise barcode price comparison app">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Price Match Paradise — Barcode Price Comparison">
+    <meta name="twitter:description" content="Compare available prices across supported retailers and plan a smarter shopping route.">
+    <meta name="twitter:image" content="https://pricematchparadise.com/assets/social-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -815,9 +823,12 @@
       "name": "Price Match Paradise",
       "operatingSystem": "iOS, Android",
       "applicationCategory": "ShoppingApplication",
-      "description": "Scan any barcode in the aisle and compare the same item's price across 50+ nearby stores to price match and pay less.",
+      "description": "Scan a product barcode, compare available prices across more than 50 supported retailers, review price-match options, and plan a multi-store shopping route.",
       "url": "https://pricematchparadise.com/",
       "image": "https://pricematchparadise.com/assets/logo.png",
+      "isAccessibleForFree": true,
+      "featureList": ["Barcode product search", "Retailer price comparison", "Price-match policy guidance", "Multi-store route planning", "Receipt scanning", "Price history and favorites"],
+      "publisher": { "@id": "https://pricematchparadise.com/#org" },
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "sameAs": [
         "https://apps.apple.com/us/app/price-match-paradise/id6758967914",
@@ -833,9 +844,10 @@
           "@type": "Organization",
           "@id": "https://pricematchparadise.com/#org",
           "name": "Price Match Paradise",
+          "alternateName": "Price-Match Paradise",
           "url": "https://pricematchparadise.com/",
           "logo": "https://pricematchparadise.com/assets/logo.png",
-          "email": "athormod2@gmail.com",
+          "email": "pricecheckorcompare@gmail.com",
           "sameAs": [
             "https://apps.apple.com/us/app/price-match-paradise/id6758967914",
             "https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp"
@@ -862,7 +874,7 @@
         </a>
         <div class="nav-links">
             <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
+            <a href="/supported-stores.html">Coverage</a>
             <a href="#demo">Demo</a>
             <a href="/blog/">Blog</a>
             <a href="#download" class="nav-cta"><i class="fas fa-download"></i> Get the App</a>
@@ -888,11 +900,11 @@
                             <i class="fas fa-bolt"></i>
                             Price Match Paradise — iOS &amp; Android
                         </div>
-                        <h1>Stop overpaying<br/><span>every single week.</span></h1>
+                        <h1>Scan once.<br/><span>Compare more prices.</span></h1>
                         <p class="hero-copy">
-                            Scan any barcode in the aisle. In 2 seconds see if a store nearby
-                            sells it cheaper. Show your screen at checkout — pay less.
-                            <strong style="color:#e0f2fe;">The average member saves $28 per trip.</strong>
+                            Scan a product barcode and compare available prices across supported
+                            retailers—not only selected weekly-flyer items. Review the result,
+                            confirm it with the retailer, and decide where it is worth buying.
                         </p>
                         <div class="hero-actions">
                             <a class="btn btn-primary" href="#download">
@@ -903,8 +915,8 @@
                             </a>
                         </div>
                         <div class="proof-row">
-                            <span class="proof-pill"><i class="fas fa-bolt"></i> 2-second barcode scan</span>
-                            <span class="proof-pill"><i class="fas fa-store"></i> 50+ stores compared</span>
+                            <span class="proof-pill"><i class="fas fa-barcode"></i> Barcode and product search</span>
+                            <span class="proof-pill"><i class="fas fa-store"></i> 50+ supported retailers</span>
                             <span class="proof-pill"><i class="fas fa-lock"></i> Free to start — no card</span>
                         </div>
                     </div>
@@ -914,7 +926,7 @@
                         <div class="phone-orbit" aria-label="Scrollable Price Match Paradise app screenshots">
 
                             <div class="phone-stat phone-stat-1">
-                                <i class="fas fa-tag" style="color:#67e8f9;"></i>&nbsp;Save $28 this trip
+                                <i class="fas fa-route" style="color:#67e8f9;"></i>&nbsp;Plan a smarter route
                             </div>
                             <div class="phone-stat phone-stat-2">
                                 <i class="fas fa-check-circle" style="color:#86efac;"></i>&nbsp;50+ stores checked
@@ -922,7 +934,7 @@
 
                             <div class="screenshot-phone phone-back">
                                 <div class="screenshot-screen">
-                                    <img src="asset/long-screen-shot/screen1.jpg"
+                                    <img src="asset/long-screen-shot/screen1.jpg" loading="lazy" decoding="async"
                                          alt="Price Match Paradise app — full product comparison screen"
                                          onerror="this.onerror=null;this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
                                 </div>
@@ -930,7 +942,7 @@
 
                             <div class="screenshot-phone phone-front">
                                 <div class="screenshot-screen">
-                                    <img src="asset/long-screen-shot/screen2.jpg"
+                                    <img src="asset/long-screen-shot/screen2.jpg" loading="eager" decoding="async"
                                          alt="Price Match Paradise app — barcode scanner and price match screen"
                                          onerror="this.onerror=null;this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='24px';this.style.background='#0d1b2e';">
                                 </div>
@@ -981,16 +993,16 @@
                     <div class="section-kicker">Why shoppers keep coming back</div>
                     <h2>Three tools. One mission: keep more money in your pocket.</h2>
                     <p class="lead">
-                        The free tier proves value on your very first scan.
-                        The Pro subscription gives weekly shoppers a complete savings system —
-                        more scans, receipt analysis, and price-drop alerts that easily pay for themselves.
+                        A barcode scanner that finds the cheapest store, a receipt scanner that
+                        shows what you overpaid, and a savings tracker that watches it add up —
+                        all in one app.
                     </p>
                 </div>
                 <div class="feature-grid">
                     <article class="feature-card" data-aos="fade-up">
                         <div class="icon-box"><i class="fas fa-barcode"></i></div>
                         <h3>In-aisle barcode scanner</h3>
-                        <p>Point your camera at any barcode. See the same item ranked cheapest to most expensive across 50+ nearby stores — in under 2 seconds.</p>
+                        <p>Point your camera at a product barcode and review available matching offers across supported retailers.</p>
                         <ul class="feature-list">
                             <li><i class="fas fa-check"></i><span>Live prices refreshed on every scan</span></li>
                             <li><i class="fas fa-check"></i><span>Show-screen proof for price-match requests</span></li>
@@ -1009,12 +1021,12 @@
                     </article>
                     <article class="feature-card" data-aos="fade-up" data-aos-delay="180">
                         <div class="icon-box"><i class="fas fa-crown"></i></div>
-                        <h3>Pro: the complete savings system</h3>
-                        <p>Free users get a strong taste. Pro unlocks 100–300 scans per month, the full receipt scanner, price-drop alerts, and a dashboard showing your total savings over time.</p>
+                        <h3>Your savings dashboard</h3>
+                        <p>Every scan and receipt feeds a running total of what you've saved, with price-drop alerts for the items you buy most often.</p>
                         <ul class="feature-list">
-                            <li><i class="fas fa-check"></i><span>Scan limit resets every billing period</span></li>
+                            <li><i class="fas fa-check"></i><span>Total savings tracked over time</span></li>
                             <li><i class="fas fa-check"></i><span>Price-drop alerts for items you buy regularly</span></li>
-                            <li><i class="fas fa-check"></i><span>Cancel anytime — no hidden fees</span></li>
+                            <li><i class="fas fa-check"></i><span>See your best and worst stores at a glance</span></li>
                         </ul>
                     </article>
                 </div>
@@ -1045,9 +1057,8 @@
                                 <span class="btn-side btn-power"></span>
                                 <!-- Screen -->
                                 <div class="video-shell">
-                                    <video id="demoVideo" autoplay muted loop playsinline preload="auto">
+                                    <video id="demoVideo" autoplay muted loop playsinline preload="metadata">
                                         <source src="asset/price-match/app-demo.mp4" type="video/mp4">
-                                        <source src="asset/price-match/app-demo.mov" type="video/quicktime">
                                         Your browser does not support this video format.
                                     </video>
                                     <!-- Screen glare -->
@@ -1081,68 +1092,18 @@
         <section class="section pricing-section" id="pricing">
             <div class="container">
                 <div class="section-heading center" data-aos="fade-up">
-                    <div class="section-kicker">Simple, Honest Pricing</div>
-                    <h2>Start Free. Upgrade When You're Ready.</h2>
+                    <div class="section-kicker">Free to Start</div>
+                    <h2>Download Free. Start Saving Today.</h2>
                     <p class="lead">
-                        No subscription required to start saving. Upgrade only when you want
-                        more scans and the receipt scanner.
+                        No account and no card required to start. Open the app, scan a barcode,
+                        and see the cheapest nearby store in about two seconds.
                     </p>
                 </div>
-
-                <div class="plan-grid">
-
-                    <!-- Free -->
-                    <article class="plan-card" data-aos="fade-up" data-aos-delay="0">
-                        <div class="plan-name">Free</div>
-                        <div class="plan-price">$0<small>/forever</small></div>
-                        <p class="plan-desc">Perfect for trying it out and saving on your first few trips.</p>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check feat-icon"></i><span>20 lifetime barcode scans</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Compare prices at 50+ stores</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Price match proof screen</span></li>
-                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Monthly scan reset</span></li>
-                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Receipt Scanner</span></li>
-                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Scan history tracking</span></li>
-                        </ul>
-                        <a href="#download" class="plan-btn plan-btn-free">Download Free</a>
-                    </article>
-
-                    <!-- Barcode Scanner (popular) -->
-                    <article class="plan-card popular" data-aos="fade-up" data-aos-delay="100">
-                        <div class="popular-tag">⚡ MOST POPULAR</div>
-                        <div class="plan-name">Barcode Scanner</div>
-                        <div class="plan-price">$2.99<small>/month</small></div>
-                        <p class="plan-desc">For regular shoppers who want unlimited in-aisle price checks every month.</p>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check feat-icon"></i><span>100 barcode scans per month</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Compare prices at 50+ stores</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Price match proof screen</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Monthly scan reset</span></li>
-                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Receipt Scanner</span></li>
-                            <li class="feat-no"><i class="fas fa-times feat-icon"></i><span>Full savings history</span></li>
-                        </ul>
-                        <a href="#download" class="plan-btn plan-btn-mid">Get Barcode Scanner</a>
-                    </article>
-
-                    <!-- Pro -->
-                    <article class="plan-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="plan-name">Pro</div>
-                        <div class="plan-price">$4.99<small>/month</small></div>
-                        <p class="plan-desc">Everything you need to squeeze every dollar out of every shopping trip.</p>
-                        <ul class="plan-features">
-                            <li><i class="fas fa-check feat-icon"></i><span>300 barcode scans per month</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Compare prices at 50+ stores</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Price match proof screen</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Monthly scan reset</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Receipt Scanner (unlimited)</span></li>
-                            <li><i class="fas fa-check feat-icon"></i><span>Full savings history &amp; tracking</span></li>
-                        </ul>
-                        <a href="#download" class="plan-btn plan-btn-pro">Go Pro</a>
-                    </article>
-
+                <div class="section-heading center" data-aos="fade-up">
+                    <a href="#download" class="plan-btn plan-btn-mid" style="display:inline-block;max-width:320px;">Download Free</a>
                 </div>
                 <p class="pricing-note" data-aos="fade-up">
-                    Cancel anytime &nbsp;·&nbsp; Billed monthly through App Store / Google Play &nbsp;·&nbsp; Your data is never sold
+                    Free to download &nbsp;·&nbsp; Optional in-app purchases
                 </p>
             </div>
         </section>
@@ -1158,17 +1119,17 @@
                     <div class="flow-step" data-aos="fade-up">
                         <div class="step-number">1</div>
                         <h3>Scan</h3>
-                        <p class="lead">Point your camera at any barcode in the store. Takes 2 seconds — no typing required.</p>
+                        <p class="lead">Point your camera at a product barcode, or search by product name when scanning is not available.</p>
                     </div>
                     <div class="flow-step" data-aos="fade-up" data-aos-delay="80">
                         <div class="step-number">2</div>
                         <h3>Compare</h3>
-                        <p class="lead">See the same item ranked cheapest to most expensive across 50+ nearby stores, live.</p>
+                        <p class="lead">Review available offers for the matching product across supported retailers, ranked by listed price.</p>
                     </div>
                     <div class="flow-step" data-aos="fade-up" data-aos-delay="160">
                         <div class="step-number">3</div>
                         <h3>Save</h3>
-                        <p class="lead">Show your screen at the register. Most major retailers honour price matches on the spot.</p>
+                        <p class="lead">Open the retailer result and check that the identical item qualifies under the store's current policy.</p>
                     </div>
                     <div class="flow-step" data-aos="fade-up" data-aos-delay="240">
                         <div class="step-number">4</div>
@@ -1179,31 +1140,31 @@
             </div>
         </section>
 
-        <!-- ═══════ REVIEWS ════════════════════════════ -->
+        <!-- ═══════ SHOPPING DECISIONS ═════════════════ -->
         <section class="reviews">
             <div class="container">
                 <div class="section-heading center" data-aos="fade-up">
-                    <div class="section-kicker">Real shoppers. Real savings.</div>
-                    <h2>★★★★★ rated on the App Store</h2>
+                    <div class="section-kicker">Useful before checkout</div>
+                    <h2>Answers for the product in your hand.</h2>
                 </div>
                 <div class="review-grid">
                     <div class="review-card" data-aos="fade-up">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-body">"Saved $34 on my very first trip. Scanned the Tide Pods — it showed Target had them for $6 less. Walked to the register, showed the screen, done. This app paid for itself in two minutes."</p>
-                        <div class="review-author">Sandra M.</div>
-                        <div class="review-meta">Verified · Phoenix, AZ</div>
+                        <div class="review-stars"><i class="fas fa-tags"></i></div>
+                        <p class="review-body">Is this advertised deal actually the lowest listed price available for the same product?</p>
+                        <div class="review-author">Compare the exact item</div>
+                        <div class="review-meta">Results depend on retailer data and availability.</div>
                     </div>
                     <div class="review-card" data-aos="fade-up" data-aos-delay="90">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-body">"I'm 63 and not great with technology. This app is dead simple — point, scan, see the price. I've saved over $200 in two months just price-matching at my regular Kroger."</p>
-                        <div class="review-author">Robert K.</div>
-                        <div class="review-meta">Verified · Atlanta, GA</div>
+                        <div class="review-stars"><i class="fas fa-receipt"></i></div>
+                        <p class="review-body">Does a lower offer meet the retailer's rules for an identical, eligible, in-stock product?</p>
+                        <div class="review-author">Review price-match options</div>
+                        <div class="review-meta">The retailer makes the final eligibility decision.</div>
                     </div>
                     <div class="review-card" data-aos="fade-up" data-aos-delay="180">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-body">"The receipt scanner showed we overpaid $22 at Whole Foods last month. Now I scan three things every time I shop and walk out saving $15–40. My wife thinks I'm a genius."</p>
-                        <div class="review-author">James T.</div>
-                        <div class="review-meta">Verified · Denver, CO</div>
+                        <div class="review-stars"><i class="fas fa-route"></i></div>
+                        <p class="review-body">Will visiting another store still save money after estimated driving time and fuel cost?</p>
+                        <div class="review-author">Plan the worthwhile route</div>
+                        <div class="review-meta">Adjust the assumptions to match your vehicle and trip.</div>
                     </div>
                 </div>
             </div>
@@ -1217,29 +1178,29 @@
                     <h2>Built for real shoppers. Not tech enthusiasts.</h2>
                     <p class="lead" style="color:#cbd5e1;">
                         Every feature is designed around one question: how do we help you
-                        spend less on the exact same groceries you're already buying?
+                        compare the exact same products before deciding where to buy?
                     </p>
                 </div>
                 <div class="why-grid">
                     <div class="why-item" data-aos="fade-up">
                         <span class="why-icon">⚡</span>
                         <strong>Instant results</strong>
-                        <span>No waiting. Price comparisons come back in 2 seconds so you can decide before putting the item in your cart.</span>
+                        <span>Start with a barcode or product search and review matching offers without opening every retailer site yourself.</span>
                     </div>
                     <div class="why-item" data-aos="fade-up" data-aos-delay="80">
                         <span class="why-icon">🏪</span>
                         <strong>50+ stores covered</strong>
-                        <span>Walmart, Target, Kroger, Costco, Amazon Fresh, Whole Foods, and dozens more — all in one scan.</span>
+                        <span>Coverage spans major and regional retailers, with results varying by product, country, location, and retailer availability.</span>
                     </div>
                     <div class="why-item" data-aos="fade-up" data-aos-delay="160">
                         <span class="why-icon">🔒</span>
-                        <strong>Private by design</strong>
-                        <span>Your shopping data is yours. We never sell it, share it, or use it to target you with ads. Ever.</span>
+                        <strong>Clear coverage details</strong>
+                        <span>See what “supported” means, where prices come from, and the limitations that can affect a result.</span>
                     </div>
                     <div class="why-item" data-aos="fade-up" data-aos-delay="240">
                         <span class="why-icon">📱</span>
-                        <strong>Works on any phone</strong>
-                        <span>Available on iPhone and Android. No special hardware. No loyalty cards. Just open and scan.</span>
+                        <strong>Available on iOS and Android</strong>
+                        <span>Download from the official app stores and review each store's compatibility and privacy details before installing.</span>
                     </div>
                 </div>
             </div>
@@ -1248,8 +1209,8 @@
         <!-- ═══════ FINAL CTA ════════════════════════ -->
         <section class="cta" id="download">
             <div class="container" data-aos="fade-up">
-                <h2>Your next grocery trip pays for itself.</h2>
-                <p>Download free. No account needed to start. Scan your first barcode in under 60 seconds.</p>
+                <h2>Compare before you check out.</h2>
+                <p>Download free and start with a barcode or product search. Optional paid features are available in the app.</p>
                 <div class="hero-actions" style="justify-content:center; margin-bottom:0;">
                     <!-- REPLACE href values with your real App Store / Google Play URLs -->
                     <a class="btn btn-primary" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914">
@@ -1275,7 +1236,7 @@
                              style="width:40px;height:40px;border-radius:11px;vertical-align:middle;margin-right:8px;">
                         Price Match Paradise
                     </div>
-                    <p>The smarter way to shop. Scan any barcode in the aisle, compare prices at 50+ stores instantly, and keep more money in your pocket — every single week.</p>
+                    <p>Scan a barcode, compare available prices across supported retailers, review price-match options, and plan a smarter shopping route.</p>
                     <div class="footer-store-row">
                         <!-- REPLACE href values with your real store URLs -->
                         <a href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" class="footer-store-btn">
@@ -1291,21 +1252,23 @@
                     <h4>Product</h4>
                     <ul>
                         <li><a href="#demo">How it works</a></li>
-                        <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#pricing">Free vs Pro</a></li>
+                        <li><a href="#features">Features</a></li>
                         <li><a href="#download">Download</a></li>
                         <li><a href="/blog/">Blog</a></li>
                         <li><a href="/blog/price-matching-guide/">Price Matching Guide</a></li>
                         <li><a href="/blog/save-money-on-groceries/">Grocery Saving Tips</a></li>
+                        <li><a href="/supported-stores.html">Supported Stores</a></li>
+                        <li><a href="/coverage-methodology.html">Coverage Methodology</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-col">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="mailto:athormod2@gmail.com">Contact us</a></li>
+                        <li><a href="mailto:pricecheckorcompare@gmail.com">Contact us</a></li>
                         <li><a href="delete-account.html">Delete Account</a></li>
                         <li><a href="download.html">Download App</a></li>
+                        <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
 
@@ -1322,9 +1285,7 @@
 
             <div class="footer-bottom">
                 <p>© 2026 Price Match Paradise. All rights reserved.</p>
-                <div class="footer-badge">
-                    <i class="fas fa-shield-alt"></i> Your data is never sold
-                </div>
+                <div class="footer-badge"><i class="fas fa-circle-info"></i> Independent shopping tool</div>
                 <div class="footer-legal">
                     <a href="privacy-policy.html">Privacy</a>
                     <a href="terms.html">Terms</a>

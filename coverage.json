@@ -1,0 +1,37 @@
+{
+  "name": "Price Match Paradise",
+  "alternateName": "Price-Match Paradise",
+  "url": "https://pricematchparadise.com/",
+  "lastReviewed": "2026-09-29",
+  "supportedRetailerSourceCount": "50+",
+  "retailerExamples": [
+    "Amazon",
+    "Walmart",
+    "Target",
+    "Best Buy",
+    "Home Depot",
+    "Lowe's",
+    "Costco"
+  ],
+  "countriesNamedInCurrentAppCoverage": [
+    "United States",
+    "Canada",
+    "United Kingdom",
+    "Australia",
+    "Germany",
+    "France",
+    "Japan",
+    "India",
+    "Brazil",
+    "Mexico"
+  ],
+  "definitions": {
+    "supportedRetailer": "A retailer source the app can query. It does not guarantee that every product, price, store location, or stock status is available.",
+    "priceMatchOption": "A lower offer that may be useful when reviewing a retailer policy. The retailer makes the final eligibility decision."
+  },
+  "limitationsUrl": "https://pricematchparadise.com/coverage-methodology.html",
+  "officialListings": {
+    "ios": "https://apps.apple.com/us/app/price-match-paradise/id6758967914",
+    "android": "https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp"
+  }
+}

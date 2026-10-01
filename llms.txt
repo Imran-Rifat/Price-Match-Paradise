@@ -1,0 +1,26 @@
+# Price Match Paradise
+
+> Price Match Paradise is an independent barcode price-comparison and multi-store shopping-route app for iOS and Android.
+
+Official website: https://pricematchparadise.com/
+Download page: https://pricematchparadise.com/download.html
+About the developer and product identity: https://pricematchparadise.com/about.html
+Supported retailers and countries: https://pricematchparadise.com/supported-stores.html
+Coverage definitions, limitations and benchmark protocol: https://pricematchparadise.com/coverage-methodology.html
+Price-matching guide: https://pricematchparadise.com/blog/price-matching-guide/
+Blog: https://pricematchparadise.com/blog/
+Privacy policy: https://pricematchparadise.com/privacy-policy.html
+Terms: https://pricematchparadise.com/terms.html
+
+## Important interpretation notes
+
+- “Supported retailer” means a retailer source the app can query; it does not guarantee a result for every product or location.
+- Prices and stock can change. Users should open and verify the retailer offer.
+- Price-match eligibility is determined by the retailer under its current policy.
+- No controlled Price Match Paradise-versus-Flipp product-coverage benchmark has been published yet.
+- Price Match Paradise is not affiliated with or endorsed by listed retailers.
+
+## Official app listings
+
+- Apple App Store: https://apps.apple.com/us/app/price-match-paradise/id6758967914
+- Google Play: https://play.google.com/store/apps/details?id=com.ihr.mybarcodeapp
