@@ -252,7 +252,7 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="index.html"><img src="assets/logo.png" width="40" height="40" alt="Price Match Paradise logo">Price Match Paradise</a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#how-it-works">How it works</a><a href="#products">Compare</a><a href="#faq">FAQ</a>
+        <a href="#how-it-works">How it works</a><a href="#products">Compare</a><a href="#faq">FAQ</a><a href="/contractors.html">For contractors</a>
         <a class="nav-cta" data-store="ios" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener noreferrer">Get the app</a>
       </nav>
     </div>
@@ -288,7 +288,7 @@
           <div class="preview-column">
             <article class="preview" aria-live="polite">
               <header class="preview-header">
-                <div class="preview-heading"><div><div class="live-label">Live price comparison</div><h3 id="previewTitle"></h3><div class="preview-subtitle" id="previewCategory"></div></div><div class="preview-actions"><button class="open-preview" id="openPreview" type="button">View full result</button></div></div>
+                <div class="preview-heading"><div><div class="live-label">Comparison example</div><h3 id="previewTitle"></h3><div class="preview-subtitle" id="previewCategory"></div></div><div class="preview-actions"><button class="open-preview" id="openPreview" type="button">View full result</button></div></div>
                 <div class="price-summary" aria-label="Price summary"><div class="price-metric lowest"><small>Cheapest at <span id="previewLowestStore"></span></small><strong id="previewLowest"></strong></div><div class="price-metric"><small>Home Depot</small><strong id="previewHomeDepot"></strong></div><div class="price-metric savings"><small>Compared with Home Depot</small><strong id="previewSavings"></strong></div></div>
               </header>
               <div class="comparison-viewport" id="comparisonViewport" tabindex="0" aria-label="Selected product comparison results" aria-busy="true">
@@ -322,7 +322,7 @@
     </div></section>
   </main>
 
-  <footer><div class="wrap footer-inner"><span>© 2026 Price Match Paradise</span><div class="footer-links"><a href="index.html">Home</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
+  <footer><div class="wrap footer-inner"><span>© 2026 Price Match Paradise</span><div class="footer-links"><a href="index.html">Home</a><a href="/contractors.html">For contractors</a><a href="privacy-policy.html">Privacy</a><a href="terms.html">Terms</a></div></div></footer>
   <a class="mobile-cta" id="mobileCta" data-store="ios" href="https://apps.apple.com/us/app/price-match-paradise/id6758967914" target="_blank" rel="noopener noreferrer">Download Price Match Paradise</a>
 
   <dialog class="comparison-dialog" id="comparisonDialog" aria-labelledby="dialogTitle">
@@ -492,7 +492,7 @@
         progressBar.style.height = '0%';
         scrollHint.classList.remove('hidden');
         title.textContent = product.title;
-        category.textContent = product.category + ' · Live prices near you';
+        category.textContent = product.category + ' · Example prices · verify with retailer';
         lowestStore.textContent = product.lowestStore;
         lowestPrice.textContent = product.lowestPrice;
         homeDepotPrice.textContent = product.homeDepotPrice;

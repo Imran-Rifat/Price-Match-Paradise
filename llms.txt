@@ -4,6 +4,7 @@
 
 Official website: https://pricematchparadise.com/
 Download page: https://pricematchparadise.com/download.html
+Contractor purchasing service in British Columbia: https://pricematchparadise.com/contractors.html
 About the developer and product identity: https://pricematchparadise.com/about.html
 Complete directory of 137 Canada and U.S. retailer sources: https://pricematchparadise.com/supported-stores.html
 Machine-readable retailer coverage data: https://pricematchparadise.com/coverage.json
@@ -21,6 +22,13 @@ Terms: https://pricematchparadise.com/terms.html
 - Price-match eligibility is determined by the retailer under its current policy.
 - No controlled Price Match Paradise-versus-Flipp product-coverage benchmark has been published yet.
 - Price Match Paradise is not affiliated with or endorsed by listed retailers.
+
+## Contractor service
+
+- The British Columbia contractor service is a manual review of product lists and previous purchase lists, submitted by email to imran@pricematchparadise.com.
+- Contractors may submit unlimited lists during their first 30 days without a service fee.
+- After the trial, an agreed share applies only to savings actually realized and documented; potential savings in a comparison report are not realized savings.
+- Price-match eligibility depends on the retailer's current policy, the exact product and purchase conditions. A lower offer does not guarantee approval.
 
 ## Official app listings
 

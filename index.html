@@ -99,6 +99,12 @@
             font-weight: 800 !important; box-shadow: 0 6px 18px rgba(14,165,233,.4);
         }
         .nav-cta:hover { transform: translateY(-1px); }
+        /* Keep the added contractor link readable on narrower laptops. */
+        @media (min-width: 721px) and (max-width: 1040px) {
+            .nav-links { gap: 18px; }
+            .nav-links a { white-space: nowrap; }
+            .nav-links .nav-secondary { display: none; }
+        }
         @media (max-width: 720px) {
             .nav-links a:not(.nav-cta) { display: none; }
             .nav-brand .nav-name { font-size: .98rem; }
@@ -875,10 +881,11 @@
             <span class="nav-name">Price Match <b>Paradise</b></span>
         </a>
         <div class="nav-links">
-            <a href="#features">Features</a>
+            <a class="nav-secondary" href="#features">Features</a>
             <a href="/supported-stores.html">Coverage</a>
-            <a href="#demo">Demo</a>
+            <a class="nav-secondary" href="#demo">Demo</a>
             <a href="/blog/">Blog</a>
+            <a href="/contractors.html">For contractors</a>
             <a href="#download" class="nav-cta"><i class="fas fa-download"></i> Get the App</a>
         </div>
     </nav>
@@ -1257,6 +1264,7 @@
                         <li><a href="#demo">How it works</a></li>
                         <li><a href="#features">Features</a></li>
                         <li><a href="#download">Download</a></li>
+                        <li><a href="/contractors.html">For contractors</a></li>
                         <li><a href="/blog/">Blog</a></li>
                         <li><a href="/blog/price-matching-guide/">Price Matching Guide</a></li>
                         <li><a href="/blog/save-money-on-groceries/">Grocery Saving Tips</a></li>
