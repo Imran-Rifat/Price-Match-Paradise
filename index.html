@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="phone-reels.css?v=6">
+    <script src="phone-reels.js?v=6" defer></script>
     <style>
         :root {
             --ink: #0f172a;
@@ -377,228 +379,6 @@
         .feature-list li { display: flex; gap: 10px; align-items: flex-start; }
         .feature-list i  { color: var(--accent); margin-top: 4px; }
 
-        /* ── DEMO / VIDEO ────────────────────────── */
-        .demo-section {
-            background: linear-gradient(180deg,#f1f5f9 0%,#0c1525 12%,#07111f 80%,#0d1b2e 100%);
-            overflow: hidden; position: relative;
-        }
-        /* subtle dot-grid overlay */
-        .demo-section::before {
-            content:''; position:absolute; inset:0; pointer-events:none;
-            background-image: radial-gradient(circle at 1px 1px, rgba(148,163,184,.07) 1px, transparent 0);
-            background-size: 30px 30px;
-        }
-        .scroll-stage { min-height: 1060px; display: flex; align-items: center; justify-content: center; padding: 80px 0; }
-        .demo-frame-wrap { width: 100%; perspective: 1400px; perspective-origin: 50% 60%; }
-        .demo-title {
-            text-align: center; margin-bottom: 40px;
-            transform: translateY(var(--demo-title-y,0px));
-            transition: transform .1s linear;
-        }
-        .demo-title .section-kicker { color: #67e8f9; }
-        .demo-title h2 { color: #f1f5f9; }
-        .demo-title .lead { color: #94a3b8; }
-
-        /* ── outer wrapper — holds phone + glow ── */
-        .demo-device-outer {
-            position: relative; width: min(360px,80vw); margin: 0 auto;
-        }
-
-        /* ── iPhone 17 shell ──────────────────── */
-        .demo-device {
-            position: relative;
-            width: 100%; aspect-ratio: 393/852;
-            /* Titanium multi-tone frame */
-            background: linear-gradient(160deg,
-                #d4d4d8 0%, #a1a1aa 18%, #52525b 42%,
-                #71717a 58%, #d4d4d8 78%, #a1a1aa 100%);
-            border-radius: 52px;
-            padding: 13px;
-            /* frame edge highlights */
-            box-shadow:
-                inset 0 2px 0 rgba(255,255,255,.45),
-                inset 0 -2px 0 rgba(0,0,0,.5),
-                inset 2px 0 0 rgba(255,255,255,.12),
-                inset -2px 0 0 rgba(0,0,0,.35),
-                /* depth shadows */
-                0 70px 140px rgba(0,0,0,.7),
-                0 30px 70px rgba(0,0,0,.5),
-                0 8px 24px rgba(0,0,0,.4),
-                /* brand glow */
-                0 0 80px rgba(14,165,233,.18),
-                0 0 160px rgba(14,165,233,.08);
-            transform:
-                rotateX(var(--demo-rotate,22deg))
-                rotateY(var(--demo-ry,-4deg))
-                translateY(var(--demo-ty,40px))
-                scale(var(--demo-scale,.88));
-            transform-origin: center bottom;
-            transition: transform .1s linear;
-            will-change: transform;
-        }
-
-        /* inner black bezel */
-        .demo-device::before {
-            content:''; position:absolute; inset:3px;
-            border-radius: 48px; background:#000; z-index:0;
-        }
-
-        /* Dynamic Island */
-        .dyn-island {
-            position:absolute; top:18px; left:50%; transform:translateX(-50%);
-            width: 34%; height: 36px; border-radius:999px;
-            background:#000; z-index:10;
-            box-shadow: 0 0 0 1.5px rgba(255,255,255,.06), inset 0 1px 0 rgba(255,255,255,.04);
-        }
-
-        /* Side hardware buttons */
-        .btn-side { position:absolute; border-radius:3px; z-index:10; }
-        /* Action button — top-left */
-        .btn-action {
-            left:-3.5px; top:17%; width:3.5px; height:7%;
-            background:linear-gradient(to right,#3f3f46,#a1a1aa,#3f3f46);
-            border-radius:2px 0 0 2px;
-        }
-        /* Volume up */
-        .btn-vol-up {
-            left:-3.5px; top:28%; width:3.5px; height:12%;
-            background:linear-gradient(to right,#3f3f46,#a1a1aa,#3f3f46);
-            border-radius:2px 0 0 2px;
-        }
-        /* Volume down */
-        .btn-vol-dn {
-            left:-3.5px; top:43%; width:3.5px; height:12%;
-            background:linear-gradient(to right,#3f3f46,#a1a1aa,#3f3f46);
-            border-radius:2px 0 0 2px;
-        }
-        /* Power / sleep */
-        .btn-power {
-            right:-3.5px; top:27%; width:3.5px; height:16%;
-            background:linear-gradient(to left,#3f3f46,#a1a1aa,#3f3f46);
-            border-radius:0 2px 2px 0;
-        }
-
-        /* Home indicator bar */
-        .home-bar {
-            position:absolute; bottom:12px; left:50%; transform:translateX(-50%);
-            width:38%; height:5px; border-radius:999px;
-            background:rgba(255,255,255,.32); z-index:10;
-        }
-
-        /* ── Screen area ─────────────────── */
-        .video-shell {
-            position:absolute;
-            inset:13px;          /* matches device padding */
-            border-radius:40px; overflow:hidden;
-            background:#020617; z-index:1;
-            box-shadow: inset 0 0 28px rgba(0,0,0,.6);
-        }
-        .video-shell video {
-            position:absolute; inset:0;
-            width:100%; height:100%;
-            object-fit:cover; display:block;
-        }
-
-        /* Screen glare */
-        .screen-glare {
-            position:absolute; inset:0; border-radius:40px;
-            background:linear-gradient(
-                138deg,
-                rgba(255,255,255,.10) 0%,
-                rgba(255,255,255,.04) 30%,
-                rgba(255,255,255,0) 55%,
-                rgba(255,255,255,.02) 100%
-            );
-            pointer-events:none; z-index:8;
-        }
-
-        /* ── Ambient glow behind phone ─── */
-        .phone-glow-halo {
-            position:absolute; bottom:-30px; left:50%;
-            transform:translateX(-50%);
-            width:280px; height:180px; border-radius:50%;
-            background:radial-gradient(ellipse at center,
-                rgba(14,165,233,.38) 0%,
-                rgba(99,102,241,.18) 45%,
-                transparent 72%
-            );
-            filter:blur(36px); z-index:-1;
-            animation: haloBreath 3.6s ease-in-out infinite alternate;
-        }
-        @keyframes haloBreath {
-            from { opacity:.7; transform:translateX(-50%) scaleX(1); }
-            to   { opacity:1;  transform:translateX(-50%) scaleX(1.18); }
-        }
-
-        /* ── Reflection under phone ─────── */
-        .phone-reflection {
-            position:absolute; bottom:-28px; left:10%; right:10%;
-            height:40px; border-radius:50%;
-            background:radial-gradient(ellipse at center,rgba(14,165,233,.22) 0%,transparent 70%);
-            filter:blur(14px); z-index:-1;
-        }
-
-        /* ── Sound toggle pill ── */
-        .sound-btn {
-            position: absolute; top: 58px; left: 50%;
-            transform: translateX(-50%) scale(.88);
-            display: flex; align-items: center; gap: 8px;
-            padding: 8px 16px 8px 10px; border-radius: 999px; border: none; cursor: pointer;
-            background: rgba(2,6,23,.82); backdrop-filter: blur(10px);
-            border: 1px solid rgba(103,232,249,.3);
-            color: #e0f2fe; font-size: .78rem; font-weight: 800;
-            box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(14,165,233,.4);
-            z-index: 9; transition: opacity .3s, transform .3s, box-shadow .3s;
-            opacity: 0; pointer-events: none;
-            animation: soundPulse 2.4s ease-in-out infinite;
-        }
-        .sound-btn.visible { opacity: 1; transform: translateX(-50%) scale(1); pointer-events: auto; }
-        .sound-btn:hover { background: rgba(14,165,233,.25); box-shadow: 0 8px 28px rgba(0,0,0,.5), 0 0 0 4px rgba(14,165,233,.15); }
-        .sound-btn .sound-icon {
-            width: 28px; height: 28px; border-radius: 50%;
-            background: linear-gradient(135deg, #0ea5e9, #22c55e);
-            display: grid; place-items: center; font-size: .78rem; flex-shrink: 0;
-        }
-        .sound-btn .sound-bars {
-            display: flex; align-items: center; gap: 2px; height: 14px;
-        }
-        .sound-bars span {
-            display: block; width: 3px; border-radius: 2px;
-            background: #67e8f9;
-            animation: barBounce .9s ease-in-out infinite;
-        }
-        .sound-bars span:nth-child(1) { height: 6px;  animation-delay: 0s; }
-        .sound-bars span:nth-child(2) { height: 12px; animation-delay: .15s; }
-        .sound-bars span:nth-child(3) { height: 8px;  animation-delay: .3s; }
-        .sound-bars span:nth-child(4) { height: 14px; animation-delay: .1s; }
-        .sound-btn.muted .sound-bars span { animation: none; opacity: .35; height: 6px !important; }
-        @keyframes barBounce {
-            0%,100% { transform: scaleY(1); }
-            50%      { transform: scaleY(.4); }
-        }
-        @keyframes soundPulse {
-            0%,100% { box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 0 rgba(14,165,233,.35); }
-            50%     { box-shadow: 0 8px 24px rgba(0,0,0,.4), 0 0 0 6px rgba(14,165,233,.0); }
-        }
-        .unmute-btn.show { opacity: 1; pointer-events: auto; }
-        .video-shell .video-fallback { transition: opacity 260ms, visibility 260ms; }
-        .video-shell.playing .video-fallback { opacity: 0; visibility: hidden; }
-        .video-fallback {
-            position: absolute; inset: auto 14px 14px 14px; padding: 14px 16px; border-radius: 8px;
-            background: rgba(2,6,23,.74); color: #e2e8f0;
-            display: flex; align-items: center; gap: 12px; backdrop-filter: blur(8px);
-        }
-
-        /* ── mouse-parallax tilt vars ── */
-        .demo-device { --mx:0deg; --my:0deg; }
-        .demo-device.mouse-active {
-            transform:
-                rotateX(calc(var(--demo-rotate,0deg) + var(--my)))
-                rotateY(calc(var(--demo-ry,0deg)     + var(--mx)))
-                translateY(var(--demo-ty,0px))
-                scale(var(--demo-scale,1)) !important;
-        }
-
         /* ── PRICING ─────────────────────────────── */
         .pricing-section { background: var(--soft); }
         .plan-grid {
@@ -813,13 +593,6 @@
             .feature-grid, .app-flow, .why-grid,
             .stat-row, .review-grid, .plan-grid { grid-template-columns: 1fr; }
             .section { padding: 64px 0; }
-            .scroll-stage { min-height: 820px; padding: 46px 0; }
-            .demo-device-outer { width: min(290px,88vw); }
-            .demo-device { border-radius: 44px; padding: 10px; }
-            .demo-device::before { border-radius: 38px; }
-            .video-shell { border-radius: 34px; }
-            .dyn-island { height: 28px; top: 14px; }
-            .home-bar { bottom: 9px; height: 4px; }
             .footer-top { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
@@ -1043,58 +816,131 @@
             </div>
         </section>
 
-        <!-- ═══════ VIDEO DEMO ════════════════════════ -->
-        <section class="demo-section" id="demo">
+        <!-- ═══════ APP REELS / PHONE CAROUSEL ═══════ -->
+        <section class="phone-reels" id="demo" aria-labelledby="reelsHeading">
             <div class="container">
-                <div class="scroll-stage">
-                    <div class="demo-frame-wrap">
-                        <div class="demo-title" id="demoTitle" data-aos="fade-up">
-                            <div class="section-kicker">30-second app reel</div>
-                            <h2>Scan. Compare. Save. Watch it happen in real time.</h2>
-                            <p class="lead">
-                                From pocket to price comparison in under 3 seconds —
-                                no typing, no searching, no friction.
-                            </p>
-                        </div>
-                        <div class="demo-device-outer">
-                            <div class="demo-device" id="demoDevice">
-                                <!-- Dynamic Island -->
-                                <div class="dyn-island"></div>
-                                <!-- Hardware buttons -->
-                                <span class="btn-side btn-action"></span>
-                                <span class="btn-side btn-vol-up"></span>
-                                <span class="btn-side btn-vol-dn"></span>
-                                <span class="btn-side btn-power"></span>
-                                <!-- Screen -->
-                                <div class="video-shell">
-                                    <video id="demoVideo" autoplay muted loop playsinline preload="metadata">
-                                        <source src="asset/price-match/app-demo.mp4" type="video/mp4">
-                                        Your browser does not support this video format.
-                                    </video>
-                                    <!-- Screen glare -->
-                                    <div class="screen-glare"></div>
-                                    <!-- Sound toggle -->
-                                    <button id="soundBtn" class="sound-btn muted" aria-label="Toggle sound">
-                                        <span class="sound-icon"><i class="fas fa-volume-xmark"></i></span>
-                                        <div class="sound-bars">
-                                            <span></span><span></span><span></span><span></span>
-                                        </div>
-                                        <span id="soundLabel">Tap for sound</span>
-                                    </button>
-                                    <div class="video-fallback">
-                                        <i class="fas fa-circle-play"></i>
-                                        <span>App reel: scan a barcode → see 50+ prices → show screen → save money.</span>
-                                    </div>
-                                </div>
-                                <!-- Home indicator -->
-                                <div class="home-bar"></div>
-                            </div>
-                            <!-- Ambient glow + reflection -->
-                            <div class="phone-glow-halo"></div>
-                            <div class="phone-reflection"></div>
-                        </div>
-                    </div>
+                <div class="section-heading center phone-reels-heading">
+                    <div class="section-kicker">See the app in action</div>
+                    <h2 id="reelsHeading">A closer look. From scan to comparison.</h2>
+                    <p class="lead">Explore three app reels in phone view. Videos play muted when visible—tap to hear the demonstration.</p>
                 </div>
+            </div>
+
+            <div class="reels-carousel" role="region" aria-roledescription="carousel" aria-label="Price Match Paradise app videos">
+                <div class="reels-stage">
+                    <article class="reel-card" data-reel="scan" role="group" aria-roledescription="slide" aria-label="1 of 3: Scan and compare">
+                        <div class="reel-phone">
+                            <span class="reel-island" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-action" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-volume-up" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-volume-down" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-power" aria-hidden="true"></span>
+                            <div class="reel-screen">
+                                <video controls muted loop playsinline preload="none" poster="asset/price-match/web/app-demo.jpg" aria-label="Scan and compare app reel">
+                                    <source src="asset/price-match/web/app-demo.mp4" type="video/mp4">
+                                    <a href="asset/price-match/web/app-demo.mp4">Watch the scan and compare video</a>.
+                                </video>
+                                <span class="reel-glare" aria-hidden="true"></span>
+                                <button class="reel-sound" type="button" aria-label="Tap to unmute" aria-pressed="false" hidden>
+                                    <span class="reel-sound-icon" aria-hidden="true"><i class="fas fa-volume-xmark"></i></span>
+                                    <span class="reel-sound-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+                                    <span class="reel-sound-label">Tap to unmute</span>
+                                </button>
+                                <button class="reel-select" type="button" aria-label="Select Scan and compare" hidden>
+                                    <span>View reel <span aria-hidden="true">↗</span></span>
+                                </button>
+                            </div>
+                            <span class="reel-home-bar" aria-hidden="true"></span>
+                            <span class="reel-glow" aria-hidden="true"></span>
+                            <span class="reel-reflection" aria-hidden="true"></span>
+                        </div>
+                        <div class="reel-caption">
+                            <span>01 / SCAN &amp; COMPARE</span>
+                            <h3>One barcode. More options.</h3>
+                            <p>Follow an in-store scan into the price comparison results.</p>
+                        </div>
+                    </article>
+                    <article class="reel-card" data-reel="checkout" role="group" aria-roledescription="slide" aria-label="2 of 3: Before you buy">
+                        <div class="reel-phone">
+                            <span class="reel-island" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-action" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-volume-up" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-volume-down" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-power" aria-hidden="true"></span>
+                            <div class="reel-screen">
+                                <video controls muted loop playsinline preload="none" poster="asset/price-match/web/before-you-buy.jpg" aria-label="Before you buy app reel">
+                                    <source src="asset/price-match/web/before-you-buy.mp4" type="video/mp4">
+                                    <a href="asset/price-match/web/before-you-buy.mp4">Watch the before you buy video</a>.
+                                </video>
+                                <span class="reel-glare" aria-hidden="true"></span>
+                                <button class="reel-sound" type="button" aria-label="Tap to unmute" aria-pressed="false" hidden>
+                                    <span class="reel-sound-icon" aria-hidden="true"><i class="fas fa-volume-xmark"></i></span>
+                                    <span class="reel-sound-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+                                    <span class="reel-sound-label">Tap to unmute</span>
+                                </button>
+                                <button class="reel-select" type="button" aria-label="Select Before you buy" hidden>
+                                    <span>View reel <span aria-hidden="true">↗</span></span>
+                                </button>
+                            </div>
+                            <span class="reel-home-bar" aria-hidden="true"></span>
+                            <span class="reel-glow" aria-hidden="true"></span>
+                            <span class="reel-reflection" aria-hidden="true"></span>
+                        </div>
+                        <div class="reel-caption">
+                            <span>02 / BEFORE YOU BUY</span>
+                            <h3>Check before checkout.</h3>
+                            <p>See product prices and retailer pages before making a decision.</p>
+                        </div>
+                    </article>
+                    <article class="reel-card" data-reel="explore" role="group" aria-roledescription="slide" aria-label="3 of 3: Explore tool prices">
+                        <div class="reel-phone">
+                            <span class="reel-island" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-action" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-volume-up" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-volume-down" aria-hidden="true"></span>
+                            <span class="reel-hardware reel-power" aria-hidden="true"></span>
+                            <div class="reel-screen">
+                                <video controls muted loop playsinline preload="none" poster="asset/price-match/web/tool-price-walkthrough.jpg" aria-label="Explore tool prices app walkthrough">
+                                    <source src="asset/price-match/web/tool-price-walkthrough.mp4" type="video/mp4">
+                                    <a href="asset/price-match/web/tool-price-walkthrough.mp4">Watch the tool price walkthrough</a>.
+                                </video>
+                                <span class="reel-glare" aria-hidden="true"></span>
+                                <button class="reel-sound" type="button" aria-label="Tap to unmute" aria-pressed="false" hidden>
+                                    <span class="reel-sound-icon" aria-hidden="true"><i class="fas fa-volume-xmark"></i></span>
+                                    <span class="reel-sound-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+                                    <span class="reel-sound-label">Tap to unmute</span>
+                                </button>
+                                <button class="reel-select" type="button" aria-label="Select Explore tool prices" hidden>
+                                    <span>View reel <span aria-hidden="true">↗</span></span>
+                                </button>
+                            </div>
+                            <span class="reel-home-bar" aria-hidden="true"></span>
+                            <span class="reel-glow" aria-hidden="true"></span>
+                            <span class="reel-reflection" aria-hidden="true"></span>
+                        </div>
+                        <div class="reel-caption">
+                            <span>03 / EXPLORE TOOL PRICES</span>
+                            <h3>Look beyond the shelf price.</h3>
+                            <p>A longer walkthrough of tool comparisons and retailer links.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="reels-navigation" hidden>
+                    <div class="reels-controls">
+                        <button class="reels-arrow" type="button" data-reel-step="-1" aria-label="Previous app video"><span aria-hidden="true">←</span></button>
+                        <p class="reels-status" aria-live="polite" aria-atomic="true">Video 1 of 3 · Scan and compare</p>
+                        <button class="reels-arrow" type="button" data-reel-step="1" aria-label="Next app video"><span aria-hidden="true">→</span></button>
+                    </div>
+                    <div class="reels-picker" role="group" aria-label="Choose an app video">
+                        <button type="button" data-reel-index="0" aria-pressed="true">01 <span>Scan &amp; compare</span></button>
+                        <button type="button" data-reel-index="1" aria-pressed="false">02 <span>Before you buy</span></button>
+                        <button type="button" data-reel-index="2" aria-pressed="false">03 <span>Explore tool prices</span></button>
+                    </div>
+                    <p class="reels-hint"><span aria-hidden="true">↔</span> Swipe the phone or use the arrows to choose. Tap to unmute; use the video controls to pause, replay, or watch fullscreen.</p>
+                    <p class="reels-error" role="status" hidden></p>
+                </div>
+                <p class="reels-note">Recorded app demonstrations. Screens may show earlier app versions; displayed prices and offers are examples, not current quotations.</p>
             </div>
         </section>
 
@@ -1336,106 +1182,9 @@
             heroPhoneShowcase.style.setProperty("--hero-phone-progress", progress.toFixed(4));
         }
 
-        /* ── Demo 3-D scroll animation ──────── */
-        const demoDevice = document.getElementById("demoDevice");
-        const demoTitle  = document.getElementById("demoTitle");
-
-        function updateDemoAnimation() {
-            if (!demoDevice || !demoTitle) return;
-            const rect     = demoDevice.getBoundingClientRect();
-            const viewport = window.innerHeight || document.documentElement.clientHeight;
-            // 0 = phone just entering bottom; 1 = phone fully centred
-            const raw      = (viewport - rect.top) / (viewport + rect.height);
-            const p        = Math.min(Math.max(raw, 0), 1);
-
-            // X-tilt: 24° → 0°
-            const rotX  = (24 - p * 24).toFixed(2);
-            // Y-tilt: start slightly angled, land upright
-            const rotY  = (p < 0.5
-                ? -6 + p * 12          // -6° → 0°
-                : p * 2 - 1).toFixed(2); // 0° → +1° subtle overshoot
-            // Rise up as it enters
-            const ty    = (50 - p * 50).toFixed(1);
-            // Scale: 0.86 → 1
-            const sc    = (0.86 + p * 0.14).toFixed(3);
-
-            demoDevice.style.setProperty("--demo-rotate", rotX + "deg");
-            demoDevice.style.setProperty("--demo-ry",     rotY + "deg");
-            demoDevice.style.setProperty("--demo-ty",     ty   + "px");
-            demoDevice.style.setProperty("--demo-scale",  sc);
-            demoTitle.style.setProperty("--demo-title-y", (-80 * p).toFixed(1) + "px");
-        }
-
-        /* ── Mouse parallax on the demo section ── */
-        (function () {
-            const demoSection = demoDevice?.closest(".demo-section");
-            if (!demoSection || !demoDevice) return;
-            const MAX = 8; // max tilt degrees
-            demoSection.addEventListener("mousemove", (e) => {
-                const rect = demoSection.getBoundingClientRect();
-                const cx   = rect.left + rect.width  / 2;
-                const cy   = rect.top  + rect.height / 2;
-                const mx   = ((e.clientX - cx) / (rect.width  / 2) * MAX).toFixed(2);
-                const my   = (-(e.clientY - cy) / (rect.height / 2) * MAX * 0.6).toFixed(2);
-                demoDevice.style.setProperty("--mx", mx + "deg");
-                demoDevice.style.setProperty("--my", my + "deg");
-                demoDevice.classList.add("mouse-active");
-            });
-            demoSection.addEventListener("mouseleave", () => {
-                demoDevice.style.setProperty("--mx", "0deg");
-                demoDevice.style.setProperty("--my", "0deg");
-                demoDevice.classList.remove("mouse-active");
-            });
-        })();
-
         updateHeroPhones();
-        updateDemoAnimation();
-        window.addEventListener("scroll", updateHeroPhones,    { passive: true });
-        window.addEventListener("scroll", updateDemoAnimation, { passive: true });
+        window.addEventListener("scroll", updateHeroPhones, { passive: true });
         window.addEventListener("resize", updateHeroPhones);
-        window.addEventListener("resize", updateDemoAnimation);
-
-        /* ── Video: autoplay muted, show sound toggle, unmute on tap ── */
-        (function () {
-            const demoVideo = document.getElementById("demoVideo");
-            const demoDeviceEl = document.getElementById("demoDevice");
-            const soundBtn  = document.getElementById("soundBtn");
-            const soundLabel = document.getElementById("soundLabel");
-            if (!demoVideo || !demoDeviceEl) return;
-            const videoShell = demoVideo.closest(".video-shell");
-
-            const io = new IntersectionObserver((entries) => {
-                for (const entry of entries) {
-                    if (entry.isIntersecting) {
-                        demoVideo.play().catch(() => {});
-                        if (videoShell) videoShell.classList.add("playing");
-                        if (soundBtn) soundBtn.classList.add("visible");
-                    } else {
-                        demoVideo.pause();
-                        if (videoShell) videoShell.classList.remove("playing");
-                        if (soundBtn) soundBtn.classList.remove("visible");
-                    }
-                }
-            }, { threshold: 0.4 });
-            io.observe(demoDeviceEl);
-
-            if (soundBtn) {
-                soundBtn.addEventListener("click", () => {
-                    demoVideo.muted = !demoVideo.muted;
-                    const icon = soundBtn.querySelector(".sound-icon i");
-                    if (demoVideo.muted) {
-                        soundBtn.classList.add("muted");
-                        if (icon) { icon.className = "fas fa-volume-xmark"; }
-                        if (soundLabel) soundLabel.textContent = "Tap for sound";
-                    } else {
-                        soundBtn.classList.remove("muted");
-                        if (icon) { icon.className = "fas fa-volume-high"; }
-                        if (soundLabel) soundLabel.textContent = "Sound on";
-                        demoVideo.play().catch(() => {});
-                    }
-                });
-            }
-        })();
 
         /* ── Hero particles ─────────────────── */
         (function () {
